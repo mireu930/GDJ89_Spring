@@ -76,4 +76,35 @@ public class ProductDAO {
 		
 		return productDTO;
 	}
+	
+	public int update(ProductDTO productDTO) throws Exception {
+		Connection connection = DBConnection.getConnection();
+		String sql = "UPDATE PRODUCTS SET PRODUCTNAME =?,PRODUCTDETAIL =?, PRDOCUTRATE=? WHERE PRODUCTNUM=?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		
+		preparedStatement.setString(1, productDTO.getProductName());
+		preparedStatement.setString(2, productDTO.getProductDetail());
+		preparedStatement.setDouble(3, productDTO.getProductRate());
+		preparedStatement.setLong(4, productDTO.getProductNum());
+		
+		int result = preparedStatement.executeUpdate();
+		
+		DBConnection.disConnection(preparedStatement, connection);
+		
+		return result;
+	}
+	
+	public int delte(ProductDTO productDTO) throws Exception {
+		Connection connection = DBConnection.getConnection();
+		String sql = "DELETE PRODUCTS WHERE PRODUCTNUM = ?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		
+		preparedStatement.setLong(1, productDTO.getProductNum());
+		
+		int result = preparedStatement.executeUpdate();
+		
+		DBConnection.disConnection(preparedStatement, connection);
+		
+		return result;
+	}
 }
