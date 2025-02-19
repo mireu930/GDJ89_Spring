@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -15,20 +16,25 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList(Model model) throws Exception {
+	public ModelAndView getList() throws Exception {
 		System.out.println("Product List");
 		
 		List<ProductDTO> ar = productService.getList();
-		model.addAttribute("list", ar);
+//		model.addAttribute("list", ar);
 		
-		return "products/list";	
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("list", ar);
+		
+		modelAndView.setViewName("products/list");
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail() throws Exception {
+	public ModelAndView getDetail(ModelAndView modelAndView) throws Exception {
 		System.out.println("Prdocut Detail");
 		
-		return "products/detail";
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
@@ -39,16 +45,17 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add2(ProductDTO productDTO) throws Exception {
+	public ModelAndView add2(ProductDTO productDTO) throws Exception {
 		 int result = productService.add(productDTO);
 		System.out.println(productDTO.getProductName());
 		
 		String path = "";
+		ModelAndView modelAndView = new ModelAndView();
 		
 		if(result > 0) {
-			path = "redirect:./list";
+			modelAndView.setViewName("redirect:./list");
 		}
 		
-		return path;
+		return modelAndView;
 	}
 }
