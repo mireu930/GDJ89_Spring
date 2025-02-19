@@ -19,25 +19,7 @@ public class ProductDAO {
 	private final String NAMESPACE = "com.root.app.products.ProductDAO.";
 	
 	public List<ProductDTO> getList() throws Exception {
-//		Connection connection = DBConnection.getConnection();
-//		String sql = "SELECT * FROM PRODUCTS ";
-//		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//		ResultSet resultSet = preparedStatement.executeQuery();
 		
-//		List<ProductDTO> ar = new ArrayList<ProductDTO>();
-		
-//		while(resultSet.next()) {
-//			ProductDTO productDTO = new ProductDTO();
-//			productDTO.setProductNum(resultSet.getLong(1));
-//			productDTO.setProductName(resultSet.getString(2));
-//			productDTO.setProductDetail(resultSet.getString(3));
-//			productDTO.setProductRate(resultSet.getDouble(4));
-//			productDTO.setProductDate(resultSet.getDate(5));
-//			
-//			ar.add(productDTO);
-//		}
-		
-//		DBConnection.disConnection(resultSet, preparedStatement, connection);
 		List<ProductDTO> ar = sqlSession.selectList(NAMESPACE+"getList");
 		return ar;
 	}

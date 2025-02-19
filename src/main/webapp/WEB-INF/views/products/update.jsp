@@ -109,6 +109,7 @@
 			  </div> 
 			  <div class="col-12">
 			    <button class="btn btn-primary" type="submit">수정</button>
+			    <a href="./list" class ="btn btn-outline-danger">취소</a>	
 			  </div>
 			</form>
 		</div>

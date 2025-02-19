@@ -18,7 +18,7 @@
   	</insert>
   	
   	<update id="update" parameterType="com.root.app.products.ProductDTO">
-  		UPDATE PRODUCTS SET PRODUCTNAME = #{productName},PRODUCTDETAIL = #{productDetail}, PRDOCUTRATE=#{productRate}, PRODUCTDATE =#{productDate} 
+  		UPDATE PRODUCTS SET PRODUCTNAME = #{productName},PRODUCTDETAIL = #{productDetail}, PRODUCTRATE=#{productRate}, PRODUCTDATE =#{productDate} 
   		WHERE PRODUCTNUM= #{productNum}
   	</update>
   	

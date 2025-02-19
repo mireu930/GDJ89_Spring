@@ -76,11 +76,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView udpate(ProductDTO productDTO) throws Exception {
+	public ModelAndView update2(ProductDTO productDTO) throws Exception {
+		
 		int result = productService.update(productDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		
+				
 		if(result>0) {
 			modelAndView.setViewName("redirect:./list");
 		}
