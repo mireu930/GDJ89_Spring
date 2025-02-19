@@ -60,6 +60,22 @@
 					productPeriodInput.classList.add('is-invalid');
 				}
 			});
+			
+						// 체크박스 상태에 따라 문구와 체크박스 스타일을 변경
+						var checkbox = document.getElementById('invalidCheck3');
+						var label = document.querySelector('label[for="invalidCheck3"]');
+						var feedback = document.getElementById('invalidCheck3Feedback');
+
+						checkbox.addEventListener('change', function () {
+							if (checkbox.checked) {
+								feedback.style.display = 'none';  // "You must agree..." 메시지 숨김
+								label.style.color = 'blue';  // 체크박스 라벨 색상 파란색으로 변경
+							} else {
+								feedback.style.display = 'block';  // 메시지 다시 보이게
+								label.style.color = '';  // 기본 색상으로 복원
+								checkbox.style.borderColor = '';  // 기본 테두리 색상으로 복원
+							}
+				});
 		});
 	</script>
 </head>
@@ -67,48 +83,54 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<div class = "row col-md-8 offset-md-2">
-			<form class="row g-3" action = "./update" method = "post">
+			<form class="row g-3" action = "./add" method = "post">
 			  <div class="col-md-4">
+			    <label for="productName" class="form-label">상품번호</label>
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <input type="hidden" name="productNum" value="${dto.productNum}"  class="form-control is-invalid" id="validationServer01" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-			    </div>
-			    
-			    <div class="input-group has-validation">
-			      <label for="productNum" class="form-label">상품이름</label>
-			      <input type="text" name="productName" value="${dto.productName}"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <input type="text" name="productName"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <div id="validationServerServer02Feedback" class="invalid-feedback">
 			        Please choose a detail.
 			      </div>
 			    </div>
 			  </div>
 			  <div class="col-md-4">
-			    <label for="productDetail" class="form-label">상품상세설명</label>
+			    <label for="productDetail" class="form-label">아이디</label>
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <input type="text" name="productDetail" value="${dto.productDetail }" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <input type="text" name="productDetail" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <div id="validationServerUsernameFeedback" class="invalid-feedback">
 			        Please choose a detail.
 			      </div>
 			    </div>
 			  </div>
 			  <div class="col-md-6">
-			    <label for="productRate" class="form-label">이자율</label>
-			    <input type="text" name = "productRate" value="${dto.productRate}" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+			    <label for="productRate" class="form-label">잔액</label>
+			    <input type="text" name = "productRate" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer03Feedback" class="invalid-feedback">
 			      Please provide a rate.
 			    </div>
 			  </div>
-			   <div class="col-md-3">
-			    <label for="productDate" class="form-label">상품기간</label>
-			    <input type="date" name ="productDate" value ="${dto.productDate}" class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer03Feedback" required>
+			  <div class="col-md-3">
+			    <label for="productDate" class="form-label">등록날짜</label>
+			    <input type="date" name ="productDate" class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer04Feedback" class="invalid-feedback">
 			      Please select a date.
 			    </div>
-			  </div> 
+			  </div>
 			  <div class="col-12">
-			    <button class="btn btn-primary" type="submit">수정</button>
-			    <a href="./list" class ="btn btn-outline-danger">취소</a>	
+			    <div class="form-check">
+			      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+			      <label class="form-check-label" for="invalidCheck3">
+			        Agree to terms and conditions
+			      </label>
+			      <div id="invalidCheck3Feedback" class="invalid-feedback">
+			        You must agree before submitting.
+			      </div>
+			    </div>
+			  </div>
+			  <div class="col-12">
+			    <button class="btn btn-primary" type="submit">등록</button>
 			  </div>
 			</form>
 		</div>

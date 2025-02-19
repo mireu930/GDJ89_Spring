@@ -75,7 +75,7 @@
 			    </div>
 			    
 			    <div class="input-group has-validation">
-			      <label for="productNum" class="form-label">상품이름</label>
+			      <label for="productNum" class="form-label">계좌번호</label>
 			      <input type="text" name="productName" value="${dto.productName}"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <div id="validationServerServer02Feedback" class="invalid-feedback">
 			        Please choose a detail.
@@ -83,7 +83,7 @@
 			    </div>
 			  </div>
 			  <div class="col-md-4">
-			    <label for="productDetail" class="form-label">상품상세설명</label>
+			    <label for="productDetail" class="form-label">아이디</label>
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
 			      <input type="text" name="productDetail" value="${dto.productDetail }" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
@@ -93,14 +93,14 @@
 			    </div>
 			  </div>
 			  <div class="col-md-6">
-			    <label for="productRate" class="form-label">이자율</label>
+			    <label for="productRate" class="form-label">잔액</label>
 			    <input type="text" name = "productRate" value="${dto.productRate}" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer03Feedback" class="invalid-feedback">
 			      Please provide a rate.
 			    </div>
 			  </div>
 			   <div class="col-md-3">
-			    <label for="productDate" class="form-label">상품기간</label>
+			    <label for="productDate" class="form-label">등록날짜</label>
 			    <input type="date" name ="productDate" value ="${dto.productDate}" class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer04Feedback" class="invalid-feedback">
 			      Please select a date.
