@@ -8,15 +8,23 @@
   		SELECT * FROM PRODUCTS ORDER BY PRODUCTNUM DESC
   	</select>
   	
-  	<select id="getDetail" resultType = "com.root.app.products.ProductDTO">
-  		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = 27
+  	<select id="getDetail" resultType = "com.root.app.products.ProductDTO" parameterType="com.root.app.products.ProductDTO">
+  		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = #{productNum}
   	</select>
   	
-  	<!-- <insert id=""></insert>
+  	<insert id="add" parameterType="com.root.app.products.ProductDTO">
+  		INSERT INTO PRODUCTS(PRODUCTNUM, PRODUCTNAME, PRODUCTDETAIL, PRODUCTRATE, PRODUCTDATE)
+		 VALUES (PRODUCTNUM_SEQ.NEXTVAL,#{productName},#{productDetail},#{productRate},#{productDate})
+  	</insert>
   	
-  	<update id=""></update>
+  	<update id="update" parameterType="com.root.app.products.ProductDTO">
+  		UPDATE PRODUCTS SET PRODUCTNAME = #{productName},PRODUCTDETAIL = #{productDetail}, PRDOCUTRATE=#{productRate} 
+  		WHERE PRODUCTNUM= #{productNum}
+  	</update>
   	
-  	<delete id=""></delete> -->
+  	<delete id="delete" parameterType="com.root.app.products.ProductDTO">
+  		DELETE PRODUCTS WHERE PRODUCTNUM = #{productNum}
+  	</delete>
   </mapper>
   
   

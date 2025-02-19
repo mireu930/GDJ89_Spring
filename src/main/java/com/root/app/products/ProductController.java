@@ -50,7 +50,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add2(ProductDTO productDTO) throws Exception {
+	public ModelAndView add(ProductDTO productDTO) throws Exception {
 		 int result = productService.add(productDTO);
 		System.out.println(productDTO.getProductName());
 		
@@ -60,6 +60,40 @@ public class ProductController {
 			modelAndView.setViewName("redirect:./list");
 		}
 		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public ModelAndView update(ProductDTO productDTO) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("dto", productService.getDetail(productDTO));
+		modelAndView.setViewName("products/update");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public ModelAndView udpate(ProductDTO productDTO) throws Exception {
+		int result = productService.update(productDTO);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if(result>0) {
+			modelAndView.setViewName("redirect:./list");
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public ModelAndView delete(ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if(result>0) {
+			modelAndView.setViewName("redirect:./list");
+		}
 		return modelAndView;
 	}
 }

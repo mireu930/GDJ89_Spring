@@ -29,8 +29,8 @@
 			      <th scope="row">${dto.productNum}</th>
 			      <td>${dto.productName}</td>
 			      <td>${dto.productDetail}</td>
-			      <td>@${dto.productRate}</td>
-			      <td>@${dto.productDate}</td>
+			      <td>${dto.productRate}</td>
+			      <td>${dto.productDate}</td>
 			    </tr>
 			    </c:if>
 			    <c:if test="${empty dto}">
@@ -39,8 +39,8 @@
 			     </tbody>
 			</table>
 		</div>
-			<a href="./update" class ="btn btn-outline-success">수정</a>	
-			<a href="./delete" class ="btn btn-outline-danger">삭제</a>	
+			<a href="./update?productNum=${dto.productNum}" class ="btn btn-outline-success">수정</a>	
+			<a href="./delete?productNum=${dto.productNum}" class ="btn btn-outline-danger">삭제</a>	
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>

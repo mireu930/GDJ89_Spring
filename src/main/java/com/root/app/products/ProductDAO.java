@@ -43,57 +43,28 @@ public class ProductDAO {
 	}
 	
 	public int add(ProductDTO productDTO) throws Exception {
-		Connection connection = DBConnection.getConnection();
-		String sql = "INSERT INTO PRODUCTS(PRODUCTNUM, PRODUCTNAME, PRODUCTDETAIL, PRODUCTRATE, PRODUCTDATE)"
-				+ " VALUES (PRODUCTNUM_SEQ.NEXTVAL,?,?,?,?)";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		
-		preparedStatement.setString(1, productDTO.getProductName());
-		preparedStatement.setString(2, productDTO.getProductDetail());
-		preparedStatement.setDouble(3, productDTO.getProductRate());
-		preparedStatement.setDate(4, productDTO.getProductDate());
-		
-		int result = preparedStatement.executeUpdate();
-		
-		DBConnection.disConnection(preparedStatement, connection);
+		int result = sqlSession.insert(NAMESPACE+"add", productDTO);
 		
 		return result;
 	}
 	
 	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
 
-		productDTO = sqlSession.selectOne(NAMESPACE+"getDetail");
+		productDTO = sqlSession.selectOne(NAMESPACE+"getDetail", productDTO);
 		
 		return productDTO;
 	}
 	
 	public int update(ProductDTO productDTO) throws Exception {
-		Connection connection = DBConnection.getConnection();
-		String sql = "UPDATE PRODUCTS SET PRODUCTNAME =?,PRODUCTDETAIL =?, PRDOCUTRATE=? WHERE PRODUCTNUM=?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		
-		preparedStatement.setString(1, productDTO.getProductName());
-		preparedStatement.setString(2, productDTO.getProductDetail());
-		preparedStatement.setDouble(3, productDTO.getProductRate());
-		preparedStatement.setLong(4, productDTO.getProductNum());
-		
-		int result = preparedStatement.executeUpdate();
-		
-		DBConnection.disConnection(preparedStatement, connection);
-		
+		int result = sqlSession.update(NAMESPACE+"update", productDTO);
+	
 		return result;
 	}
 	
 	public int delte(ProductDTO productDTO) throws Exception {
-		Connection connection = DBConnection.getConnection();
-		String sql = "DELETE PRODUCTS WHERE PRODUCTNUM = ?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		
-		preparedStatement.setLong(1, productDTO.getProductNum());
-		
-		int result = preparedStatement.executeUpdate();
-		
-		DBConnection.disConnection(preparedStatement, connection);
+		int result = sqlSession.delete(NAMESPACE+"delete", productDTO);
 		
 		return result;
 	}

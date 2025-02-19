@@ -25,11 +25,11 @@
 	  <c:forEach items="${list}" var ="ar">
 	  
 	    <tr>
-	      <th scope="row"><a href="./detail">${ar.productNum}</a></th>
+	      <th scope="row"><a href="./detail?productNum=${ar.productNum}">${ar.productNum}</a></th>
 	      <td>${ar.productName}</td>
 	      <td>${ar.productDetail}</td>
-	      <td>@${ar.productRate}</td>
-	      <td>@${ar.productDate}</td>
+	      <td>${ar.productRate}</td>
+	      <td>${ar.productDate}</td>
 	    </tr>
 	  </c:forEach>
 	  </tbody>
