@@ -48,7 +48,6 @@ public class ProductDAO {
 		preparedStatement.setDouble(3, productDTO.getProductRate());
 		preparedStatement.setDate(4, productDTO.getProductDate());
 		
-		
 		int result = preparedStatement.executeUpdate();
 		
 		DBConnection.disConnection(preparedStatement, connection);
