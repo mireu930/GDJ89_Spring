@@ -31,13 +31,15 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(ModelAndView modelAndView) throws Exception {
+	public ModelAndView getDetail(ProductDTO productDTO) throws Exception {
 		System.out.println("Prdocut Detail");
 		
-		ProductDTO productDTO = new ProductDTO();
-		productDTO = productService.getDetail(productDTO);
+		ModelAndView modelAndView = new ModelAndView();
 		
+		productDTO = productService.getDetail(productDTO);
+
 		modelAndView.addObject("dto", productDTO);
+		modelAndView.setViewName("products/detail");
 		
 		return modelAndView;
 	}
@@ -85,7 +87,7 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public ModelAndView delete(ProductDTO productDTO) throws Exception {
 		int result = productService.delete(productDTO);
 		

@@ -100,13 +100,13 @@
 			      Please provide a rate.
 			    </div>
 			  </div>
-			  <%-- <div class="col-md-3">
+			   <div class="col-md-3">
 			    <label for="productDate" class="form-label">상품기간</label>
 			    <input type="date" name ="productDate" value ="${dto.productDate}" class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer04Feedback" class="invalid-feedback">
 			      Please select a date.
 			    </div>
-			  </div> --%>
+			  </div> 
 			  <div class="col-12">
 			    <button class="btn btn-primary" type="submit">수정</button>
 			  </div>
