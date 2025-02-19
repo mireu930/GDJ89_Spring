@@ -25,7 +25,7 @@
 	  <c:forEach items="${list}" var ="ar">
 	  
 	    <tr>
-	      <th scope="row">${ar.productNum}</th>
+	      <th scope="row"><a href="./detail">${ar.productNum}</a></th>
 	      <td>${ar.productName}</td>
 	      <td>${ar.productDetail}</td>
 	      <td>@${ar.productRate}</td>

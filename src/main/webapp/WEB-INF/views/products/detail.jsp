@@ -16,19 +16,26 @@
 			<table class="table table-striped table-hover">
 		 		<thead>
 			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">First</th>
-			      <th scope="col">Last</th>
-			      <th scope="col">Handle</th>
+			      <th scope="col">상품번호</th>
+			      <th scope="col">상품이름</th>
+			      <th scope="col">상품설명</th>
+			      <th scope="col">이자율</th>
+			      <th scope="col">만기일</th>
 			    </tr>
 			  </thead>
 			  <tbody>
+			  <c:if test="${not empty dto}">
 			    <tr>
-			      <th scope="row">1</th>
-			      <td>Mark</td>
-			      <td>Otto</td>
-			      <td>@mdo</td>
+			      <th scope="row">${dto.productNum}</th>
+			      <td>${dto.productName}</td>
+			      <td>${dto.productDetail}</td>
+			      <td>@${dto.productRate}</td>
+			      <td>@${dto.productDate}</td>
 			    </tr>
+			    </c:if>
+			    <c:if test="${empty dto}">
+			     <h3>정보가 없습니다.</h3>
+			    </c:if>
 			     </tbody>
 			</table>
 		</div>

@@ -34,6 +34,11 @@ public class ProductController {
 	public ModelAndView getDetail(ModelAndView modelAndView) throws Exception {
 		System.out.println("Prdocut Detail");
 		
+		ProductDTO productDTO = new ProductDTO();
+		productDTO = productService.getDetail(productDTO);
+		
+		modelAndView.addObject("dto", productDTO);
+		
 		return modelAndView;
 	}
 	

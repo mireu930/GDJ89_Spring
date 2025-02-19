@@ -22,4 +22,10 @@ public class ProductService {
 		
 		return result;
 	}
+	
+	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
+		productDTO = productDAO.getDetail(productDTO);
+		
+		return productDTO;
+	}
 }
