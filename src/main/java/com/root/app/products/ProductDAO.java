@@ -40,13 +40,13 @@ public class ProductDAO {
 	public int add(ProductDTO productDTO) throws Exception {
 		Connection connection = DBConnection.getConnection();
 		String sql = "INSERT INTO PRODUCTS(PRODUCTNUM, PRODUCTNAME, PRODUCTDETAIL, PRODUCTRATE, PRODUCTDATE)"
-				+ " VALUES (PRODUCTNUM_SEQ.NEXTVAL,?,?,?,SYSDATE)";
+				+ " VALUES (PRODUCTNUM_SEQ.NEXTVAL,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		
 		preparedStatement.setString(1, productDTO.getProductName());
 		preparedStatement.setString(2, productDTO.getProductDetail());
 		preparedStatement.setDouble(3, productDTO.getProductRate());
-//		preparedStatement.setDate(4, productDTO.getProductDate());
+		preparedStatement.setDate(4, productDTO.getProductDate());
 		
 		
 		int result = preparedStatement.executeUpdate();

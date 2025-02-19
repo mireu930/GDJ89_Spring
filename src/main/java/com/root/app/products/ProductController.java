@@ -49,7 +49,6 @@ public class ProductController {
 		 int result = productService.add(productDTO);
 		System.out.println(productDTO.getProductName());
 		
-		String path = "";
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(result > 0) {
