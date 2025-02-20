@@ -23,6 +23,7 @@ public class UserService {
 	}
 	
 	public int update(UserDTO userDTO) throws Exception {
+		System.out.println("수정준비");
 		return userDAO.update(userDTO);
 	}
 }

@@ -13,6 +13,6 @@
   	 </select>
   	 
   	 <update id ="update" parameterType="UserDTO">
-  	 	UPDATE USERS SET USER_NAME =#{user_name}, PASSWORD =#{password}, NAME =#{name}, PHONE =#{phone}, EMAIL=#{email} WHERE USER_NAME =#{user_name}
+  	 	UPDATE USERS SET PASSWORD =#{password}, NAME =#{name}, PHONE =#{phone}, EMAIL=#{email} WHERE USER_NAME =#{user_name}
   	 </update>
   </mapper>

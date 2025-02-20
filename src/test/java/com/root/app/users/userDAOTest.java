@@ -43,7 +43,6 @@ public class userDAOTest extends SampleTest {
 	public void update() throws Exception {
 		UserDTO userDTO = new UserDTO();
 		
-		userDTO.setUser_name("test");
 		userDTO.setPassword("test");
 		userDTO.setName("mireu");
 		userDTO.setPhone("02-02-2222");

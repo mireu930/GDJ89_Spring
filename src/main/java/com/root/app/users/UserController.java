@@ -66,27 +66,38 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public ModelAndView mypage(UserDTO userDTO, HttpSession session) throws Exception {
+	public String mypage(UserDTO userDTO, HttpSession session) throws Exception {
+		
+		
+		return "users/mypage";
+	}
+	
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public ModelAndView update(UserDTO userDTO, HttpSession session) throws Exception {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		 userDTO = (UserDTO)session.getAttribute("user");
-		
-		modelAndView.addObject("dto", userService.login(userDTO));
-		modelAndView.setViewName("users/mypage");
+
+		modelAndView.setViewName("users/update");
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value ="mypage", method = RequestMethod.POST)
-	public ModelAndView update(UserDTO userDTO, HttpSession session)throws Exception {
-		userDTO = (UserDTO)session.getAttribute("user");
+	
+	@RequestMapping(value ="update", method = RequestMethod.POST)
+	public ModelAndView updateProcess(UserDTO userDTO, HttpSession session)throws Exception {
+		UserDTO sessionUser = (UserDTO)session.getAttribute("user");
 		
-		int result = userService.update(userDTO);
+		int result = userService.update(sessionUser);
 		
 		ModelAndView modelAndView = new ModelAndView();
+		System.out.println(result);
 		
 		if(result > 0) {
-			modelAndView.setViewName("redirect:/");
+			System.out.println("수정성공");
+			session.setAttribute("user", sessionUser);
+			modelAndView.setViewName("redirect:./mypage");
 		}
 		
 		return modelAndView;
