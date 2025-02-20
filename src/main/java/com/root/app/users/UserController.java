@@ -33,4 +33,15 @@ public class UserController {
 		return modelAndView;
 		
 	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public void getDetail(UserDTO userDTO) throws Exception {
+		userDTO = userService.getDetail(userDTO);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("./mypage");
+		
+		
+	}
 }

@@ -11,4 +11,8 @@ public class UserService {
 	public int join(UserDTO userDTO) throws Exception{
 		return userDAO.join(userDTO);
 	}
+	
+	public UserDTO getDetail(UserDTO userDTO) throws Exception {
+		return userDAO.getDetail(userDTO);
+	}
 }

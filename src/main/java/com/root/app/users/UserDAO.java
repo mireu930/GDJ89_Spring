@@ -13,4 +13,8 @@ public class UserDAO {
 	public int join(UserDTO userDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"add", userDTO);
 	}
+	
+	public UserDTO getDetail(UserDTO userDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getDetail", userDTO);
+	}
 }
