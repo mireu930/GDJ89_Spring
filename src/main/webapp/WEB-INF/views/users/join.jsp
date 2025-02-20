@@ -98,20 +98,18 @@
 			  <div class="col-md-4">
 			    <label for="user_name" class="form-label">아이디</label>
 			    <div class="input-group has-validation">
-			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
 			      <input type="text" name="user_name"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerServer02Feedback" required>
 			      <div id="validationServerServer02Feedback" class="invalid-feedback">
-			        Please choose a detail.
+			        아이디를 입력하세요.
 			      </div>
 			    </div>
 			  </div>
 			  <div class="col-md-4">
 			    <label for="password" class="form-label">비밀번호</label>
 			    <div class="input-group has-validation">
-			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
 			      <input type="text" name="password" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <div id="validationServerUsernameFeedback" class="invalid-feedback">
-			        Please choose a detail.
+			        비밀번호를 입력하세요.
 			      </div>
 			    </div>
 			  </div>
@@ -119,31 +117,31 @@
 			    <label for="name" class="form-label">이름</label>
 			    <input type="text" name = "name" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer03Feedback" class="invalid-feedback">
-			      Please provide a rate.
+			     이름을 입력하세요.
 			    </div>
 			  </div>
 			  <div class="col-md-3">
 			    <label for="phone" class="form-label">폰번호</label>
 			    <input type="text" name ="phone" class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
 			    <div id="validationServer04Feedback" class="invalid-feedback">
-			      Please select a date.
+			      폰번호를 입력하세요.
 			    </div>
 			  </div>
 			  <div class="col-md-3">
 			    <label for="email" class="form-label">이메일</label>
 			    <input type="text" name ="email" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
 			    <div id="validationServer05Feedback" class="invalid-feedback">
-			      Please select a date.
+			      이메일을 입력하세요.
 			    </div>
 			  </div>
 			  <div class="col-12">
 			    <div class="form-check">
 			      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
 			      <label class="form-check-label" for="invalidCheck3">
-			        Agree to terms and conditions
+			        회원가입에 동의합니다.
 			      </label>
 			      <div id="invalidCheck3Feedback" class="invalid-feedback">
-			        You must agree before submitting.
+			        가입하기전에 동의를 눌러주세요.
 			      </div>
 			    </div>
 			  </div>

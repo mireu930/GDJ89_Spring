@@ -87,10 +87,9 @@
 			  <div class="col-md-4">
 			    <label for="productName" class="form-label">상품이름</label>
 			    <div class="input-group has-validation">
-			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
 			      <input type="text" name="productName"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <div id="validationServerServer02Feedback" class="invalid-feedback">
-			        Please choose a detail.
+			        상품이름을 입력하세요.
 			      </div>
 			    </div>
 			  </div>
@@ -100,7 +99,7 @@
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
 			      <input type="text" name="productDetail" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <div id="validationServerUsernameFeedback" class="invalid-feedback">
-			        Please choose a detail.
+			        상품상세설명을 입력하세요.
 			      </div>
 			    </div>
 			  </div>
@@ -108,24 +107,24 @@
 			    <label for="productRate" class="form-label">이자율</label>
 			    <input type="text" name = "productRate" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer03Feedback" class="invalid-feedback">
-			      Please provide a rate.
+			      이자율을 입력하세요.
 			    </div>
 			  </div>
 			  <div class="col-md-3">
 			    <label for="productDate" class="form-label">상품기간</label>
 			    <input type="date" name ="productDate" class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer03Feedback" required>
 			    <div id="validationServer04Feedback" class="invalid-feedback">
-			      Please select a date.
+			      상품기간을 입력하세요.
 			    </div>
 			  </div>
 			  <div class="col-12">
 			    <div class="form-check">
 			      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
 			      <label class="form-check-label" for="invalidCheck3">
-			        Agree to terms and conditions
+			        상품등록에 동의합니다.
 			      </label>
 			      <div id="invalidCheck3Feedback" class="invalid-feedback">
-			        You must agree before submitting.
+			        상품등록하기전에 동의를 눌러주세요.
 			      </div>
 			    </div>
 			  </div>
