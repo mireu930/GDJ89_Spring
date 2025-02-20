@@ -12,7 +12,17 @@ public class UserService {
 		return userDAO.join(userDTO);
 	}
 	
-	public UserDTO getDetail(UserDTO userDTO) throws Exception {
-		return userDAO.getDetail(userDTO);
+	public UserDTO login(UserDTO userDTO) throws Exception {
+		UserDTO result = userDAO.getDetail(userDTO);
+		if(result != null) {
+			if(result.getPassword().equals(userDTO.getPassword())) {
+				return result;
+			}
+		}
+		return null;
+	}
+	
+	public int update(UserDTO userDTO) throws Exception {
+		return userDAO.update(userDTO);
 	}
 }

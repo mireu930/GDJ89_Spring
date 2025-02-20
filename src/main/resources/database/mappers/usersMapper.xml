@@ -9,6 +9,10 @@
   	 </insert>
   	 
   	 <select id ="getDetail" parameterType="UserDTO" resultType="UserDTO">
-  	 	SELECT * FROM USERS WHERE USER_NAME = #{user_name} AND PASSWORD = #{password}
+  	 	SELECT * FROM USERS WHERE USER_NAME = #{user_name}
   	 </select>
+  	 
+  	 <update id ="update" parameterType="UserDTO">
+  	 	UPDATE USERS SET USER_NAME =#{user_name}, PASSWORD =#{password}, NAME =#{name}, PHONE =#{phone}, EMAIL=#{email} WHERE USER_NAME =#{user_name}
+  	 </update>
   </mapper>

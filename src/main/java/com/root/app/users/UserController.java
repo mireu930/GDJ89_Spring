@@ -1,10 +1,16 @@
 package com.root.app.users;
 
+import java.io.OutputStream;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -34,14 +40,55 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public void getDetail(UserDTO userDTO) throws Exception {
-		userDTO = userService.getDetail(userDTO);
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login(UserDTO userDTO, HttpSession session, Model model) throws Exception {
+		userDTO = userService.login(userDTO);
+		
+		if(userDTO!=null) {
+			session.setAttribute("user", userDTO);
+			return "redirect:/";
+		}
+		model.addAttribute("result","로그인실패");
+		model.addAttribute("path", "./login");
+
+		return "commons/result";
+	}
+	
+	@RequestMapping(value = "login", method =RequestMethod.GET)
+	public String login() throws Exception {
+		return "users/login";
+	}
+	
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) throws Exception {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public ModelAndView mypage(UserDTO userDTO, HttpSession session) throws Exception {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		 userDTO = (UserDTO)session.getAttribute("user");
+		
+		modelAndView.addObject("dto", userService.login(userDTO));
+		modelAndView.setViewName("users/mypage");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value ="mypage", method = RequestMethod.POST)
+	public ModelAndView update(UserDTO userDTO, HttpSession session)throws Exception {
+		userDTO = (UserDTO)session.getAttribute("user");
+		
+		int result = userService.update(userDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.setViewName("./mypage");
+		if(result > 0) {
+			modelAndView.setViewName("redirect:/");
+		}
 		
-		
+		return modelAndView;
 	}
 }

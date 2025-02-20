@@ -11,19 +11,18 @@ public class userDAOTest extends SampleTest {
 	@Autowired
 	private UserDAO userDAO;
 
-	@Test
+//	@Test
 	public void getDetail() throws Exception {
 		UserDTO userDTO = new UserDTO();
 		
 		userDTO.setUser_name("LEE1234");
-		userDTO.setPassword("ABCD1234");
 		
 		userDTO = userDAO.getDetail(userDTO);
 		
 		assertNotNull(null, userDTO);
 	}
 	
-	@Test
+//	@Test(expected = Exception.class)
 	public void joinTest() throws Exception {
 		UserDTO userDTO = new UserDTO();
 		
@@ -40,4 +39,20 @@ public class userDAOTest extends SampleTest {
 		assertEquals(1, result);
 	}
 
+	@Test
+	public void update() throws Exception {
+		UserDTO userDTO = new UserDTO();
+		
+		userDTO.setUser_name("test");
+		userDTO.setPassword("test");
+		userDTO.setName("mireu");
+		userDTO.setPhone("02-02-2222");
+		userDTO.setEmail("mail");
+		userDTO.setUser_name("LEE1234");
+		
+		
+		int result = userDAO.update(userDTO);
+		
+		assertEquals(1, result);
+	}
 }

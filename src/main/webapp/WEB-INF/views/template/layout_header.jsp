@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header class = "container-fluid">
 		<div class ="row">
 			<nav class="navbar navbar-expand-lg bg-primary">
@@ -21,8 +22,14 @@
 			            상태
 			          </a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">로그인</a></li>
+			          <c:if test="${empty user}">
+			            <li><a class="dropdown-item" href="/users/login">로그인</a></li>
 			            <li><a class="dropdown-item" href="/users/join">회원가입</a></li>
+			            </c:if>
+			            <c:if test="${not empty user}">
+			            <li><a class="dropdown-item" href="/users/logout">로그아웃</a></li>
+			            <li><a class="dropdown-item" href="/users/mypage">마이페이지</a></li>
+			            </c:if>
 			          </ul>
 			        </li>
 			        <li class="nav-item">

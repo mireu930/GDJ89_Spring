@@ -8,6 +8,6 @@
 	<typeAliases>
 		<typeAlias type="com.root.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.root.app.products.ProductDTO" alias="ProductDTO"/>
-		<typeAlias type="java.util.Map" alias="Map"/>
+		<!-- <typeAlias type="java.util.Map" alias="Map"/> -->
 	</typeAliases>
 </configuration>
