@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.root.app.users.UserDAO">
-  	 <insert id="add" parameterType="com.root.app.users.UserDTO">
+  	 <insert id="add" parameterType="UserDTO">
   	 	INSERT INTO USERS VALUES (#{user_name},#{password},#{name},#{phone},#{email})
   	 </insert>
   </mapper>

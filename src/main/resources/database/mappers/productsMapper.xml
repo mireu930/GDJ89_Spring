@@ -4,25 +4,25 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.root.app.products.ProductDAO">
-  	<select id="getList" resultType = "com.root.app.products.ProductDTO">
+  	<select id="getList" resultType = "ProductDTO">
   		SELECT * FROM PRODUCTS ORDER BY PRODUCTNUM DESC
   	</select>
   	
-  	<select id="getDetail" resultType = "com.root.app.products.ProductDTO" parameterType="com.root.app.products.ProductDTO">
+  	<select id="getDetail" resultType = "ProductDTO" parameterType="ProductDTO">
   		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = #{productNum}
   	</select>
   	
-  	<insert id="add" parameterType="com.root.app.products.ProductDTO">
+  	<insert id="add" parameterType="ProductDTO">
   		INSERT INTO PRODUCTS(PRODUCTNUM, PRODUCTNAME, PRODUCTDETAIL, PRODUCTRATE, PRODUCTDATE)
 		 VALUES (PRODUCTNUM_SEQ.NEXTVAL,#{productName},#{productDetail},#{productRate},#{productDate})
   	</insert>
   	
-  	<update id="update" parameterType="com.root.app.products.ProductDTO">
+  	<update id="update" parameterType="ProductDTO">
   		UPDATE PRODUCTS SET PRODUCTNAME = #{productName},PRODUCTDETAIL = #{productDetail}, PRODUCTRATE=#{productRate}, PRODUCTDATE =#{productDate} 
   		WHERE PRODUCTNUM= #{productNum}
   	</update>
   	
-  	<delete id="delete" parameterType="com.root.app.products.ProductDTO">
+  	<delete id="delete" parameterType="ProductDTO">
   		DELETE PRODUCTS WHERE PRODUCTNUM = #{productNum}
   	</delete>
   </mapper>
