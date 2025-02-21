@@ -15,22 +15,20 @@
 			<h1>detail</h1>
 			<table class="table table-striped table-hover">
 		 		<thead>
-			     <tr>
-			      <th scope="col">상품번호</th>
-			      <th scope="col">상품이름</th>
-			      <th scope="col">상품설명</th>
-			      <th scope="col">이자율</th>
-			      <th scope="col">만기일</th>
+			    <tr>
+			      <th scope="col">제목</th>
+			      <th scope="col">내용</th>
+			      <th scope="col">작성자</th>
+			      <th scope="col">조회수</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			  <c:if test="${not empty dto}">
 			    <tr>
-			      <th scope="row">${dto.productNum}</th>
-			      <td>${dto.productName}</td>
-			      <td>${dto.productDetail}</td>
-			      <td>${dto.productRate}</td>
-			      <td>${dto.productDate}</td>
+			      <th scope="row">${dto.boardTitle}</th>
+			      <td>${dto.boardContent}</td>
+			      <td>${dto.userName}</td>
+			      <td>${dto.boardHit}</td>
 			    </tr>
 			    </c:if>
 			    <c:if test="${empty dto}">
@@ -39,8 +37,8 @@
 			     </tbody>
 			</table>
 		</div>
-			<a href="./update?productNum=${dto.productNum}" class ="btn btn-outline-success">수정</a>	
-			<a href="./delete?productNum=${dto.productNum}" class ="btn btn-outline-danger">삭제</a>	
+			<a href="./update?boardNum=${dto.boardNum}" class ="btn btn-outline-success">수정</a>	
+			<a href="./delete?boardNum=${dto.boardNum}" class ="btn btn-outline-danger">삭제</a>			
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>

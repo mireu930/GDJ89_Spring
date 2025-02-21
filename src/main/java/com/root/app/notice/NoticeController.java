@@ -2,6 +2,8 @@ package com.root.app.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.root.app.users.UserDTO;
+import com.root.app.users.UserService;
 
 @Controller
 @RequestMapping(value = "/notice/*")
@@ -20,9 +25,11 @@ public class NoticeController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList() throws Exception {
 		List<NoticeDTO> ar = noticeService.getList();
-		
+			
 		ModelAndView modelAndView = new ModelAndView();
+		
 		modelAndView.addObject("list", ar);
+		
 		modelAndView.setViewName("notice/list");
 		
 		return modelAndView;
@@ -57,13 +64,13 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update(NoticeDTO noticeDTO) throws Exception {
+	public ModelAndView update(NoticeDTO noticeDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("notice", noticeService.getDetail(noticeDTO));
 		modelAndView.setViewName("notice/update");
 		
-		return "notice/update";
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
@@ -73,7 +80,7 @@ public class NoticeController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(result > 0) {
-			modelAndView.setViewName("redirect:./list");
+			modelAndView.setViewName("redirect:./detail?boardNum="+noticeDTO.getBoardNum());
 		}
 		
 		return modelAndView;
@@ -86,6 +93,9 @@ public class NoticeController {
 		if(result > 0) {
 			model.addAttribute("result","삭제성공");
 			model.addAttribute("path", "./list");
+		} else {
+			model.addAttribute("result","삭제실패");
+			model.addAttribute("path", "./detail");
 		}
 		
 		return "commons/result";

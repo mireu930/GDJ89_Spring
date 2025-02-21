@@ -17,6 +17,9 @@
 			        <li class="nav-item">
 			          <a class="nav-link" href="#">계좌</a>
 			        </li>
+			       	<li class="nav-item">
+			          <a class="nav-link" href="/notice/list">공지사항</a>
+			        </li>
 			        <li class="nav-item dropdown">
 			          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            상태
