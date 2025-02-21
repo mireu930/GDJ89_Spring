@@ -40,9 +40,6 @@
 			  <div class="col-md-3">
 			    <label for="email" class="form-label">이메일</label>
 			    <input type="text" name ="email" value="${user.email}" id="validationServer05" readonly>
-
-			  </div>
-			  <div class="col-12">
 			  </div>
 			  <div class="col-12">
 			    <a href="./update?user_name=${user.user_name}">수정</a>
