@@ -7,7 +7,7 @@ public class NoticeDTO {
 	private Long boardNum;
 	private String boardTitle;
 	private String boardContent;
-	private String userName;
+	private String user_name;
 	private Date boardDate;
 	private Long boardHit;
 	
@@ -30,10 +30,10 @@ public class NoticeDTO {
 		this.boardContent = boardContent;
 	}
 	public String getUserName() {
-		return userName;
+		return user_name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String user_name) {
+		this.user_name = user_name;
 	}
 	public Date getBoardDate() {
 		return boardDate;

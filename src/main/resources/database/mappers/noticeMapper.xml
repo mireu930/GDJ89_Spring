@@ -13,7 +13,7 @@
   	</select>
   	
   	<insert id="add"  parameterType="NoticeDTO">
-  		INSERT INTO NOTICE VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{userName},SYSDATE,0)
+  		INSERT INTO NOTICE VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{user_name},SYSDATE,0)
   	</insert>
   	
   	<update id="update"  parameterType="NoticeDTO">

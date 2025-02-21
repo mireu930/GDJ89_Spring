@@ -15,9 +15,6 @@
  		<thead>
 	    <tr>
 	      <th scope="col">계좌번호</th>
-	      <th scope="col">상품번호</th>
-	      <th scope="col">아이디</th>
-	      <th scope="col">잔액</th>
 	      <th scope="col">등록날짜</th>
 	    </tr>
 	  </thead>
@@ -25,11 +22,8 @@
 	  <c:forEach items="${list}" var ="ar">
 	  
 	    <tr>
-	      <th scope="row"><a href="./detail?productNum=${ar.productNum}">${ar.productNum}</a></th>
-	      <td>${ar.productName}</td>
-	      <td>${ar.productDetail}</td>
-	      <td>${ar.productRate}</td>
-	      <td>${ar.productDate}</td>
+	      <th scope="row"><a href="./detail?accountNum=${ar.accountNum}">${ar.accountNum}</a></th>
+	      <td>${ar.accountDate}</td>
 	    </tr>
 	  </c:forEach>
 	  </tbody>

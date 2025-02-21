@@ -34,8 +34,12 @@
 	  </c:forEach>
 	  </tbody>
 	</table>
-	 <c:if test="${not empty list and list[0].userName=='sss'}">
+	
+	 <c:if test="${not empty list and list[0].userName eq 'sss'}">
 		<a href ="./add" class ="btn btn-outline-primary">추가</a>	
+	 </c:if>
+	 <c:if test="${not empty list and list[0].userName ne 'sss'}">
+	 
 	 </c:if>
 </div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

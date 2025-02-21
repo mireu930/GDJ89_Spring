@@ -15,7 +15,7 @@
 			          <a class="nav-link active" aria-current="page" href="/products/list">상품</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="#">계좌</a>
+			          <a class="nav-link" href="/accounts/list">계좌</a>
 			        </li>
 			       	<li class="nav-item">
 			          <a class="nav-link" href="/notice/list">공지사항</a>

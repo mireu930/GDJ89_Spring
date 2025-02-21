@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.root.app.accounts.AccountDAO">
+  	<select id="getList" parameterType="AccountDTO" resultType="AccountDTO">
+  		SELECT * FROM ACCOUNTS WHERE USER_NAME = #{user_name}
+  	</select>
+  	
+  	<select id="getDetail" parameterType="AccountDTO" resultType="AccountDTO">
+  		SELECT * FROM ACCOUNTS WHERE ACCOUNTNUM = #{accountNum}
+  	</select>
+  	
+  	<insert id="add" parameterType="AccountDTO">
+  		INSERT INTO ACCOUNTS VALUES (#{accountNum},#{productNum},#{user_name},0,SYSDATE)
+  	</insert>
+  	
+  	<update id="update" parameterType="AccountDTO">
+  		UPDATE ACCOUNTS SET PRODUCTNUM=#{productNum},USER_NAME=#{user_name},ACCOUNTSBALANCE=#{accountsBalance} WHERE ACCOUNTNUM=#{accountNum}
+  	</update>
+  	
+  	<delete id ="delete" parameterType="AccountDTO">
+  		DELETE ACCOUNTS WHERE ACCOUNTNUM =#{accountNum}
+  	</delete>
+  </mapper>

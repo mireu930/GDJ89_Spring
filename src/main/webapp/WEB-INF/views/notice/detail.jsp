@@ -37,8 +37,13 @@
 			     </tbody>
 			</table>
 		</div>
+			<c:if test="${not empty dto and dto.userName eq 'sss'}">
 			<a href="./update?boardNum=${dto.boardNum}" class ="btn btn-outline-success">수정</a>	
-			<a href="./delete?boardNum=${dto.boardNum}" class ="btn btn-outline-danger">삭제</a>			
+			<a href="./delete?boardNum=${dto.boardNum}" class ="btn btn-outline-danger">삭제</a>
+			</c:if>
+			<c:if test="${not empty dto and dto.userName ne 'sss'}">
+			
+			</c:if>		
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
