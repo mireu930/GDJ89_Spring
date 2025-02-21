@@ -2,12 +2,16 @@ package com.root.app.accounts;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.root.app.users.UserDTO;
 
 @Controller
 @RequestMapping(value = "/accounts/*")
@@ -16,12 +20,22 @@ public class AccountController {
 	private AccountService accountService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getList(AccountDTO accountDTO) throws Exception {
+	public ModelAndView getList(AccountDTO accountDTO, HttpSession session) throws Exception {
 		List<AccountDTO> ar = accountService.getList(accountDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
+		
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이필요합니다.");
+			modelAndView.addObject("path", "./users/login");
+			
+			modelAndView.setViewName("commons/result");
+		}
+		
 		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("accounts/list");
+		modelAndView.setViewName("/accounts/list");
 		
 		return modelAndView;
 	}
