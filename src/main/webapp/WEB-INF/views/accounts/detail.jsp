@@ -27,7 +27,7 @@
 			    <tr>
 			      <th scope="row">${dto.accountNum}</th>
 			      <td>${dto.productNum}</td>
-			      <td>${dto.accountBalance}</td>
+			      <td>${dto.accountsBalance}</td>
 			      <td>${dto.accountDate}</td>
 			    </tr>
 			    </c:if>

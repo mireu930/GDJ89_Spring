@@ -20,24 +20,31 @@ public class AccountController {
 	private AccountService accountService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getList(AccountDTO accountDTO, HttpSession session) throws Exception {
-		List<AccountDTO> ar = accountService.getList(accountDTO);
-		
-		ModelAndView modelAndView = new ModelAndView();
+	public String getList(AccountDTO accountDTO, HttpSession session, Model model) throws Exception {
+		System.out.println("acoountList");
+//		ModelAndView modelAndView = new ModelAndView();
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		String path ="";
+		
 		
 		if(userDTO == null) {
-			modelAndView.addObject("result", "로그인이필요합니다.");
-			modelAndView.addObject("path", "./users/login");
+			System.out.println(userDTO.getUser_name());
+			model.addAttribute("result", "로그인이 필요합니다.");
+			model.addAttribute("path", "redirect:/users/login");
 			
-			modelAndView.setViewName("commons/result");
+			path = "commons/result";
+		} else {
+			accountDTO.setUser_name(userDTO.getUser_name());
+			List<AccountDTO> ar = accountService.getList(accountDTO);
+			model.addAttribute("list", ar);
+			path = "accounts/list";
+			
 		}
 		
-		modelAndView.addObject("list", ar);
-		modelAndView.setViewName("/accounts/list");
 		
-		return modelAndView;
+		
+		return path;
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
