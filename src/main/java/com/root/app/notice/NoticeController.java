@@ -48,11 +48,13 @@ public class NoticeController {
 	
 	@RequestMapping(value = "add",method = RequestMethod.GET)
 	public String add() throws Exception {
+		
 		return "notice/add";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ModelAndView add(NoticeDTO noticeDTO) throws Exception {
+
 		int result = noticeService.add(noticeDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();

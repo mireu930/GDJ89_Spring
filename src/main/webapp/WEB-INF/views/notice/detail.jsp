@@ -37,11 +37,11 @@
 			     </tbody>
 			</table>
 		</div>
-			<c:if test="${not empty dto and dto.userName eq 'sss'}">
+			<c:if test="${user.user_name eq 'sss'}">
 			<a href="./update?boardNum=${dto.boardNum}" class ="btn btn-outline-success">수정</a>	
 			<a href="./delete?boardNum=${dto.boardNum}" class ="btn btn-outline-danger">삭제</a>
 			</c:if>
-			<c:if test="${not empty dto and dto.userName ne 'sss'}">
+			<c:if test="${nuser.user_name ne 'sss'}">
 			
 			</c:if>		
 	</div>
