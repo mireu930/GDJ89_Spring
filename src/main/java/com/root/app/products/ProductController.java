@@ -2,6 +2,8 @@ package com.root.app.products;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,12 +33,14 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(ProductDTO productDTO) throws Exception {
+	public ModelAndView getDetail(ProductDTO productDTO, HttpSession session) throws Exception {
 		System.out.println("Prdocut Detail");
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		productDTO = productService.getDetail(productDTO);
+		
+		session.setAttribute("productDTO", productDTO);
 
 		modelAndView.addObject("dto", productDTO);
 		modelAndView.setViewName("products/detail");

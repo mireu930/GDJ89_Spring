@@ -39,8 +39,15 @@
 			     </tbody>
 			</table>
 		</div>
+		<c:if test="${not empty user}">
+			<a href="/accounts/addProcess?prodcutNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
+		</c:if>
+		<c:if test="${user.user_name eq 'sss' }">
 			<a href="./update?productNum=${dto.productNum}" class ="btn btn-outline-success">수정</a>	
-			<a href="./delete?productNum=${dto.productNum}" class ="btn btn-outline-danger">삭제</a>	
+			<a href="./delete?productNum=${dto.productNum}" class ="btn btn-outline-danger">삭제</a>			
+		</c:if>
+		<c:if test="${user.user_name ne 'sss' }">
+		</c:if>
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
