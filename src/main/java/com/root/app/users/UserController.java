@@ -67,8 +67,7 @@ public class UserController {
 	
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public String mypage(UserDTO userDTO, HttpSession session) throws Exception {
-		
-		
+		userDTO = (UserDTO)session.getAttribute("user");
 		return "users/mypage";
 	}
 	
@@ -78,7 +77,8 @@ public class UserController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		 userDTO = (UserDTO)session.getAttribute("user");
-
+		 
+		modelAndView.addObject("user", userDTO);
 		modelAndView.setViewName("users/update");
 		
 		return modelAndView;
@@ -88,15 +88,13 @@ public class UserController {
 	@RequestMapping(value ="update", method = RequestMethod.POST)
 	public ModelAndView updateProcess(UserDTO userDTO, HttpSession session)throws Exception {
 		UserDTO sessionUser = (UserDTO)session.getAttribute("user");
-		
-		int result = userService.update(sessionUser);
+		userDTO.setUser_name(sessionUser.getUser_name());
+		int result = userService.update(userDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println(result);
 		
 		if(result > 0) {
-			System.out.println("수정성공");
-			session.setAttribute("user", sessionUser);
+			modelAndView.addObject("user", userDTO);
 			modelAndView.setViewName("redirect:./mypage");
 		}
 		
