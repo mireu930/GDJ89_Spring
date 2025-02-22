@@ -24,7 +24,7 @@ public class AccountController {
 	private AccountService accountService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getList(AccountDTO accountDTO, HttpSession session, Model model) throws Exception {
+	public ModelAndView getList(AccountDTO accountDTO, HttpSession session) throws Exception {
 		System.out.println("acoountList");
 		ModelAndView modelAndView = new ModelAndView();
 		

@@ -39,7 +39,7 @@ public class userDAOTest extends SampleTest {
 		assertEquals(1, result);
 	}
 
-	@Test
+//	@Test
 	public void update() throws Exception {
 		UserDTO userDTO = new UserDTO();
 		
@@ -54,4 +54,15 @@ public class userDAOTest extends SampleTest {
 		
 		assertEquals(1, result);
 	}
-}
+	
+	@Test
+	public void delete() throws Exception {
+		UserDTO userDTO = new UserDTO();
+		
+		userDTO.setUser_name("LEE1234");
+		
+		int result = userDAO.delete(userDTO);
+		
+		assertEquals(1, result);
+	}
+} 

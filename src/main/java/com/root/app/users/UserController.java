@@ -66,9 +66,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public String mypage(UserDTO userDTO, HttpSession session) throws Exception {
-		userDTO = (UserDTO)session.getAttribute("user");
-		return "users/mypage";
+	public UserDTO mypage(UserDTO userDTO, HttpSession session) throws Exception {
+		return (UserDTO)session.getAttribute("user");
 	}
 	
 	
@@ -94,10 +93,31 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(result > 0) {
-			modelAndView.addObject("user", userDTO);
+			session.setAttribute("user", userDTO);
 			modelAndView.setViewName("redirect:./mypage");
 		}
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public ModelAndView delete(UserDTO userDTO, HttpSession session) throws Exception {
+		UserDTO sessionUser = (UserDTO)session.getAttribute("user");
+		userDTO.setUser_name(sessionUser.getUser_name());
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = userService.delete(userDTO);
+		
+		if(result > 0) {
+			session.setAttribute("user", null);
+			modelAndView.addObject("result", "삭제성공");
+			modelAndView.addObject("path", "/");
+		}
+		
+		modelAndView.setViewName("commons/confirm");
+		
+		return modelAndView;
+	}
+
 }

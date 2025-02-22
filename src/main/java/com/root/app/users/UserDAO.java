@@ -21,4 +21,8 @@ public class UserDAO {
 	public int update(UserDTO userDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"update", userDTO);
 	}
+	
+	public int delete(UserDTO userDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"delete", userDTO);
+	}
 }

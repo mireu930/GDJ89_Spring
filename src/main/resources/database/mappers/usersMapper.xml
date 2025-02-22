@@ -15,4 +15,8 @@
   	 <update id ="update" parameterType="UserDTO">
   	 	UPDATE USERS SET PASSWORD =#{password}, NAME =#{name}, PHONE =#{phone}, EMAIL=#{email} WHERE USER_NAME =#{user_name}
   	 </update>
+  	 
+  	 <delete id="delete" parameterType="UserDTO">
+  	 	DELETE USERS WHERE USER_NAME = #{user_name}
+  	 </delete>
   </mapper>

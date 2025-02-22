@@ -42,7 +42,8 @@
 			    <input type="text" name ="email" value="${user.email}" id="validationServer05" readonly>
 			  </div>
 			  <div class="col-12">
-			    <a href="./update?user_name=${user.user_name}">수정</a>
+			    <a href="./update?user_name=${user.user_name}" class="btn btn-success">수정</a>
+			    <a href="./delete?user_name=${user.user_name}" class="btn btn-danger">삭제</a>
 			  </div>
 		</div>
 	</div>
