@@ -63,7 +63,7 @@ public class AccountController {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(Model model) throws Exception {
 		model.addAttribute("path", "/products/list");
-		return "commons/result2";
+		return "commons/add_result";
 	}
 	
 	@RequestMapping(value = "addProcess", method = RequestMethod.GET)

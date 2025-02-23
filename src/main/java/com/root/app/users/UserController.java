@@ -2,6 +2,7 @@ package com.root.app.users;
 
 import java.io.OutputStream;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class UserController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(UserDTO userDTO, HttpSession session, Model model) throws Exception {
 		userDTO = userService.login(userDTO);
+		
 		
 		if(userDTO!=null) {
 			session.setAttribute("user", userDTO);
