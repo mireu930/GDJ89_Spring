@@ -27,7 +27,7 @@
 			    <tr>
 			      <th scope="row">${dto.boardTitle}</th>
 			      <td>${dto.boardContent}</td>
-			      <td>${dto.userName}</td>
+			      <td>${dto.user_name}</td>
 			      <td>${dto.boardHit}</td>
 			    </tr>
 			    </c:if>

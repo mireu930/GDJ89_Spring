@@ -35,7 +35,7 @@ public class noticeDAOTest extends SampleTest{
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setBoardTitle("머고");
 		noticeDTO.setBoardContent("아무노래나일단틀어");
-		noticeDTO.setUserName("sss");
+		noticeDTO.setUser_name("sss");
 		
 		int result = noticeDAO.add(noticeDTO);
 		

@@ -27,7 +27,7 @@
 	    <tr>
 	      <th scope="row"><a href="./detail?boardNum=${ar.boardNum}">${ar.boardNum}</a></th>
 	      <td>${ar.boardTitle}</td>
-	      <td>${ar.userName}</td>
+	      <td>${ar.user_name}</td>
 	      <td>${ar.boardDate}</td>
 	      <td>${ar.boardHit}</td>
 	    </tr>

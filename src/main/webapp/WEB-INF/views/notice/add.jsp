@@ -103,9 +103,9 @@
 			    </div>
 			  </div>
 			  <div class="col-md-4">
-			    <label for="userName" class="form-label">작성자</label>
+			    <label for="user_name" class="form-label">작성자</label>
 			    <div class="input-group has-validation">
-			      <input type="hidden" name="userName" value = "sss" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <input type="hidden" name="user_name" value = "sss" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			    </div>
 			  </div>
 			  <div class="col-12">
