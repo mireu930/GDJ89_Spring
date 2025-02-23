@@ -1,5 +1,6 @@
 package com.root.app.notice;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -36,12 +37,31 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(NoticeDTO noticeDTO) throws Exception {
-		noticeDTO = noticeService.getDetail(noticeDTO);
+	public ModelAndView getDetail(NoticeDTO noticeDTO, HttpSession session) throws Exception {
+		
+		Object obj = session.getAttribute("boardhit");
+		boolean check = false;
+		
+		if(obj != null) {
+			HashSet<Long> ar = (HashSet<Long>)obj;
+			if(!ar.contains(noticeDTO.getBoardNum())) {
+				ar.add(noticeDTO.getBoardNum());
+				check=true;
+			}
+			
+		} else {
+			HashSet<Long> num = new HashSet<Long>();
+			num.add(noticeDTO.getBoardNum());
+			session.setAttribute("boardhit", num);	
+			check=true;
+		}
+		
+		noticeDTO = noticeService.getDetail(noticeDTO, check);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("dto", noticeDTO);
 		modelAndView.setViewName("notice/detail");
+		
 		
 		return modelAndView;
 	}
@@ -69,7 +89,7 @@ public class NoticeController {
 	public ModelAndView update(NoticeDTO noticeDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.addObject("notice", noticeService.getDetail(noticeDTO));
+		modelAndView.addObject("notice", noticeService.getDetail(noticeDTO,false));
 		modelAndView.setViewName("notice/update");
 		
 		return modelAndView;

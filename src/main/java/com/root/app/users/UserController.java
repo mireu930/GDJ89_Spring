@@ -102,17 +102,21 @@ public class UserController {
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public ModelAndView delete(UserDTO userDTO, HttpSession session) throws Exception {
+		System.out.println("userDelete");
 		UserDTO sessionUser = (UserDTO)session.getAttribute("user");
 		userDTO.setUser_name(sessionUser.getUser_name());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		int result = userService.delete(userDTO);
-		
+		System.out.println(result);
 		if(result > 0) {
 			session.setAttribute("user", null);
 			modelAndView.addObject("result", "삭제성공");
 			modelAndView.addObject("path", "/");
+		} else {
+			System.out.println("result=0");
+			session.setAttribute("user", userDTO);
 		}
 		
 		modelAndView.setViewName("commons/confirm");
