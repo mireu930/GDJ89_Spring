@@ -11,5 +11,6 @@
 		<!-- <typeAlias type="java.util.Map" alias="Map"/> -->
 		<typeAlias type="com.root.app.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.root.app.accounts.AccountDTO" alias="AccountDTO"/>
+		<typeAlias type="com.root.app.pages.Pager" alias="Pager"/>
 	</typeAliases>
 </configuration>

@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.root.app.pages.Pager;
+
 @Service
 public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	
-	public List<ProductDTO> getList() throws Exception {
-		List<ProductDTO> ar = productDAO.getList();
+	public List<ProductDTO> getList(Pager pager) throws Exception {
+//		Pager pager = new Pager();
+//		pager.setPage(page);
+		pager.makeNum();
+		List<ProductDTO> ar = productDAO.getList(pager);
 		
 		return ar;
 	}
