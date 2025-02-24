@@ -8,7 +8,18 @@
   		SELECT * FROM
 		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  products 
 		WHERE 
-		<if test="kind == 'k1'">
+		<choose>
+			<when test="kind == 'k2'">
+				PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
+			</when>
+			<when test="kind == 'k3'">
+				RODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
+			</when>
+			<otherwise>
+				PRODUCTNAME LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
+			</otherwise>
+		</choose>
+		<!-- <if test="kind == 'k1'">
 			PRODUCTNAME LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)	
 		</if>
 		<if test="kind == 'k2'">
@@ -16,7 +27,7 @@
 		</if>
 		<if test="kind == 'k3'">
 			PRODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
-		</if>
+		</if> -->
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>
   	
