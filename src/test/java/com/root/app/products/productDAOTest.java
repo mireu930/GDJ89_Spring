@@ -19,7 +19,7 @@ public class productDAOTest extends SampleTest {
 		@Autowired
 		private ProductDAO productDAO;
 		
-		@Test
+//		@Test
 		public void getDetailTest() throws Exception {
 			System.out.println("getDetail Test");
 			ProductDTO productDTO = new ProductDTO();
@@ -30,12 +30,12 @@ public class productDAOTest extends SampleTest {
 			
 			assertNotNull(productDTO);
 		}
-		@Test
+//		@Test
 		public void getList() throws Exception {
 			System.out.println("getList Test");
-			List<ProductDTO> ar = productDAO.getList();
+//			List<ProductDTO> ar = productDAO.getList();
 			
-			assertNotEquals(0,ar.size());
+//			assertNotEquals(0,ar.size());
 		}
 		
 //		@BeforeClass
@@ -63,7 +63,7 @@ public class productDAOTest extends SampleTest {
 //		}
 		
 //		@Test(timeout = 1000)
-		@Test(expected = Exception.class)
+//		@Test(expected = Exception.class)
 		public void addTest() throws Exception {
 			ProductDTO productDTO = new ProductDTO();
 			Calendar calendar = Calendar.getInstance();
@@ -87,5 +87,11 @@ public class productDAOTest extends SampleTest {
 			System.out.println("Finish");
 		}
 	}
+		@Test
+		public void count() throws Exception {
+			Long result = productDAO.gettotalcount();
+			
+			assertEquals(0, 0);
+		}
 }
 

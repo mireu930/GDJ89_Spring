@@ -5,7 +5,10 @@
   
   <mapper namespace="com.root.app.notice.NoticeDAO">
   	<select id="getList" resultType="NoticeDTO">
-  		SELECT * FROM NOTICE ORDER BY BOARDNUM DESC
+  		SELECT * FROM (
+			SELECT ROWNUM R, M.* 
+			FROM (SELECT * FROM notice ORDER BY BOARDNUM DESC) M)
+		WHERE r BETWEEN 1 AND 5
   	</select>
   	
   	<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
@@ -28,4 +31,8 @@
   	<update id="updatehit" parameterType="NoticeDTO">
   		UPDATE notice SET BOARDHIT=BOARDHIT+1 WHERE BOARDNUM=#{boardNum}
   	</update>
+  	
+  	<select id="getTotalCount" resultType="java.lang.Long">
+  		SELECT count(BOARDNUM) FROM NOTICE
+  	</select>
   </mapper>

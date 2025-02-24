@@ -34,6 +34,15 @@
 	  </c:forEach>
 	  </tbody>
 	</table>
+		<nav aria-label="Page navigation example" >
+		  <ul class="pagination">
+		    <li class="page-item"><a class="page-link" href="./list?page=${pager.start-1}">이전</a></li>
+		    <c:forEach begin = "${pager.start}" end="${pager.end}" var ="i">
+		    <li class="page-item"><a class="page-link" href="./list?page=${i}}">${i}</a></li>
+		    </c:forEach>  
+		    <li class="page-item ${pager.endCheck?'disabled':''}"><a class="page-link" href="./list?page=${pager.end+1}">다음</a></li>
+		  </ul>
+		</nav>
 	<c:if test="${user.user_name eq 'sss' }">
 	<a href ="./add" class ="btn btn-outline-primary">추가</a>
 	</c:if>

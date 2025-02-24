@@ -51,4 +51,8 @@ public class ProductDAO {
 		
 		return result;
 	}
+	
+	public Long gettotalcount() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"gettotalcount");
+	}
 }

@@ -27,6 +27,10 @@
   	<delete id="delete" parameterType="ProductDTO">
   		DELETE PRODUCTS WHERE PRODUCTNUM = #{productNum}
   	</delete>
+  	
+  	<select id="gettotalcount" resultType ="java.lang.Long">
+  		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
+  	</select>
   </mapper>
   
   

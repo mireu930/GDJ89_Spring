@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 import com.root.app.users.UserService;
 
@@ -24,11 +25,12 @@ public class NoticeController {
 	private NoticeService noticeService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getList() throws Exception {
-		List<NoticeDTO> ar = noticeService.getList();
+	public ModelAndView getList(Pager pager) throws Exception {
+		List<NoticeDTO> ar = noticeService.getList(pager);
 			
 		ModelAndView modelAndView = new ModelAndView();
 		
+		modelAndView.addObject("page", pager);
 		modelAndView.addObject("list", ar);
 		
 		modelAndView.setViewName("notice/list");

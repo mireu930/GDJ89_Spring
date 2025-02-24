@@ -35,4 +35,8 @@ public class NoticeDAO {
 	public int updatehit(NoticeDTO noticeDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"updatehit", noticeDTO);
 	}
+	
+	public Long getTotalCount() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount");
+	}
 }

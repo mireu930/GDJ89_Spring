@@ -28,6 +28,7 @@ public class ProductController {
 //		model.addAttribute("list", ar);
 		
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("pager", pager);
 		modelAndView.addObject("list", ar);
 		
 		modelAndView.setViewName("products/list");
