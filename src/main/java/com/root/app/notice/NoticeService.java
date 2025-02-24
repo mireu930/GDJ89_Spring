@@ -16,26 +16,8 @@ public class NoticeService {
 	public List<NoticeDTO> getList(Pager pager) throws Exception {
 		
 		Long totalCount = noticeDAO.getTotalCount();
-		Long totalPage = totalCount/5;
 		
-		if(totalPage %5 !=0) {
-			totalPage++;
-		}
-		
-		Long totalBlock = (long)Math.ceil(totalPage/5.0);
-		Long curBlock = (long)Math.ceil(pager.getPage()/5.0);
-		
-		Long start = (curBlock-1)*5+1;
-		Long end = curBlock*5;
-		
-		pager.setStart(start);
-//		pager.setEnd(end);
-		
-		if(totalBlock == curBlock) {
-			pager.setEnd(totalPage);
-		}
-		
-//		pager.setPage(totalPage);
+		pager.make(totalCount);
 		pager.makeNum();
 		
 		return noticeDAO.getList();

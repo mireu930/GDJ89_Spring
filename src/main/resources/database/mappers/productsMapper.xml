@@ -6,7 +6,17 @@
   <mapper namespace="com.root.app.products.ProductDAO">
   	<select id="getList" parameterType="Pager" resultType = "ProductDTO">
   		SELECT * FROM
-		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  products ORDER BY PRODUCTNUM DESC) M)
+		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  products 
+		WHERE 
+		<if test="kind == 'k1'">
+			PRODUCTNAME LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)	
+		</if>
+		<if test="kind == 'k2'">
+			PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)	
+		</if>
+		<if test="kind == 'k3'">
+			PRODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
+		</if>
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>
   	
@@ -31,6 +41,7 @@
   	<select id="gettotalcount" resultType ="java.lang.Long">
   		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
   	</select>
+
   </mapper>
   
   

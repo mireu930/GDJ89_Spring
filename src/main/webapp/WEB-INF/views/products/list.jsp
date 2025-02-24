@@ -11,6 +11,26 @@
 <body>
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
+			<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method ="get">
+		
+		  <div class="col-12">
+		    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+		    <select class="form-select" name="kind" id="inlineFormSelectPref">
+		      <option value="k1">제목</option>
+		      <option value="k2">내용</option>
+		      <option value="k3">제목+내용</option>
+		    </select>
+		  </div>
+		  <div class="col-12">
+		    <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
+		      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
+		  </div>
+		
+		  <div class="col-12">
+		    <button type="submit" class="btn btn-primary">검색</button>
+		  </div>
+		</form>
+	
 	<table class="table table-striped table-hover">
  		<thead>
 	    <tr>

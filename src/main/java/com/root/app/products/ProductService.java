@@ -16,30 +16,8 @@ public class ProductService {
 //		Pager pager = new Pager();
 //		pager.setPage(page);
 		Long totalCount = productDAO.gettotalcount();
-		Long totalPage = totalCount /5;
 		
-		
-		if(totalCount % 5 != 0) {
-			totalPage++;
-		}		
-		
-		pager.setTotalPage(totalPage);
-		
-		Long totalBlock = (long)Math.ceil(totalPage/5.0);
-		
-		Long curBlock = (long)Math.ceil(pager.getPage()/5.0);
-		
-		Long start = (curBlock-1)*5+1;
-		Long end = curBlock*5;
-		
-		pager.setStart(start);
-		pager.setEnd(end);
-		
-		if(totalBlock == curBlock) {
-			pager.setEnd(totalPage);
-			pager.setEndCheck(true);
-		}
-		
+		pager.make(totalCount);
 		pager.makeNum();
 		List<ProductDTO> ar = productDAO.getList(pager);
 		
