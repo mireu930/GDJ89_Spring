@@ -20,7 +20,7 @@ public class NoticeService {
 		pager.make(totalCount);
 		pager.makeNum();
 		
-		return noticeDAO.getList();
+		return noticeDAO.getList(pager);
 	}
 	
 	public NoticeDTO getDetail(NoticeDTO noticeDTO, boolean check) throws Exception {

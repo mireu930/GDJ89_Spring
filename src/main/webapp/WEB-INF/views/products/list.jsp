@@ -11,8 +11,7 @@
 <body>
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
-			<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method ="get">
-		
+		<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method ="get">
 		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 		    <select class="form-select" name="kind" id="inlineFormSelectPref">
@@ -58,7 +57,7 @@
 		  <ul class="pagination">
 		    <li class="page-item"><a class="page-link" href="./list?page=${pager.start-1}">이전</a></li>
 		    <c:forEach begin = "${pager.start}" end="${pager.end}" var ="i">
-		    <li class="page-item"><a class="page-link" href="./list?page=${i}}">${i}</a></li>
+		    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
 		    </c:forEach>  
 		    <li class="page-item ${pager.endCheck?'disabled':''}"><a class="page-link" href="./list?page=${pager.end+1}">다음</a></li>
 		  </ul>

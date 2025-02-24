@@ -6,14 +6,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.root.app.pages.Pager;
+
 @Repository
 public class NoticeDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.root.app.notice.NoticeDAO.";
 	
-	public List<NoticeDTO> getList() throws Exception {
-		return  sqlSession.selectList(NAMESPACE+"getList");
+	public List<NoticeDTO> getList(Pager pager) throws Exception {
+		return  sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 	
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
