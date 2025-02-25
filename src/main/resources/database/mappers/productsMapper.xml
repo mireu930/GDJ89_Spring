@@ -7,27 +7,8 @@
   	<select id="getList" parameterType="Pager" resultType = "ProductDTO">
   		SELECT * FROM
 		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  products 
-		WHERE 
-		<choose>
-			<when test="kind == 'k2'">
-				PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
-			</when>
-			<when test="kind == 'k3'">
-				RODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
-			</when>
-			<otherwise>
-				PRODUCTNAME LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
-			</otherwise>
-		</choose>
-		<!-- <if test="kind == 'k1'">
-			PRODUCTNAME LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)	
-		</if>
-		<if test="kind == 'k2'">
-			PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)	
-		</if>
-		<if test="kind == 'k3'">
-			PRODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
-		</if> -->
+			<include refid="search"></include>
+			ORDER BY PRODUCTNUM DESC) M)
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>
   	
@@ -49,10 +30,34 @@
   		DELETE PRODUCTS WHERE PRODUCTNUM = #{productNum}
   	</delete>
   	
-  	<select id="gettotalcount" resultType ="java.lang.Long">
+  	<select id="gettotalcount" parameterType="Pager" resultType ="java.lang.Long">
   		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
-  	</select>
-
+  		<include refid="search"></include>
+	</select>
+		
+	<sql id="search">
+			WHERE PRODUCTNUM > 0 AND
+			<choose>
+				<when test="kind == 'k2'">
+					PRODUCTDETAIL LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'k3'">
+					RODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					PRODUCTNAME LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+			<!-- <if test="kind == 'k1'">
+				PRODUCTNAME LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)	
+			</if>
+			<if test="kind == 'k2'">
+				PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)	
+			</if>
+			<if test="kind == 'k3'">
+				PRODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
+			</if> -->
+	</sql>
   </mapper>
   
   

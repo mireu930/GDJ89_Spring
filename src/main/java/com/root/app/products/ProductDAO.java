@@ -52,7 +52,7 @@ public class ProductDAO {
 		return result;
 	}
 	
-	public Long gettotalcount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"gettotalcount");
+	public Long gettotalcount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"gettotalcount", pager);
 	}
 }

@@ -46,5 +46,17 @@
   	
   	<select id="getTotalCount" resultType="java.lang.Long">
   		SELECT count(BOARDNUM) FROM NOTICE
+  		WHERE BOARDNUM > 0 AND
+  		<choose>
+				<when test="kind == 'k2'">
+					USER_NAME LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'k3'">
+					USER_NAME LIKE '%'||#{search}||'%' OR BOARDTITLE LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					BOARDTITLE LIKE '%'||#{search}||'%' 
+				</otherwise>
+			</choose> 
   	</select>
   </mapper>
