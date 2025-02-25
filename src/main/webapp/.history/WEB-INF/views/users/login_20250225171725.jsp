@@ -7,7 +7,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<c:import url="/WEB-INF/views/template/boot_css.jsp"></c:import>
-	<script src="/resources/JS/login.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			
+			
+			var userNameInput = document.getElementById('validationServer02');
+			userNameInput.addEventListener('input', function () {
+				var feedback = document.getElementById('validationServerServer02Feedback');
+				if (userNameInput.value.trim() !== '') {
+					feedback.style.display = 'none';
+					userNameInput.classList.remove('is-invalid');
+				} else {
+					feedback.style.display = 'block';
+					userNameInput.classList.add('is-invalid');
+				}
+			});
+		
+			var passwordInput = document.getElementById('validationServerUsername');
+			passwordInput.addEventListener('input', function () {
+				var feedback = document.getElementById('validationServerUsernameFeedback');
+				if (passwordInput.value.trim() !== '') {
+					feedback.style.display = 'none';
+					passwordInput.classList.remove('is-invalid');
+				} else {
+					feedback.style.display = 'block';
+					passwordInput.classList.add('is-invalid');
+				}
+			});
+			
+		});
+	</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
