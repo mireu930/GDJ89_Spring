@@ -12,5 +12,6 @@
 		<typeAlias type="com.root.app.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.root.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.root.app.pages.Pager" alias="Pager"/>
+		<typeAlias type="com.root.app.qna.QNADTO" alias="QNADTO"/>
 	</typeAliases>
 </configuration>

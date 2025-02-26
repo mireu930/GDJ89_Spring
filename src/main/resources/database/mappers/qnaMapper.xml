@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.root.app.qna.QNADAO">
+  	<select id="getList" resultType="QNADTO" parameterType="Pager">
+  		SELECT * FROM 
+  		(SELECT ROWNUM R, M.* FROM (SELECT * FROM QNA 
+			WHERE
+			<choose>
+				<when test="kind == 'k2'">
+					USER_NAME LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'k3'">
+					USER_NAME LIKE '%'||#{search}||'%' OR BOARDTITLE LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					BOARDTITLE LIKE '%'||#{search}||'%' 
+				</otherwise>
+			</choose> 
+			ORDER BY BOARDNUM DESC) M)
+		WHERE R BETWEEN #{startNum} AND #{lastNum}
+  	</select>
+  	
+  	<select id="getDetail" resultType="QNADTO" parameterType="QNADTO">
+  		SELECT * FROM QNA WHERE BOARDNUM =#{boardNum}
+  	</select>
+  	
+  	<select id="gettotalcount" resultType="java.lang.Long" parameterType="Pager">
+  		SELECT COUNT(BOARDNUM) FROM QNA
+  		WHERE BOARDNUM > 0 AND
+  		<choose>
+				<when test="kind == 'k2'">
+					USER_NAME LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'k3'">
+					USER_NAME LIKE '%'||#{search}||'%' OR BOARDTITLE LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					BOARDTITLE LIKE '%'||#{search}||'%' 
+				</otherwise>
+			</choose> 
+  	</select>
+  	
+  	<insert id="add" parameterType="QNADTO">
+  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, #{user_name}, SYSDATE, 0,0,0,0)
+  	</insert>
+  
+  	<update id="update" parameterType="QNADTO">
+  		UPDATE QNA SET BOARDTITLE =#{boardTitle},BOARDCONTENT =#{boardContent} WHERE BOARDNUM =#{boardNum}
+  	</update>
+  
+  	<delete id="delete" parameterType="QNADTO">
+  		DELETE QNA WHERE BOARDNUM =#{boardNum}
+  	</delete>
+  </mapper>

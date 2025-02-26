@@ -58,7 +58,7 @@
   			
 		    <li class="page-item"><a class="page-link" href="./list?page=${pager.start-1}&search=${pager.search}&kind=${pager.kind}">Previous</a></li>
   			<c:forEach begin="${pager.start}" end="${pager.end}" var="i">
-		    	<li class="page-item"><a class="page-link" href="./list?page=${i}&search=${pager.search}&kind=${pager.kind}">${i}</a></li>
+		    	<li class="page-item"><a class="page-link" href="./list?page=${i}&search=${page.search}&kind=${pager.kind}">${i}</a></li>
   			</c:forEach>
 		   <li class="page-item ${pager.endCheck?'disabled':''}"><a class="page-link" href="./list?page=${pager.end+1}&search=${pager.search}&kind=${pager.kind}">Next</a></li>
 	  	</ul>

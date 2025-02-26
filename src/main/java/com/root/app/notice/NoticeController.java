@@ -30,7 +30,7 @@ public class NoticeController {
 			
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.addObject("page", pager);
+		modelAndView.addObject("pager", pager);
 		modelAndView.addObject("list", ar);
 		
 		modelAndView.setViewName("notice/list");

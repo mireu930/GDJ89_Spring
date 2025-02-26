@@ -25,7 +25,7 @@ public class Pager {
 	}
 
 	public String getSearch() {
-		if(this.search==null) {
+		if(this.search == null) {
 			this.search="";
 		}
 		return search;
@@ -74,8 +74,11 @@ public class Pager {
 	}
 	
 	public void make(Long totalCount) throws Exception {
-		Long totalPage = totalCount /5;
+		if(totalCount <1) {
+			totalCount = 1L;
+		}
 		
+		Long totalPage = totalCount /5;
 		
 		if(totalCount % 5 != 0) {
 			totalPage++;

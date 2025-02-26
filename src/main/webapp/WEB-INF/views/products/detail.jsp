@@ -32,13 +32,6 @@
 							<td>${dto.productRate}</td>
 							<td>${dto.productDate}</td>
 							
-							<div>
-								<form action="/test" id="frm">
-									<input type="hidden" name="productNum" value="${dto.productNum}">
-									<button type="button" id="btn1">수정</button>
-									<button type="button" id="btn2">삭제</button>
-								</form>
-							</div>
 						</tr>
 			    </c:if>
 			    <c:if test="${empty dto}">
@@ -51,8 +44,13 @@
 			<a href="/accounts/addProcess?prodcutNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
 		</c:if>
 		<c:if test="${user.user_name eq 'sss' }">
-			<a href="./update?productNum=${dto.productNum}" class ="btn btn-outline-success">수정</a>	
-			<a href="./delete?productNum=${dto.productNum}" class ="btn btn-outline-danger">삭제</a>			
+			<div>
+				<form action="/test" id="frm">
+					<input type="hidden" name="productNum" value="${dto.productNum}">
+					<button type="button" id="btn1" class="btn btn-outline-success">수정</button>
+					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
+				</form>
+			</div>		
 		</c:if>
 		<c:if test="${user.user_name ne 'sss' }">
 		</c:if>
