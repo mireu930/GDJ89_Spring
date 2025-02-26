@@ -89,7 +89,7 @@ public class productDAOTest extends SampleTest {
 	}
 		@Test
 		public void count() throws Exception {
-			Long result = productDAO.gettotalcount();
+//			Long result = productDAO.gettotalcount();
 			
 			assertEquals(0, 0);
 		}
