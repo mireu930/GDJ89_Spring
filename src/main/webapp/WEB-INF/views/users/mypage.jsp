@@ -41,12 +41,18 @@
 			    <label for="email" class="form-label">이메일</label>
 			    <input type="text" name ="email" value="${user.email}" id="validationServer05" readonly>
 			  </div>
-			  <div class="col-12">
-			    <a href="./update?user_name=${user.user_name}" class="btn btn-success">수정</a>
-			    <a href="./delete?user_name=${user.user_name}" class="btn btn-danger">삭제</a>
-			  </div>
+			  <div>
+				<form action="/test" id="frm">
+					<input type="hidden" name="productNum" value="${user.user_name}">
+					<button type="button" id="btn1" class="btn btn-outline-success">수정</button>
+					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
+				</form>
+			</div>	
+			  
+			  
 		</div>
 	</div>
+	<script src="/resources/JS/detail.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
 </body>

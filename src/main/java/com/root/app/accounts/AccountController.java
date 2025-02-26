@@ -44,8 +44,6 @@ public class AccountController {
 
 		}
 		
-		
-		
 		return modelAndView;
 	}
 	
@@ -80,7 +78,7 @@ public class AccountController {
 		int result = accountService.add(accountDTO);
 		
 		if(result>0) {
-			modelAndView.addObject("result", "추가되었습니다..");
+			modelAndView.addObject("result", "추가되었습니다.");
 			modelAndView.addObject("path", "./list");
 			modelAndView.setViewName("commons/result");
 		}
@@ -88,29 +86,7 @@ public class AccountController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView update(AccountDTO accountDTO) throws Exception {
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("account", accountService.getDetail(accountDTO));
-		modelAndView.setViewName("accounts/update");
-		
-		return modelAndView;
-	}
-	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update2(AccountDTO accountDTO) throws Exception {
-		int result = accountService.update(accountDTO);
-		
-		ModelAndView modelAndView = new ModelAndView();
-		
-		if(result > 0) {
-			modelAndView.setViewName("redirect:./detail?accountNum="+accountDTO.getAccountNum());
-		}
-		return modelAndView;
-	}
-	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String delete(AccountDTO accountDTO, Model model) throws Exception {
 		int result = accountService.delete(accountDTO);
 		

@@ -63,12 +63,8 @@
 		   <li class="page-item ${pager.endCheck?'disabled':''}"><a class="page-link" href="./list?page=${pager.end+1}&search=${pager.search}&kind=${pager.kind}">Next</a></li>
 	  	</ul>
 	</nav>																			
-	 <c:if test="${user.user_name eq 'sss'}">
 		<a href ="./add" class ="btn btn-outline-primary">추가</a>	
-	 </c:if>
-	 <c:if test="${nuser.user_name ne 'sss'}">
-			
-	</c:if>		
+	
 </div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	

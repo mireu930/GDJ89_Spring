@@ -102,7 +102,7 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public ModelAndView delete(UserDTO userDTO, HttpSession session) throws Exception {
 		System.out.println("userDelete");
 		UserDTO sessionUser = (UserDTO)session.getAttribute("user");
@@ -116,12 +116,9 @@ public class UserController {
 			session.setAttribute("user", null);
 			modelAndView.addObject("result", "삭제성공");
 			modelAndView.addObject("path", "/");
-		} else {
-			System.out.println("result=0");
-			session.setAttribute("user", userDTO);
-		}
+		} 
 		
-		modelAndView.setViewName("commons/confirm");
+		modelAndView.setViewName("commons/result");
 		
 		return modelAndView;
 	}

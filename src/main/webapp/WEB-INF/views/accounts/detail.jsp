@@ -36,10 +36,15 @@
 			    </c:if>
 			     </tbody>
 			</table>
+		</div>	
+		<div>
+			<form action="/test" id="frm">
+			<input type ="hidden" name="accountNum" value="${dto.accountNum}">
+				<button type="button" class ="btn btn-outline-danger" id="btn2">삭제</button>	
+			</form>
 		</div>
-			<a href="./update?accountNum=${dto.accountNum}" class ="btn btn-outline-success">수정</a>	
-			<a href="./delete?accountNum=${dto.accountNum}" class ="btn btn-outline-danger">삭제</a>	
-	</div>
+		</div>
+	<script src="/resources/JS/accounts/detail.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
 </body>

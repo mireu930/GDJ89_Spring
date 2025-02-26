@@ -14,12 +14,10 @@ btn1.addEventListener("click", function(){
 btn2.addEventListener("click", function(){
   console.log("삭제")
   console.log(frm.getAttribute("action"));
-  frm.action="./delete"
-  frm.method="POST";
   const conf = confirm("정말삭제하시겠습니까?");
   if(conf){
+  	frm.action="./delete"
+  	frm.method="POST";
     frm.submit();
-  } else {
-    frm.action="./detail";
   }
 })

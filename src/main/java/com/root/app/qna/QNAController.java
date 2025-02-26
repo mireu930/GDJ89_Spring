@@ -2,6 +2,8 @@ package com.root.app.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.notice.NoticeDTO;
 import com.root.app.pages.Pager;
+import com.root.app.users.UserDTO;
 
 @Controller
 @RequestMapping(value = "/qna/*")
@@ -42,9 +45,21 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.GET)
-	public String add() throws Exception {
+	public ModelAndView add(HttpSession session) throws Exception {
+			
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		ModelAndView modelAndView = new ModelAndView();
 		
-		return "qna/add";
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+
+		} else {
+			modelAndView.setViewName("qna/add");
+		}
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -61,12 +76,20 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView update(QNADTO qnadto) throws Exception {
+	public ModelAndView update(QNADTO qnadto, HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
+		
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+
+		} else {
 		
 		modelAndView.addObject("qna", qnaService.getDetail(qnadto));
 		modelAndView.setViewName("qna/update");
-		
+		}
 		return modelAndView;
 	}
 	
@@ -84,17 +107,28 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String delete(QNADTO qnadto, Model model) throws Exception {
-		int result = qnaService.delete(qnadto);
+	public ModelAndView delete(QNADTO qnadto, HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		ModelAndView modelAndView = new ModelAndView();
 		
-		if(result > 0) {
-			model.addAttribute("result","삭제성공");
-			model.addAttribute("path", "./list");
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+
 		} else {
-			model.addAttribute("result","삭제실패");
-			model.addAttribute("path", "./detail");
+			int result = qnaService.delete(qnadto);
+			
+			if(result > 0) {
+				modelAndView.addObject("result","삭제성공");
+				modelAndView.addObject("path", "./list");
+			} else {
+				modelAndView.addObject("result","삭제실패");
+				modelAndView.addObject("path", "./detail");
+			}
+			modelAndView.setViewName("commons/result");
 		}
 		
-		return "commons/result";
+		return modelAndView;
 	}
 }
