@@ -12,18 +12,18 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method ="get" id="list_form">
-		<input type="hidden" name="page" id="page_num">
+		<input type="hidden" name="page">
 		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 		    <select class="form-select" name="kind" id="inlineFormSelectPref">
-		      <option value="k1" ${pager.kind eq 'k1'?'selected':''}>제목</option>
-		      <option value="k2" ${pager.kind eq 'k2'?'selected':''}>내용</option>
-		      <option value="k3" ${pager.kind eq 'k3'?'selected':''}>제목+내용</option>
+		      <option value="k1">제목</option>
+		      <option value="k2">내용</option>
+		      <option value="k3">제목+내용</option>
 		    </select>
 		  </div>
 		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
-		      <input type="text" name="search" value="${pager.search}" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
+		      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
 		  </div>
 		
 		  <div class="col-12">
@@ -56,11 +56,11 @@
 	</table>
 		<nav aria-label="Page navigation example" >
 		  <ul class="pagination">
-		    <li class="page-item"><button class="page-link pages" data-page-num="${pager.start-1}">이전</button></li>
+		    <li class="page-item"><button class="page-link pages" href="./list?page=${pager.start-1}&kind=${param.kind}&search=${param.search}">이전</button></li>
 		    <c:forEach begin = "${pager.start}" end="${pager.end}" var ="i">
-		    <li class="page-item"><button class="page-link pages" data-page-num="${i}">${i}</button></li>
+		    <li class="page-item"><button class="page-link pages" href="./list?page=${i}&kind=${param.kind}&search=${param.search}">${i}</button></li>
 		    </c:forEach>  
-		    <li class="page-item ${pager.endCheck?'disabled':''}" data-page-num="${pager.end+1}"><button class="page-link pages">다음</button></li>
+		    <li class="page-item ${pager.endCheck?'disabled':''}"><button class="page-link pages" href="./list?page=${pager.end+1}&kind=${param.kind}&search=${param.search}">다음</button></li>
 		  </ul>
 		</nav>
 	<c:if test="${user.user_name eq 'sss' }">

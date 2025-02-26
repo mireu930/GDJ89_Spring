@@ -83,7 +83,7 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<div class = "row col-md-8 offset-md-2">
-			<form class="row g-3" action = "./add" method = "post"  id="product_form">
+			<form class="row g-3" action = "./add" method = "post">
 			  <div class="col-md-4">
 			    <label for="productName" class="form-label">상품이름</label>
 			    <div class="input-group has-validation">
@@ -129,7 +129,7 @@
 			    </div>
 			  </div>
 			  <div class="col-12">
-			    <button class="btn btn-primary" type="submit" id="product_button">등록</button>
+			    <button class="btn btn-primary" type="submit">등록</button>
 			  </div>
 			</form>
 		</div>
