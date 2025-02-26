@@ -50,6 +50,10 @@
   	<update id="update" parameterType="QNADTO">
   		UPDATE QNA SET BOARDTITLE =#{boardTitle},BOARDCONTENT =#{boardContent} WHERE BOARDNUM =#{boardNum}
   	</update>
+  	
+  	<update id="updatehit" parameterType="QNADTO">
+  		UPDATE QNA SET BOARDHIT=BOARDHIT+1 WHERE BOARDNUM=#{boardNum}
+  	</update>
   
   	<delete id="delete" parameterType="QNADTO">
   		DELETE QNA WHERE BOARDNUM =#{boardNum}

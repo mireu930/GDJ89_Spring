@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.root.app.notice.NoticeDTO;
 import com.root.app.pages.Pager;
 
 @Repository
@@ -32,6 +33,10 @@ public class QNADAO {
 	
 	public int update(QNADTO qnadto) throws Exception {
 		return sqlSession.update(NAMESPACE+"update", qnadto);
+	}
+	
+	public int updatehit(QNADTO qnadto) throws Exception {
+		return sqlSession.update(NAMESPACE+"updatehit", qnadto);
 	}
 	
 	public int delete(QNADTO qnadto) throws Exception {

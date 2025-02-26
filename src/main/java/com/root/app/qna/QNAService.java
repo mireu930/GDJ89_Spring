@@ -21,7 +21,10 @@ public class QNAService {
 		return qnadao.getList(pager);
 	}
 	
-	public QNADTO getDetail(QNADTO qnadto) throws Exception {
+	public QNADTO getDetail(QNADTO qnadto,  boolean check) throws Exception {
+		if(check) {
+			qnadao.updatehit(qnadto);
+		}
 		return qnadao.getDetail(qnadto);
 	}
 	

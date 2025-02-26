@@ -1,5 +1,6 @@
 package com.root.app.qna;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,8 +35,26 @@ public class QNAController {
 		return modelAndView;
 	}
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(QNADTO qnadto) throws Exception {
-		qnadto = qnaService.getDetail(qnadto);
+	public ModelAndView getDetail(QNADTO qnadto, HttpSession session) throws Exception {
+		
+		Object obj = session.getAttribute("boardhit");
+		boolean check = false;
+		
+		if(obj != null) {
+			HashSet<Long> ar = (HashSet<Long>)obj;
+			if(!ar.contains(qnadto.getBoardNum())) {
+				ar.add(qnadto.getBoardNum());
+				check=true;
+			}
+			
+		} else {
+			HashSet<Long> num = new HashSet<Long>();
+			num.add(qnadto.getBoardNum());
+			session.setAttribute("boardhit", num);	
+			check=true;
+		}
+		
+		qnadto = qnaService.getDetail(qnadto, check);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("dto",qnadto);
@@ -87,7 +106,7 @@ public class QNAController {
 
 		} else {
 		
-		modelAndView.addObject("qna", qnaService.getDetail(qnadto));
+		modelAndView.addObject("qna", qnaService.getDetail(qnadto, false));
 		modelAndView.setViewName("qna/update");
 		}
 		return modelAndView;
