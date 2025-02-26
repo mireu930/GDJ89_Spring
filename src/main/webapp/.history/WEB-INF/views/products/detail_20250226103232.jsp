@@ -33,7 +33,7 @@
 							<td>${dto.productDate}</td>
 							
 							<div>
-								<form action="/test" id="frm">
+								<form action="" id="frm">
 									<input type="hidden" name="productNum" value="${dto.productNum}">
 									<button type="button" id="btn1">수정</button>
 									<button type="button" id="btn2">삭제</button>

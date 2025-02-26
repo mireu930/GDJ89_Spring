@@ -96,7 +96,7 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public ModelAndView delete(ProductDTO productDTO) throws Exception {
 		int result = productService.delete(productDTO);
 		
