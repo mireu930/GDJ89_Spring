@@ -44,7 +44,11 @@
   	</select>
   	
   	<insert id="add" parameterType="QNADTO">
-  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, #{user_name}, SYSDATE, 0,0,0,0)
+  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, #{user_name}, SYSDATE, 0,BOARDNUM_SEQ.CURRVAL,0,0)
+  	</insert>
+  
+  	<insert id="reply" parameterType="QNADTO">
+  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, #{user_name}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
   
   	<update id="update" parameterType="QNADTO">
