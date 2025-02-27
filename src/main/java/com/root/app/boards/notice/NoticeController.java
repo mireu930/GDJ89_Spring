@@ -34,7 +34,7 @@ public class NoticeController {
 		modelAndView.addObject("pager", pager);
 		modelAndView.addObject("list", ar);
 		
-		modelAndView.setViewName("notice/list");
+		modelAndView.setViewName("board/list");
 		
 		return modelAndView;
 	}
@@ -63,7 +63,7 @@ public class NoticeController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("dto", boardDTO);
-		modelAndView.setViewName("notice/detail");
+		modelAndView.setViewName("board/detail");
 		
 		
 		return modelAndView;
@@ -72,7 +72,7 @@ public class NoticeController {
 	@RequestMapping(value = "add",method = RequestMethod.GET)
 	public String add() throws Exception {
 		
-		return "notice/add";
+		return "board/add";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -92,8 +92,8 @@ public class NoticeController {
 	public ModelAndView update(BoardDTO boardDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.addObject("notice", noticeService.getDetail(boardDTO,false));
-		modelAndView.setViewName("notice/update");
+		modelAndView.addObject("board", noticeService.getDetail(boardDTO,false));
+		modelAndView.setViewName("board/update");
 		
 		return modelAndView;
 	}

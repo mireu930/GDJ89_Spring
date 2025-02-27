@@ -28,31 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				}
 			});
 			
-			// 이자율 입력 필드에 대한 이벤트 리스너
-			var interestRateInput = document.getElementById('validationServer03');
-			interestRateInput.addEventListener('input', function () {
-				var feedback = document.getElementById('validationServer03Feedback');
-				if (interestRateInput.value.trim() !== '') {
-					feedback.style.display = 'none';
-					interestRateInput.classList.remove('is-invalid');
-				} else {
-					feedback.style.display = 'block';
-					interestRateInput.classList.add('is-invalid');
-				}
-			});
-			
-			// 상품기간 입력 필드에 대한 이벤트 리스너
-			var productPeriodInput = document.getElementById('validationServer04');
-			productPeriodInput.addEventListener('input', function () {
-				var feedback = document.getElementById('validationServer04Feedback');
-				if (productPeriodInput.value.trim() !== '') {
-					feedback.style.display = 'none';
-					productPeriodInput.classList.remove('is-invalid');
-				} else {
-					feedback.style.display = 'block';
-					productPeriodInput.classList.add('is-invalid');
-				}
-			});
 			
 						// 체크박스 상태에 따라 문구와 체크박스 스타일을 변경
 						var checkbox = document.getElementById('invalidCheck3');

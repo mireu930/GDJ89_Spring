@@ -32,7 +32,7 @@
 			    </div>
 			  </div>
 
-			  <input type="hidden" name="user_name" value = "${user.user_name}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			   <input type="hidden" name="user_name" value = "sss" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 
 			  <div class="col-12">
 			    <div class="form-check">
@@ -40,9 +40,6 @@
 			      <label class="form-check-label" for="invalidCheck3">
 			         공지사항 등록에 동의합니다.
 			      </label>
-			      <div id="invalidCheck3Feedback" class="invalid-feedback">
-			        등록하기전에 동의를 눌러주세요.
-			      </div>
 			    </div>
 			  </div>
 			  <div class="col-12">
@@ -51,7 +48,7 @@
 			</form>
 		</div>
 	</div>
-	<script src="/resources/JS/qna/add.js"></script>
+	<script src="/resources/JS/notice/add.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
 </body>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.boards.BoardDTO;
 import com.root.app.boards.notice.NoticeDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
@@ -24,41 +25,41 @@ public class QNAController {
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
-		List<QNADTO> ar = qnaService.getList(pager);
+		List<BoardDTO> ar = qnaService.getList(pager);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("list", ar);
 		modelAndView.addObject("pager", pager);
-		modelAndView.setViewName("qna/list");
+		modelAndView.setViewName("board/list");
 		
 		return modelAndView;
 	}
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(QNADTO qnadto, HttpSession session) throws Exception {
+	public ModelAndView getDetail(BoardDTO boardDTO, HttpSession session) throws Exception {
 		
 		Object obj = session.getAttribute("boardhit");
 		boolean check = false;
 		
 		if(obj != null) {
 			HashSet<Long> ar = (HashSet<Long>)obj;
-			if(!ar.contains(qnadto.getBoardNum())) {
-				ar.add(qnadto.getBoardNum());
+			if(!ar.contains(boardDTO.getBoardNum())) {
+				ar.add(boardDTO.getBoardNum());
 				check=true;
 			}
 			
 		} else {
 			HashSet<Long> num = new HashSet<Long>();
-			num.add(qnadto.getBoardNum());
+			num.add(boardDTO.getBoardNum());
 			session.setAttribute("boardhit", num);	
 			check=true;
 		}
 		
-		qnadto = qnaService.getDetail(qnadto, check);
+		boardDTO = qnaService.getDetail(boardDTO, check);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("dto",qnadto);
-		modelAndView.setViewName("qna/detail");
+		modelAndView.addObject("dto",boardDTO);
+		modelAndView.setViewName("board/detail");
 		
 		return modelAndView;
 	}
@@ -75,16 +76,16 @@ public class QNAController {
 			modelAndView.setViewName("commons/result");
 
 		} else {
-			modelAndView.setViewName("qna/add");
+			modelAndView.setViewName("board/add");
 		}
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add(QNADTO qnadto) throws Exception {
+	public ModelAndView add(BoardDTO boardDTO) throws Exception {
 
-		int result = qnaService.add(qnadto);
+		int result = qnaService.add(boardDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -95,7 +96,7 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView update(QNADTO qnadto, HttpSession session) throws Exception {
+	public ModelAndView update(BoardDTO boardDTO, HttpSession session) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -106,27 +107,27 @@ public class QNAController {
 
 		} else {
 		
-		modelAndView.addObject("qna", qnaService.getDetail(qnadto, false));
-		modelAndView.setViewName("qna/update");
+		modelAndView.addObject("board", qnaService.getDetail(boardDTO, false));
+		modelAndView.setViewName("board/update");
 		}
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update2(QNADTO qnadto) throws Exception {
-		int result = qnaService.update(qnadto);
+	public ModelAndView update2(BoardDTO boardDTO) throws Exception {
+		int result = qnaService.update(boardDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(result > 0) {
-			modelAndView.setViewName("redirect:./detail?boardNum="+qnadto.getBoardNum());
+			modelAndView.setViewName("redirect:./detail?boardNum="+boardDTO.getBoardNum());
 		}
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public ModelAndView delete(QNADTO qnadto, HttpSession session) throws Exception {
+	public ModelAndView delete(BoardDTO boardDTO, HttpSession session) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -136,7 +137,7 @@ public class QNAController {
 			modelAndView.setViewName("commons/result");
 
 		} else {
-			int result = qnaService.delete(qnadto);
+			int result = qnaService.delete(boardDTO);
 			
 			if(result > 0) {
 				modelAndView.addObject("result","삭제성공");
