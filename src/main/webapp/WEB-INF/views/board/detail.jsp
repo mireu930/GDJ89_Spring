@@ -12,7 +12,7 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<div class = "row col-md-8 offset-md-2">
-			<h1>detail</h1>
+			<h1>${kind}DetailPage</h1>
 			<table class="table table-striped table-hover">
 		 		<thead>
 			    <tr>

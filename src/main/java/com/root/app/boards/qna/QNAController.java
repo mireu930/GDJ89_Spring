@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +23,12 @@ import com.root.app.users.UserDTO;
 public class QNAController {
 	@Autowired
 	private QNAService qnaService;
+	
+	//모든메서드에 넣어라
+	@ModelAttribute("kind")
+	public String getKind() {
+		return "QnA";
+	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
