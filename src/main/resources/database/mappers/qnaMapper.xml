@@ -19,7 +19,7 @@
 					BOARDTITLE LIKE '%'||#{search}||'%' 
 				</otherwise>
 			</choose> 
-			ORDER BY BOARDNUM DESC) M)
+			ORDER BY BOARDREF DESC, BOARDSTEP ASC) M)
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>
   	

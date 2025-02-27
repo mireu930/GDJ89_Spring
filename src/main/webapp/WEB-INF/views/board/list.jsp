@@ -46,7 +46,17 @@
 	  
 	    <tr>
 	      <th scope="row"><a href="./detail?boardNum=${ar.boardNum}">${ar.boardNum}</a></th>
-	      <td>${ar.boardTitle}</td>
+	      <td>
+	      <c:catch>
+	      <c:forEach begin ="1" end="${ar.boardDepth}" varStatus="ar2">
+	      -
+	      <c:if test="${ar2.last}">
+	      >
+	      </c:if>
+	      </c:forEach> 
+	      </c:catch>
+	      ${ar.boardTitle}
+	      </td>
 	      <td>${ar.user_name}</td>
 	      <td>${ar.boardDate}</td>
 	      <td>${ar.boardHit}</td>
