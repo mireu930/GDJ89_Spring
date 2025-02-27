@@ -72,7 +72,7 @@ public class NoticeController {
 	@RequestMapping(value = "add",method = RequestMethod.GET)
 	public String add() throws Exception {
 		
-		return "board/add";
+		return "board/boardform";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -93,7 +93,7 @@ public class NoticeController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("board", noticeService.getDetail(boardDTO,false));
-		modelAndView.setViewName("board/update");
+		modelAndView.setViewName("board/boardform");
 		
 		return modelAndView;
 	}
