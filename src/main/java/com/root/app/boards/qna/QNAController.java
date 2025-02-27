@@ -158,4 +158,23 @@ public class QNAController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "reply", method = RequestMethod.GET)
+	public String reply(@ModelAttribute("dto")BoardDTO boardDTO) throws Exception {
+		return "board/boardform";
+		
+	}
+	
+	@RequestMapping(value = "reply", method = RequestMethod.POST)
+	public String reply(QNADTO boardDTO, HttpSession session) throws Exception {
+		
+		 UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		 
+		 boardDTO.setUser_name(userDTO.getUser_name());
+		 
+		 int result = qnaService.reply(boardDTO);
+		 
+		return "redirect:./list";
+		
+	}
 }

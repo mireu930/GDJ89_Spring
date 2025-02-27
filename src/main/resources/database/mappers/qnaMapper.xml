@@ -50,6 +50,10 @@
   	<insert id="reply" parameterType="QNADTO">
   		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, #{user_name}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
+  	
+  	<update id="updateStep" parameterType="QNADTO">
+  		UPDATE QNA SET BOARDSTEP=BOARDSTEP+1 WHERE BOARDREF = #{boardRef} AND BOARDSTEP > #{boardStep}
+  	</update>
   
   	<update id="update" parameterType="QNADTO">
   		UPDATE QNA SET BOARDTITLE =#{boardTitle},BOARDCONTENT =#{boardContent} WHERE BOARDNUM =#{boardNum}

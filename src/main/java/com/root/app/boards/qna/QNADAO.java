@@ -51,4 +51,11 @@ public class QNADAO implements BoardDAO {
 		return sqlSession.update(NAMESPACE+"updatehit", boardDTO);
 	}
 
+	public int updateStep(QNADTO qnadto) throws Exception {
+		return sqlSession.update(NAMESPACE+"updateStep",qnadto);
+	}
+	
+	public int reply(QNADTO qnadto) throws Exception {
+		return sqlSession.insert(NAMESPACE+"reply", qnadto);
+	}
 }
