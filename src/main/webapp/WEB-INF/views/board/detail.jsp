@@ -39,7 +39,9 @@
 		</div>
 			<a href="./update?boardNum=${dto.boardNum}" class ="btn btn-outline-success">수정</a>	
 			<a href="./delete?boardNum=${dto.boardNum}" class ="btn btn-outline-danger">삭제</a>
+			<c:if test="${kind eq 'QnA'}">
 			<a href="./reply?boardNum=${dto.boardNum}" class ="btn btn-outline-primary">댓글쓰기</a>
+			</c:if>
 	
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

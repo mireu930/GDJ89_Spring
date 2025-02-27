@@ -106,12 +106,17 @@ public class QNAController {
 	public ModelAndView update(BoardDTO boardDTO, HttpSession session) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
+		BoardDTO dbBoard = qnaService.getDetail(boardDTO, false);
 		
 		if(userDTO == null) {
 			modelAndView.addObject("result", "로그인이 필요합니다.");
 			modelAndView.addObject("path", "/users/login");
 			modelAndView.setViewName("commons/result");
 
+		} else if(!dbBoard.getUser_name().equals(userDTO.getUser_name())&&!userDTO.getUser_name().equals("sss")){
+			modelAndView.addObject("result", "작성자만 수정가능합니다.");
+			modelAndView.addObject("path", "./detail?boardNum="+boardDTO.getBoardNum());
+			modelAndView.setViewName("commons/result");
 		} else {
 		
 		modelAndView.addObject("board", qnaService.getDetail(boardDTO, false));
@@ -137,12 +142,17 @@ public class QNAController {
 	public ModelAndView delete(BoardDTO boardDTO, HttpSession session) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
+		BoardDTO dbBoard = qnaService.getDetail(boardDTO, false);
 		
 		if(userDTO == null) {
 			modelAndView.addObject("result", "로그인이 필요합니다.");
 			modelAndView.addObject("path", "/users/login");
 			modelAndView.setViewName("commons/result");
 
+		}else if(!dbBoard.getUser_name().equals(userDTO.getUser_name())&&!userDTO.getUser_name().equals("sss")){
+			modelAndView.addObject("result", "작성자만 삭제가능합니다.");
+			modelAndView.addObject("path", "./detail?boardNum="+boardDTO.getBoardNum());
+			modelAndView.setViewName("commons/result");
 		} else {
 			int result = qnaService.delete(boardDTO);
 			
@@ -160,8 +170,20 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "reply", method = RequestMethod.GET)
-	public String reply(@ModelAttribute("dto")BoardDTO boardDTO) throws Exception {
-		return "board/boardform";
+	public ModelAndView reply(@ModelAttribute("dto")BoardDTO boardDTO, HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+		}else {
+			modelAndView.setViewName("board/boardform");			
+		}
+		
+		
+		return modelAndView;
 		
 	}
 	

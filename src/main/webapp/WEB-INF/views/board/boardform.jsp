@@ -37,7 +37,7 @@
 			      </div>
 			    </div>
 			  </div>
-			   <input type="hidden" name="user_name" value = "sss" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			   <input type="hidden" name="user_name" value = "${user.user_name}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			  <div class="col-12">
 			    <button class="btn btn-primary" type="submit">등록</button>
 			    <a href="./list" class ="btn btn-outline-danger">취소</a>	

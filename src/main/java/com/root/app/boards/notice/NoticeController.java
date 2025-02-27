@@ -76,9 +76,26 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.GET)
-	public String add() throws Exception {
+	public ModelAndView add(HttpSession session) throws Exception {
 		
-		return "board/boardform";
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		ModelAndView modelAndView = new ModelAndView();
+		
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+
+		}else if(!userDTO.getUser_name().equals("sss")) {
+			modelAndView.addObject("result", "관리자만 추가가능합니다.");
+			modelAndView.addObject("path", "./list");
+			modelAndView.setViewName("commons/result");
+		}else {
+		
+			modelAndView.setViewName("board/boardform");
+		}
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -95,11 +112,24 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView update(BoardDTO boardDTO) throws Exception {
+	public ModelAndView update(BoardDTO boardDTO, HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
+		
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+
+		}else if(!userDTO.getUser_name().equals("sss")) {
+			modelAndView.addObject("result", "관리자만 수정가능합니다.");
+			modelAndView.addObject("path", "./detail?boardNum="+boardDTO.getBoardNum());
+			modelAndView.setViewName("commons/result");
+		}else {
 		
 		modelAndView.addObject("board", noticeService.getDetail(boardDTO,false));
 		modelAndView.setViewName("board/boardform");
+		}
 		
 		return modelAndView;
 	}
@@ -118,17 +148,30 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String delete(BoardDTO boardDTO, Model model) throws Exception {
-		int result = noticeService.delete(boardDTO);
+	public ModelAndView delete(BoardDTO boardDTO, Model model,HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		ModelAndView modelAndView = new ModelAndView();
 		
-		if(result > 0) {
-			model.addAttribute("result","삭제성공");
-			model.addAttribute("path", "./list");
-		} else {
-			model.addAttribute("result","삭제실패");
-			model.addAttribute("path", "./detail");
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+		}else if(!userDTO.getUser_name().equals("sss")) {
+			modelAndView.addObject("result", "관리자만 삭제가능합니다.");
+			modelAndView.addObject("path", "./detail?boardNum="+boardDTO.getBoardNum());
+		}else {
+			int result = noticeService.delete(boardDTO);
+			
+			if(result > 0) {
+				modelAndView.addObject("result","삭제성공");
+				modelAndView.addObject("path", "./list");
+			} else {
+				modelAndView.addObject("result","삭제실패");
+				modelAndView.addObject("path", "./detail");
+			}
 		}
+		modelAndView.setViewName("commons/result");
 		
-		return "commons/result";
+		
+		return modelAndView;
 	}
 }

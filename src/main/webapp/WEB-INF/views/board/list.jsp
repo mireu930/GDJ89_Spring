@@ -51,7 +51,7 @@
 	      <c:forEach begin ="1" end="${ar.boardDepth}" varStatus="ar2">
 	      -
 	      <c:if test="${ar2.last}">
-	      >
+	      Re
 	      </c:if>
 	      </c:forEach> 
 	      </c:catch>
