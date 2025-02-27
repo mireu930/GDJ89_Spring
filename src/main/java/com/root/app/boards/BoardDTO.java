@@ -1,8 +1,8 @@
-package com.root.app.notice;
+package com.root.app.boards;
 
 import java.sql.Date;
 
-public class NoticeDTO {
+public class BoardDTO {
 
 	private Long boardNum;
 	private String boardTitle;

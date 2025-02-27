@@ -1,4 +1,4 @@
-package com.root.app.qna;
+package com.root.app.boards.qna;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.root.app.notice.NoticeDTO;
+import com.root.app.boards.notice.NoticeDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 

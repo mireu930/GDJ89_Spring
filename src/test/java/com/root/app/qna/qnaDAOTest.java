@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.root.app.SampleTest;
+import com.root.app.boards.qna.QNADAO;
+import com.root.app.boards.qna.QNADTO;
 
 public class qnaDAOTest extends SampleTest {
 	@Autowired

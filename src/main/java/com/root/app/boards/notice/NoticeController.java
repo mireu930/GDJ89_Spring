@@ -1,4 +1,4 @@
-package com.root.app.notice;
+package com.root.app.boards.notice;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.boards.BoardDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 import com.root.app.users.UserService;
@@ -26,7 +27,7 @@ public class NoticeController {
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
-		List<NoticeDTO> ar = noticeService.getList(pager);
+		List<BoardDTO> ar = noticeService.getList(pager);
 			
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -39,29 +40,29 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(NoticeDTO noticeDTO, HttpSession session) throws Exception {
+	public ModelAndView getDetail(BoardDTO boardDTO, HttpSession session) throws Exception {
 		
 		Object obj = session.getAttribute("boardhit");
 		boolean check = false;
 		
 		if(obj != null) {
 			HashSet<Long> ar = (HashSet<Long>)obj;
-			if(!ar.contains(noticeDTO.getBoardNum())) {
-				ar.add(noticeDTO.getBoardNum());
+			if(!ar.contains(boardDTO.getBoardNum())) {
+				ar.add(boardDTO.getBoardNum());
 				check=true;
 			}
 			
 		} else {
 			HashSet<Long> num = new HashSet<Long>();
-			num.add(noticeDTO.getBoardNum());
+			num.add(boardDTO.getBoardNum());
 			session.setAttribute("boardhit", num);	
 			check=true;
 		}
 		
-		noticeDTO = noticeService.getDetail(noticeDTO, check);
+		boardDTO = noticeService.getDetail(boardDTO, check);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("dto", noticeDTO);
+		modelAndView.addObject("dto", boardDTO);
 		modelAndView.setViewName("notice/detail");
 		
 		
@@ -75,9 +76,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add(NoticeDTO noticeDTO) throws Exception {
+	public ModelAndView add(BoardDTO boardDTO) throws Exception {
 
-		int result = noticeService.add(noticeDTO);
+		int result = noticeService.add(boardDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -88,31 +89,31 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView update(NoticeDTO noticeDTO) throws Exception {
+	public ModelAndView update(BoardDTO boardDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.addObject("notice", noticeService.getDetail(noticeDTO,false));
+		modelAndView.addObject("notice", noticeService.getDetail(boardDTO,false));
 		modelAndView.setViewName("notice/update");
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update2(NoticeDTO noticeDTO) throws Exception {
-		int result = noticeService.update(noticeDTO);
+	public ModelAndView update2(BoardDTO boardDTO) throws Exception {
+		int result = noticeService.update(boardDTO);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(result > 0) {
-			modelAndView.setViewName("redirect:./detail?boardNum="+noticeDTO.getBoardNum());
+			modelAndView.setViewName("redirect:./detail?boardNum="+boardDTO.getBoardNum());
 		}
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String delete(NoticeDTO noticeDTO, Model model) throws Exception {
-		int result = noticeService.delete(noticeDTO);
+	public String delete(BoardDTO boardDTO, Model model) throws Exception {
+		int result = noticeService.delete(boardDTO);
 		
 		if(result > 0) {
 			model.addAttribute("result","삭제성공");

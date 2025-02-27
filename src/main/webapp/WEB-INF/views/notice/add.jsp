@@ -31,12 +31,9 @@
 			      </div>
 			    </div>
 			  </div>
-			  <div class="col-md-4">
-			    <label for="user_name" class="form-label">작성자</label>
-			    <div class="input-group has-validation">
-			      <input type="hidden" name="user_name" value = "sss" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-			    </div>
-			  </div>
+
+			     <input type="hidden" name="user_name" value = "sss" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+
 			  <div class="col-12">
 			    <div class="form-check">
 			      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
