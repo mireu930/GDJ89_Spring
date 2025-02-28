@@ -22,7 +22,7 @@
 			      </div>
 			    </div>
 			  </div> 
-			  <%-- <div class="col-md-4">
+			  <div class="col-md-4">
 			    <label for="password" class="form-label">비밀번호</label>
 			    <div class="input-group has-validation">
 			      <input type="password" name="password" value="${user.password}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
@@ -30,7 +30,7 @@
 			        비밀번호를 입력하세요.
 			      </div>
 			    </div>
-			  </div> --%>
+			  </div> 
 			  <div class="col-md-6">
 			    <label for="name" class="form-label">이름</label>
 			    <input type="text" name = "name" value="${user.name}" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>

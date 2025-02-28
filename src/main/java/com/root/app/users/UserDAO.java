@@ -29,4 +29,8 @@ public class UserDAO {
 	public int upload(UserFileDTO userFileDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"upload", userFileDTO);
 	}
+	
+	public int uploadUpdate(UserFileDTO userFileDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"uploadUpdate", userFileDTO);
+	}
 }

@@ -94,10 +94,10 @@ public class UserController {
 	
 	
 	@RequestMapping(value ="update", method = RequestMethod.POST)
-	public ModelAndView updateProcess(UserDTO userDTO, HttpSession session)throws Exception {
+	public ModelAndView updateProcess(UserDTO userDTO, HttpSession session, MultipartFile profile)throws Exception {
 		UserDTO sessionUser = (UserDTO)session.getAttribute("user");
 		userDTO.setUser_name(sessionUser.getUser_name());
-		int result = userService.update(userDTO);
+		int result = userService.update(userDTO, profile, session);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		

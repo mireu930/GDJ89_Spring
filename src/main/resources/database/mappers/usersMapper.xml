@@ -27,6 +27,10 @@
   	 	INSERT INTO PROFILE VALUES (#{user_name}, #{fileName}, #{oldName})
   	 </insert>
   	 
+  	 <update id="uploadUpdate" parameterType="UserFileDTO">
+  	 	UPDATE PROFILE SET FILENAME = #{fileName}, OLDNAME = #{oldName} WHERE USER_NAME =#{user_name}
+  	 </update>
+  	 
   	 <resultMap type="UserDTO" id="getDetailResult">
   	 	<id column="user_name" property="user_name"/>
   	 	<result column="password"  property="password"/>
