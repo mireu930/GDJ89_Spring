@@ -41,6 +41,10 @@
 			    <label for="email" class="form-label">이메일</label>
 			    <input type="text" name ="email" value="${user.email}" id="validationServer05" readonly>
 			  </div>
+			  <div class="col-md-3">
+			    <label for="profile" class="form-label">프로필</label>
+			   	<img alt="" src="/resources/images/${not empty user.userFileDTO.fileName? user.userFileDTO.fileName:'default.jpg'}">
+			  </div>
 			  <div>
 				<form action="/test" id="frm">
 					<input type="hidden" name="productNum" value="${user.user_name}">

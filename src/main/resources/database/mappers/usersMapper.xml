@@ -8,8 +8,11 @@
   	 	INSERT INTO USERS VALUES (#{user_name},#{password},#{name},#{phone},#{email})
   	 </insert>
   	 
-  	 <select id ="getDetail" parameterType="UserDTO" resultType="UserDTO">
-  	 	SELECT * FROM USERS WHERE USER_NAME = #{user_name}
+  	 <select id ="getDetail" parameterType="UserDTO" resultMap="getDetailResult">
+  	 	SELECT * FROM USERS U
+			 LEFT OUTER JOIN PROFILE P
+			USING (USER_NAME)
+			WHERE user_name = #{user_name}
   	 </select>
   	 
   	 <update id ="update" parameterType="UserDTO">
@@ -23,4 +26,18 @@
   	 <insert id="upload" parameterType="UserFileDTO">
   	 	INSERT INTO PROFILE VALUES (#{user_name}, #{fileName}, #{oldName})
   	 </insert>
+  	 
+  	 <resultMap type="UserDTO" id="getDetailResult">
+  	 	<id column="user_name" property="user_name"/>
+  	 	<result column="password"  property="password"/>
+  	 	<result column="name"  property="name"/>
+  	 	<result column="phone"  property="phone"/>
+  	 	<result column="email"  property="email"/>
+  	 	
+  	 	<association property="userFileDTO" javaType="UserFileDTO">
+  	 		<result column="filename" property="fileName"/>
+  	 		<result column="oldname" property="oldName"/>
+  	 	</association>
+  	 </resultMap>
+
   </mapper>
