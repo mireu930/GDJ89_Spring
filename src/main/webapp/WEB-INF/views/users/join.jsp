@@ -12,7 +12,7 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<div class = "row col-md-8 offset-md-2">
-			<form class="row g-3" action = "./join" method = "post">
+			<form class="row g-3" action = "./join" method = "post" enctype="multipart/form-data">
 			  <div class="col-md-4">
 			    <label for="user_name" class="form-label">아이디</label>
 			    <div class="input-group has-validation">
@@ -49,6 +49,13 @@
 			    <label for="email" class="form-label">이메일</label>
 			    <input type="text" name ="email" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
 			    <div id="validationServer05Feedback" class="invalid-feedback">
+			      이메일을 입력하세요.
+			    </div>
+			  </div>
+			  <div class="col-md-3">
+			    <label for="profile" class="form-label">프로필</label>
+			    <input type="file" name ="profile" class="form-control is-invalid" id="profile" aria-describedby="validationServer05Feedback" required>
+			    <div id="profileFeedback" class="invalid-feedback">
 			      이메일을 입력하세요.
 			    </div>
 			  </div>

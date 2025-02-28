@@ -2,6 +2,7 @@ package com.root.app.users;
 
 import java.io.OutputStream;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -28,14 +30,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public ModelAndView join(UserDTO userDTO) throws Exception{
-		int result = userService.join(userDTO);
-		
+	public ModelAndView join(UserDTO userDTO, MultipartFile profile, HttpSession session) throws Exception{
+		System.out.println(profile.getContentType());
+		System.out.println(profile.getName());
+		System.out.println(profile.getOriginalFilename());
+		System.out.println(profile.getSize());
+		System.out.println(profile.isEmpty());
+		System.out.println(session.getServletContext());
 		ModelAndView modelAndView = new ModelAndView();
-		
-		if(result > 0) {
+		int result = userService.join(userDTO, profile, session.getServletContext());
+//		 profile.getBytes();
+//		if(result > 0) {
 			modelAndView.setViewName("redirect:/");			
-		}
+//		}
 		
 		return modelAndView;
 		
