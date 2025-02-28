@@ -10,9 +10,9 @@
   	 
   	 <select id ="getDetail" parameterType="UserDTO" resultMap="getDetailResult">
   	 	SELECT * FROM USERS U
-			 LEFT OUTER JOIN PROFILE P
+			LEFT OUTER JOIN PROFILE P
 			USING (USER_NAME)
-			WHERE user_name = #{user_name}
+			WHERE USER_NAME = #{user_name}
   	 </select>
   	 
   	 <update id ="update" parameterType="UserDTO">
@@ -32,15 +32,15 @@
   	 </update>
   	 
   	 <resultMap type="UserDTO" id="getDetailResult">
-  	 	<id column="user_name" property="user_name"/>
-  	 	<result column="password"  property="password"/>
-  	 	<result column="name"  property="name"/>
-  	 	<result column="phone"  property="phone"/>
-  	 	<result column="email"  property="email"/>
+  	 	<id column="USER_NAME" property="user_name"/>
+  	 	<result column="PASSWORD"  property="password"/>
+  	 	<result column="NAME"  property="name"/>
+  	 	<result column="PHONE"  property="phone"/>
+  	 	<result column="EMAIL"  property="email"/>
   	 	
   	 	<association property="userFileDTO" javaType="UserFileDTO">
-  	 		<result column="filename" property="fileName"/>
-  	 		<result column="oldname" property="oldName"/>
+  	 		<result column="FILENAME" property="fileName"/>
+  	 		<result column="OLDNAME" property="oldName"/>
   	 	</association>
   	 </resultMap>
 

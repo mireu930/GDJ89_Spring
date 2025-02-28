@@ -43,7 +43,7 @@
 			  </div>
 			  <div class="col-md-3">
 			    <label for="profile" class="form-label">프로필</label>
-			   	<img alt="" src="/resources/images/${not empty user.userFileDTO.fileName? user.userFileDTO.fileName:'default.jpg'}">
+			   	<img alt="" src="/resources/images/profiles/${not empty user.userFileDTO.fileName? user.userFileDTO.fileName:'default.jpg'}" class="rounded" width="200px" height="200px">
 			  </div>
 			  <div>
 				<form action="/test" id="frm">

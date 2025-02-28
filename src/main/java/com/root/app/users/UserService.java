@@ -19,7 +19,8 @@ import com.root.app.utils.FIle;
 public class UserService {
 	@Autowired
 	 private UserDAO userDAO;
-//	 private FIle fIle;
+	@Autowired
+	 private FIle fIle;
 	
 	public int join(UserDTO userDTO, MultipartFile profile, ServletContext context) throws Exception{
 		int result = userDAO.join(userDTO);
@@ -65,17 +66,19 @@ public class UserService {
 	
 	public int update(UserDTO userDTO, MultipartFile profile, HttpSession session) throws Exception {
 		int result = userDAO.update(userDTO);
-		
-		if(profile.isEmpty()) {
+		System.out.println("result:"+result);
+		System.out.println(profile);
+		if(profile ==null ||profile.isEmpty()) {
 			return result;
 		}
 		
 		UserFileDTO userFileDTO = this.save(session.getServletContext(), profile, userDTO);
 		
-		result = userDAO.uploadUpdate(userFileDTO);
+		int r = userDAO.uploadUpdate(userFileDTO);
+		System.out.println("r:"+r);
 		
-		if(result==0) {
-			result = userDAO.upload(userFileDTO);
+		if(r<1) {
+			r = userDAO.upload(userFileDTO);
 		}
 		
 		userDTO = userDAO.getDetail(userDTO);
@@ -98,7 +101,6 @@ public class UserService {
 ////		a = a +"_"+profile.getOriginalFilename();
 //		
 //		//3.HDD저장	
-		FIle fIle = new FIle();
 		fIle.file(path, profile);
 			//2 spring 라이브러리 제공하는 CopyUtils
 //		FileCopyUtils.copy(profile.getBytes(), file);
