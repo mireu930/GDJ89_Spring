@@ -19,4 +19,8 @@
   	 <delete id="delete" parameterType="UserDTO">
   	 	DELETE USERS WHERE USER_NAME = #{user_name}
   	 </delete>
+  	 
+  	 <insert id="upload" parameterType="UserFileDTO">
+  	 	INSERT INTO PROFILE VALUES (#{user_name}, #{fileName}, #{oldName})
+  	 </insert>
   </mapper>

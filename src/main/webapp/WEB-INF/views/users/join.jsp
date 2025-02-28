@@ -55,9 +55,6 @@
 			  <div class="col-md-3">
 			    <label for="profile" class="form-label">프로필</label>
 			    <input type="file" name ="profile" class="form-control is-invalid" id="profile" aria-describedby="validationServer05Feedback" required>
-			    <div id="profileFeedback" class="invalid-feedback">
-			      이메일을 입력하세요.
-			    </div>
 			  </div>
 			  <div class="col-12">
 			    <div class="form-check">

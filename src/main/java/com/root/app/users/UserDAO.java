@@ -25,4 +25,8 @@ public class UserDAO {
 	public int delete(UserDTO userDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"delete", userDTO);
 	}
+	
+	public int upload(UserFileDTO userFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"upload", userFileDTO);
+	}
 }
