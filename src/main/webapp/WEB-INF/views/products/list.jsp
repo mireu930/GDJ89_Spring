@@ -29,30 +29,22 @@
 		    <button type="submit" class="btn btn-primary">검색</button>
 		  </div>
 		</form>
-	
-	<table class="table table-striped table-hover">
- 		<thead>
-	    <tr>
-	      <th scope="col">상품번호</th>
-	      <th scope="col">상품이름</th>
-	      <th scope="col">상품설명</th>
-	      <th scope="col">이자율</th>
-	      <th scope="col">만기일</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  <c:forEach items="${list}" var ="ar">
-	  
-	    <tr>
-	      <th scope="row"><a href="./detail?productNum=${ar.productNum}">${ar.productNum}</a></th>
-	      <td>${ar.productName}</td>
-	      <td>${ar.productDetail}</td>
-	      <td>${ar.productRate}</td>
-	      <td>${ar.productDate}</td>
-	    </tr>
-	  </c:forEach>
-	  </tbody>
-	</table>
+		<div style="display:flex; gap:10px; margin: 10px 0 10px 0">
+		<c:forEach items="${list}" var ="ar">
+		<div class="card" style="width: 18rem;">
+		<a href="./detail?productNum=${ar.productNum}">
+  			<img src="/resources/images/profiles/default.jpg" class="card-img-top rounded" width="200px" height="200px" alt="...">
+		</a>
+	  			<div class="card-body">
+	    		<p class="card-text">
+	    		#${ar.productNum} ${ar.productName}<br>
+	    		${ar.productDetail}<br>
+	    		${ar.productRate } / ${ar.productDate}
+	    		</p>
+	  			</div>
+			</div>
+		</c:forEach>
+	</div>
 		<nav aria-label="Page navigation example" >
 		  <ul class="pagination">
 		    <li class="page-item"><a class="page-link" href="./list?page=${pager.start-1}&kind=${param.kind}&search=${param.search}">이전</a></li>
