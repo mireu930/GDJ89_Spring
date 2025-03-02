@@ -28,26 +28,7 @@ public class UserService {
 		if(profile.isEmpty()) {
 			return result;
 		}
-//		String path = context.getRealPath("/resources/images/profiles/");
-//		System.out.println(path);
-////		profile.getBytes();
-////		
-////		//2)이름을 만드는 객체
-//////		String a = UUID.randomUUID().toString();
-//////		a = a +"_"+profile.getOriginalFilename();
-////		
-////		//3.HDD저장	
-//		FIle fIle = new FIle();
-//		fIle.file(path, profile);
-//			//2 spring 라이브러리 제공하는 CopyUtils
-////		FileCopyUtils.copy(profile.getBytes(), file);
-//		
-//		UserFileDTO userFileDTO = new UserFileDTO();
-//		userFileDTO.setUser_name(userDTO.getUser_name());
-//		userFileDTO.setFileName(fIle.getA());
-//		userFileDTO.setOldName(profile.getOriginalFilename());
-//		
-//		result = userDAO.upload(userFileDTO);
+
 		UserFileDTO userFileDTO = this.save(context, profile, userDTO);
 		result = userDAO.upload(userFileDTO);
 		
@@ -94,16 +75,9 @@ public class UserService {
 	private UserFileDTO save(ServletContext context, MultipartFile profile, UserDTO userDTO) throws Exception {
 		String path = context.getRealPath("/resources/images/profiles/");
 		System.out.println(path);
-//		profile.getBytes();
-//		
-//		//2)이름을 만드는 객체
-////		String a = UUID.randomUUID().toString();
-////		a = a +"_"+profile.getOriginalFilename();
-//		
-//		//3.HDD저장	
+
 		fIle.file(path, profile);
-			//2 spring 라이브러리 제공하는 CopyUtils
-//		FileCopyUtils.copy(profile.getBytes(), file);
+
 		
 		UserFileDTO userFileDTO = new UserFileDTO();
 		userFileDTO.setUser_name(userDTO.getUser_name());

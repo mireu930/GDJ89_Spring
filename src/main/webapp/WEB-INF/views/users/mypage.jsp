@@ -47,7 +47,7 @@
 			  </div>
 			  <div>
 				<form action="/test" id="frm">
-					<input type="hidden" name="productNum" value="${user.user_name}">
+					<input type="hidden" name="user_name" value="${user.user_name}">
 					<button type="button" id="btn1" class="btn btn-outline-success">수정</button>
 					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
 				</form>

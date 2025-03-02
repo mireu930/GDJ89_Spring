@@ -50,7 +50,15 @@
 			    <div id="validationServer04Feedback" class="invalid-feedback">
 			      Please select a date.
 			    </div>
+			  </div>
+			  <div class="col-md-3">
+			    <label for="productImage" class="form-label">상품이미지</label>
+			    <input type="file" name ="productImage" class="form-control is-invalid" id="productImages" required>
 			  </div> 
+			  <div>
+			  	${dto.productFileDTO.oldName}
+			  	<span class="btn text-danger">x</span>
+			  </div>
 			  <div class="col-12">
 			    <button class="btn btn-primary" type="submit">수정</button>
 			    <a href="./list" class ="btn btn-outline-danger">취소</a>	

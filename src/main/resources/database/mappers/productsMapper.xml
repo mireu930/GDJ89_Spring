@@ -12,8 +12,11 @@
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>
   	
-  	<select id="getDetail" resultType = "ProductDTO" parameterType="ProductDTO">
-  		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = #{productNum}
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="ProductDTO">
+  		SELECT * FROM PRODUCTS p
+  		LEFT OUTER JOIN PRODUCTIMAGE I
+  		USING (PRODUCTNUM)
+  		WHERE PRODUCTNUM = #{productNum}
   	</select>
   	
   	<insert id="add" parameterType="ProductDTO">
@@ -35,9 +38,26 @@
   		<include refid="search"></include>
 	</select>
 	
-	<inssert id="upload" parameterType="ProductFileDTO">
+	<insert id="upload" parameterType="ProductFileDTO">
 		INSERT INTO PRODUCTIMAGE VALUES (#{productNum},#{fileName},#{oldName})
-	</inssert>
+	</insert>
+	
+	<update id="updateUpload" parameterType="ProductFileDTO">
+		UPDATE PRODUCTIMAGE SET FILENAME=#{fileName},OLDNAME=#{oldName} WHERE PRODUCTNUM=#{productNum}
+	</update>
+	
+	<resultMap type="ProductDTO" id="getDetailResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<result column="PRODUCTDETAIL" property="productDetail"/>
+		<result column="PRODUCTRATE" property="productRate"/>
+		<result column="PRODUCTDATE" property="productDate"/>
+		
+		<association property="productFileDTO" javaType="ProductFileDTO">
+			<result column="FILENAME" property="fileName"/>
+			<result column="OLDNAME" property="oldName"/>
+		</association>
+	</resultMap>
 	
 		
 	<sql id="search">

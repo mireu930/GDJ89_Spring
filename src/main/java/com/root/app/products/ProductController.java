@@ -85,9 +85,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update2(ProductDTO productDTO) throws Exception {
+	public ModelAndView update2(ProductDTO productDTO, MultipartFile productImage, HttpSession session) throws Exception {
 		
-		int result = productService.update(productDTO);
+		int result = productService.update(productDTO, productImage, session);
 		
 		ModelAndView modelAndView = new ModelAndView();
 				

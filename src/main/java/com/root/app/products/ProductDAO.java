@@ -59,4 +59,8 @@ public class ProductDAO {
 	public int upload(ProductFileDTO productFileDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"upload", productFileDTO);
 	}
+	
+	public int updateUpload(ProductFileDTO productFileDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"updateUpload", productFileDTO);
+	}
 }

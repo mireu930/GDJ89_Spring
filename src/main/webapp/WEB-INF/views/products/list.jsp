@@ -33,7 +33,7 @@
 		<c:forEach items="${list}" var ="ar">
 		<div class="card" style="width: 18rem;">
 		<a href="./detail?productNum=${ar.productNum}">
-  			<img src="/resources/images/profiles/default.jpg" class="card-img-top rounded" width="200px" height="200px" alt="...">
+  			<img src="/resources/images/products/${not empty ar.productFileDTO.fileName?ar.productFileDTO.fileName:'noImage.jpg'}" class="card-img-top rounded" width="200px" height="200px" alt="...">
 		</a>
 	  			<div class="card-body">
 	    		<p class="card-text">

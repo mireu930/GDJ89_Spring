@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,14 +42,8 @@ public class ProductService {
 			return result;
 		}
 		
-		String path= context.getRealPath("/resources/images/products/");
-		
-		fIle.file(path, productFileImage);
-		
-		ProductFileDTO productFileDTO = new ProductFileDTO();
-		productFileDTO.setProductNum(productDTO.getProductNum());
-		productFileDTO.setFileName(fIle.getA());
-		productFileDTO.setOldName(productFileImage.getOriginalFilename());
+		ProductFileDTO productFileDTO = this.save(context, productFileImage, productDTO);
+
 		
 		result = productDAO.upload(productFileDTO);
 		
@@ -61,8 +56,23 @@ public class ProductService {
 		return productDTO;
 	}
 	
-	public int update(ProductDTO productDTO) throws Exception {
+	public int update(ProductDTO productDTO, MultipartFile productImage, HttpSession session) throws Exception {
 		int result = productDAO.update(productDTO);
+		
+		if(productImage.isEmpty()) {
+			return result;
+		}
+		
+		ProductFileDTO productFileDTO = this.save(session.getServletContext(), productImage, productDTO);
+				
+		int result2 = productDAO.updateUpload(productFileDTO);
+		
+		if(result2<1) {
+			result2 = productDAO.upload(productFileDTO);
+		}
+		
+		productDTO = productDAO.getDetail(productDTO);
+		session.setAttribute("dto", productDTO);
 		
 		return result;
 	}
@@ -71,5 +81,18 @@ public class ProductService {
 		int result = productDAO.delte(productDTO);
 		
 		return result;
+	}
+	
+	private ProductFileDTO save(ServletContext context, MultipartFile productFileImage, ProductDTO productDTO) throws Exception {
+		String path= context.getRealPath("/resources/images/products/");
+		
+		fIle.file(path, productFileImage);
+		
+		ProductFileDTO productFileDTO = new ProductFileDTO();
+		productFileDTO.setProductNum(productDTO.getProductNum());
+		productFileDTO.setFileName(fIle.getA());
+		productFileDTO.setOldName(productFileImage.getOriginalFilename());
+		
+		return productFileDTO;
 	}
 }
