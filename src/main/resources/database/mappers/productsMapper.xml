@@ -6,7 +6,7 @@
   <mapper namespace="com.root.app.products.ProductDAO">
   	<select id="getList" parameterType="Pager" resultType = "ProductDTO">
   		SELECT * FROM
-		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  products 
+		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  PRODUCTS P LEFT OUTER JOIN PRODUCTIMAGE PI USING(PRODUCTNUM)
 			<include refid="search"></include>
 			ORDER BY PRODUCTNUM DESC) M)
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
@@ -20,8 +20,12 @@
   	</select>
   	
   	<insert id="add" parameterType="ProductDTO">
+  		<selectKey keyProperty="productNum" resultType="long" order="BEFORE">
+        	SELECT PRODUCTNUM_SEQ.NEXTVAL FROM DUAL
+    	</selectKey>
+  	
   		INSERT INTO PRODUCTS(PRODUCTNUM, PRODUCTNAME, PRODUCTDETAIL, PRODUCTRATE, PRODUCTDATE)
-		 VALUES (PRODUCTNUM_SEQ.NEXTVAL,#{productName},#{productDetail},#{productRate},#{productDate})
+		 VALUES (#{productNum},#{productName},#{productDetail},#{productRate},#{productDate})
   	</insert>
   	
   	<update id="update" parameterType="ProductDTO">
@@ -39,7 +43,8 @@
 	</select>
 	
 	<insert id="upload" parameterType="ProductFileDTO">
-		INSERT INTO PRODUCTIMAGE VALUES (#{productNum},#{fileName},#{oldName})
+		INSERT INTO PRODUCTIMAGE(PRODUCTNUM, FILENAME, OLDNAME)
+		 VALUES (#{productNum},#{fileName},#{oldName})
 	</insert>
 	
 	<update id="updateUpload" parameterType="ProductFileDTO">

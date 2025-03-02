@@ -85,8 +85,12 @@ public class ProductService {
 	
 	private ProductFileDTO save(ServletContext context, MultipartFile productFileImage, ProductDTO productDTO) throws Exception {
 		String path= context.getRealPath("/resources/images/products/");
+		System.out.println(path);
 		
 		fIle.file(path, productFileImage);
+		
+		System.out.println(productDTO.getProductNum());
+
 		
 		ProductFileDTO productFileDTO = new ProductFileDTO();
 		productFileDTO.setProductNum(productDTO.getProductNum());
