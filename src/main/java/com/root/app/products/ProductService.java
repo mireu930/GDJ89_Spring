@@ -1,16 +1,25 @@
 package com.root.app.products;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.root.app.pages.Pager;
+import com.root.app.utils.FIle;
 
 @Service
 public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
+	private FIle fIle;
 	
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 //		Pager pager = new Pager();
@@ -24,9 +33,24 @@ public class ProductService {
 		return ar;
 	}
 	
-	public int add(ProductDTO productDTO) throws Exception {
+	public int add(ProductDTO productDTO, MultipartFile productFileImage, ServletContext context) throws Exception {
 		
 		int result = productDAO.add(productDTO);
+		
+		if(productFileImage.isEmpty()) {
+			return result;
+		}
+		
+		String path= context.getRealPath("/resources/images/products/");
+		
+		fIle.file(path, productFileImage);
+		
+		ProductFileDTO productFileDTO = new ProductFileDTO();
+		productFileDTO.setProductNum(productDTO.getProductNum());
+		productFileDTO.setFileName(fIle.getA());
+		productFileDTO.setOldName(productFileImage.getOriginalFilename());
+		
+		result = productDAO.upload(productFileDTO);
 		
 		return result;
 	}

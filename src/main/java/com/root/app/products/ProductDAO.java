@@ -55,4 +55,8 @@ public class ProductDAO {
 	public Long gettotalcount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"gettotalcount", pager);
 	}
+	
+	public int upload(ProductFileDTO productFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"upload", productFileDTO);
+	}
 }
