@@ -45,7 +45,7 @@ public class ProductController {
 		
 		productDTO = productService.getDetail(productDTO);
 		
-		session.setAttribute("productDTO", productDTO);
+		session.setAttribute("dto", productDTO);
 
 		modelAndView.addObject("dto", productDTO);
 		modelAndView.setViewName("products/detail");

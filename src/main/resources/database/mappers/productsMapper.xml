@@ -4,10 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.root.app.products.ProductDAO">
-  	<select id="getList" parameterType="Pager" resultType = "ProductDTO">
+  	<select id="getList" parameterType="Pager" resultMap = "getDetailResult">
   		SELECT * FROM
-		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  PRODUCTS P LEFT OUTER JOIN PRODUCTIMAGE PI USING(PRODUCTNUM)
-			<include refid="search"></include>
+		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  PRODUCTS LEFT OUTER JOIN PRODUCTIMAGE USING(PRODUCTNUM)
+			<include refid="search"></include> 
 			ORDER BY PRODUCTNUM DESC) M)
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>

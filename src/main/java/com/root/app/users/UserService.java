@@ -63,7 +63,9 @@ public class UserService {
 		}
 		
 		userDTO = userDAO.getDetail(userDTO);
+		System.out.println(userDTO.getUserFileDTO().getOldName());
 		session.setAttribute("user", userDTO);
+		System.out.println(session.getAttribute("user"));
 		
 		return result;
 	}
