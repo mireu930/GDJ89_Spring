@@ -48,7 +48,7 @@
 			  </div>
 			  <div class="col-md-3">
 			    <label for="productImage" class="form-label">상품이미지</label>
-			    <input type="file" name ="productImage" class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer03Feedback" required>
+			    <input type="file" name ="productImage" class="form-control" id="validationServer04" aria-describedby="validationServer03Feedback">
 			  </div>
 			  <div class="col-12">
 			    <div class="form-check">

@@ -16,12 +16,12 @@
 			  <div class="col-md-4">
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <input type="hidden" name=boardNum value="${board.boardNum}"  class="form-control is-invalid" id="validationServer01" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <input type="hidden" name=boardNum value="${board.boardNum}"  class="form-control is-invalid" id="validationServer01" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
 			    </div>
 			    
 			    <div class="input-group has-validation">
 			      <label for="boardTitle" class="form-label">제목</label>
-			      <input type="text" name="boardTitle" value="${board.boardTitle}"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <input type="text" name="boardTitle" value="${board.boardTitle}"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
 			      <div id="validationServerServer02Feedback" class="invalid-feedback">
 			        Please choose a detail.
 			      </div>
@@ -31,7 +31,7 @@
 			    <label for="boardContent" class="form-label">내용</label>
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <input type="text" name="boardContent" value="${board.boardContent}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <input type="text" name="boardContent" value="${board.boardContent}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
 			      <div id="validationServerUsernameFeedback" class="invalid-feedback">
 			        Please choose a detail.
 			      </div>
@@ -39,15 +39,15 @@
 			  </div>
 			  <div class="col-md-3">
 			    <label for="profile" class="form-label">첨부파일</label>
-			    <input type="file" name ="attaches" class="form-control is-invalid" id="profile" aria-describedby="validationServer05Feedback" required>
+			    <input type="file" name ="attaches" class="form-control" id="profile" aria-describedby="validationServer05Feedback">
 			  </div>
 			  <div class="col-md-3">
 			    <label for="profile" class="form-label">첨부파일</label>
-			    <input type="file" name ="attaches" class="form-control is-invalid" id="profile" aria-describedby="validationServer05Feedback" required>
+			    <input type="file" name ="attaches" class="form-control" id="profile" aria-describedby="validationServer05Feedback">
 			  </div>
 			  <div class="col-md-3">
 			    <label for="profile" class="form-label">첨부파일</label>
-			    <input type="file" name ="attaches" class="form-control is-invalid" id="profile" aria-describedby="validationServer05Feedback" required>
+			    <input type="file" name ="attaches" class="form-control" id="profile" aria-describedby="validationServer05Feedback">
 			  </div>
 			  
 			   <input type="hidden" name="user_name" value = "${user.user_name}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
