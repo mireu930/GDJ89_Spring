@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.root.app.boards.BoardDAO;
 import com.root.app.boards.BoardDTO;
+import com.root.app.boards.BoardFileDTO;
 import com.root.app.boards.notice.NoticeDTO;
 import com.root.app.pages.Pager;
 
@@ -57,5 +58,9 @@ public class QNADAO implements BoardDAO {
 	
 	public int reply(QNADTO qnadto) throws Exception {
 		return sqlSession.insert(NAMESPACE+"reply", qnadto);
+	}
+	
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 	}
 }

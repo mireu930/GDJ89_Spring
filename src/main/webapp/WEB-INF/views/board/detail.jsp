@@ -36,10 +36,15 @@
 			    </c:if>
 			     </tbody>
 			</table>
+			<div>
+				<c:forEach items="${dto.boardFileDTOs}" var="f">
+					<a href="/resources/images/${kind}/${f.fileName}">${f.oldName}</a>
+				</c:forEach>
+			</div>
 		</div>
 			<a href="./update?boardNum=${dto.boardNum}" class ="btn btn-outline-success">수정</a>	
 			<a href="./delete?boardNum=${dto.boardNum}" class ="btn btn-outline-danger">삭제</a>
-			<c:if test="${kind eq 'QnA'}">
+			<c:if test="${kind eq 'qna'}">
 			<a href="./reply?boardNum=${dto.boardNum}" class ="btn btn-outline-primary">댓글쓰기</a>
 			</c:if>
 	

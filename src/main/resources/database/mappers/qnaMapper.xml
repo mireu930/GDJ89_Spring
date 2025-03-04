@@ -23,8 +23,11 @@
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>
   	
-  	<select id="getDetail" resultType="QNADTO" parameterType="QNADTO">
-  		SELECT * FROM QNA WHERE BOARDNUM =#{boardNum}
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="QNADTO">
+  		SELECT * FROM QNA Q
+			LEFT OUTER JOIN QNAFILES QF
+				USING (BOARDNUM)
+  		 WHERE BOARDNUM =#{boardNum}
   	</select>
   	
   	<select id="gettotalcount" resultType="java.lang.Long" parameterType="Pager">
@@ -44,11 +47,20 @@
   	</select>
   	
   	<insert id="add" parameterType="QNADTO">
-  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, #{user_name}, SYSDATE, 0,BOARDNUM_SEQ.CURRVAL,0,0)
+  		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
+  			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		
+  	
+  		INSERT INTO QNA VALUES(#{boardNum},#{boardTitle},#{boardContent}, SYSDATE, 0, #{user_name},BOARDNUM_SEQ.CURRVAL,0,0)
   	</insert>
   
   	<insert id="reply" parameterType="QNADTO">
-  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, #{user_name}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth})
+  		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
+  			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		
+  		INSERT INTO QNA VALUES(#{boardNum},#{boardTitle},#{boardContent}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
   	
   	<update id="updateStep" parameterType="QNADTO">
@@ -66,4 +78,27 @@
   	<delete id="delete" parameterType="QNADTO">
   		DELETE QNA WHERE BOARDNUM =#{boardNum}
   	</delete>
+  	
+  	<insert id="addFile" parameterType="BoardFileDTO">
+  		INSERT INTO QNAFILES VALUES (FILES_SEQ.NEXTVAL,#{fileName},#{oldName},#{boardNum})
+  	</insert>
+  	
+  	<resultMap type="QNADTO" id="getDetailResult">
+  		<id column="BOARDNUM" property="boardNum"/>
+	  		<result column="BOARDTITLE" property="boardTitle"/>
+	  		<result column="BOARDCONTENT" property="boardContent"/>
+	  		<result column="BOARDDATE" property="boardDate"/>
+	  		<result column="BOARDHIT" property="boardHit"/>
+	  		<result column="USER_NAME" property="user_name"/>
+	  		<result column="BOARDREF" property="boardRef"/>
+	  		<result column="BOARDSTEP" property="boardStep"/>
+	  		<result column="BOARDDEPTH" property="boardDepth"/>
+	  		
+  		<collection property="boardFileDTOs" javaType="java.util.List" ofType="BoardFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="OLDNAME" property="oldName"/>
+  		</collection>
+  		
+  	</resultMap>
   </mapper>

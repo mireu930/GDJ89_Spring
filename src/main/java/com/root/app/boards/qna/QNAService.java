@@ -1,7 +1,9 @@
 package com.root.app.boards.qna;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +11,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.root.app.boards.BoardDTO;
+import com.root.app.boards.BoardFileDTO;
 import com.root.app.boards.BoardService;
 import com.root.app.pages.Pager;
+import com.root.app.utils.FIle;
 
 @Service
 public class QNAService implements BoardService{
 	@Autowired
 	private QNADAO qnadao;
+	@Autowired
+	private FIle fIle;
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -37,7 +43,18 @@ public class QNAService implements BoardService{
 
 	@Override
 	public int add(BoardDTO boardDTO,HttpSession session, MultipartFile [] attaches) throws Exception {
-		return qnadao.add(boardDTO);
+		int result = qnadao.add(boardDTO);
+		
+		for(MultipartFile attache: attaches) {
+			if(attache.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.save(attache, session.getServletContext());
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = qnadao.addFile(boardFileDTO);
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -50,7 +67,7 @@ public class QNAService implements BoardService{
 		return qnadao.delete(boardDTO);
 	}
 	
-	public int reply(QNADTO boardDTO) throws Exception {
+	public int reply(QNADTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
 		QNADTO parent = (QNADTO)qnadao.getDetail(boardDTO);
 		
 		boardDTO.setBoardRef(parent.getBoardRef());
@@ -63,8 +80,39 @@ public class QNAService implements BoardService{
 		//step 업데이트
 		int result = qnadao.updateStep(parent);
 		
+		for(MultipartFile attache: attaches) {
+			if(attache.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.save(attache, session.getServletContext());
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = qnadao.addFile(boardFileDTO);
+		}
+		
 		result= qnadao.reply(boardDTO);
 		
 		return result;
+	}
+	
+	private BoardFileDTO save(MultipartFile attach, ServletContext context) throws Exception {
+		//어디에저장?
+		String path = context.getRealPath("/resources/images/qna/");
+		System.out.println(path);
+		
+		File file = new File(path);
+		
+		if(file.exists()) {
+			file.mkdirs();
+		}
+		//HDD저장
+		fIle.file(path, attach);
+		
+		//파일정보를 DTO에 담아서 리턴
+		BoardFileDTO boardFileDTO = new BoardFileDTO();
+		
+		boardFileDTO.setFileName(fIle.getA());
+		boardFileDTO.setOldName(attach.getOriginalFilename());
+		
+		return boardFileDTO;
 	}
 }

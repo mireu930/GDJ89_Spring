@@ -29,7 +29,7 @@ public class NoticeController {
 	
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "Notice";
+		return "notice";
 	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -72,7 +72,7 @@ public class NoticeController {
 		modelAndView.addObject("dto", boardDTO);
 		modelAndView.setViewName("board/detail");
 		
-		
+		System.out.println(modelAndView.getViewName());
 		return modelAndView;
 	}
 	
