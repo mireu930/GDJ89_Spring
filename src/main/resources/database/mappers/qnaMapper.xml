@@ -51,16 +51,15 @@
   			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
   		
-  	
   		INSERT INTO QNA VALUES(#{boardNum},#{boardTitle},#{boardContent}, SYSDATE, 0, #{user_name},BOARDNUM_SEQ.CURRVAL,0,0)
   	</insert>
   
   	<insert id="reply" parameterType="QNADTO">
-  		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
+  		<!-- <selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
   			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
-  		</selectKey>
+  		</selectKey> -->
   		
-  		INSERT INTO QNA VALUES(#{boardNum},#{boardTitle},#{boardContent}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
+  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
   	
   	<update id="updateStep" parameterType="QNADTO">

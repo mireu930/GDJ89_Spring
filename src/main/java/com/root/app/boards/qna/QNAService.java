@@ -80,6 +80,8 @@ public class QNAService implements BoardService{
 		//step 업데이트
 		int result = qnadao.updateStep(parent);
 		
+		result= qnadao.reply(boardDTO);
+		
 		for(MultipartFile attache: attaches) {
 			if(attache.isEmpty()) {
 				continue;
@@ -89,7 +91,6 @@ public class QNAService implements BoardService{
 			result = qnadao.addFile(boardFileDTO);
 		}
 		
-		result= qnadao.reply(boardDTO);
 		
 		return result;
 	}

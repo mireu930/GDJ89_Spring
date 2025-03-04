@@ -37,8 +37,9 @@
 			      </div>
 			    </div>
 			  </div>
-				<div id ="files">					
-					<button type="button" id="btn1">파일추가</button>	
+				<div class ="files">
+
+					<button type="button"></button>
 				</div>
 			  
 			   <input type="hidden" name="user_name" value = "${user.user_name}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
@@ -50,7 +51,6 @@
 		</div>
 	</div>
 	<script src="/resources/JS/notice/update.js"></script>
-	<script src="/resources/JS/files/fileManager.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
 </body>

@@ -37,8 +37,9 @@
 			      </div>
 			    </div>
 			  </div>
-				<div id ="files">					
-					<button type="button" id="btn1">파일추가</button>	
+				<div id ="files">
+
+					<button type="button" id="btn1">파일추가</button>
 				</div>
 			  
 			   <input type="hidden" name="user_name" value = "${user.user_name}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
