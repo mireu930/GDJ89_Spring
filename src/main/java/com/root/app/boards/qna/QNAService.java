@@ -82,14 +82,14 @@ public class QNAService implements BoardService{
 		
 		result= qnadao.reply(boardDTO);
 		
-		for(MultipartFile attache: attaches) {
-			if(attache.isEmpty()) {
-				continue;
-			}
-			BoardFileDTO boardFileDTO = this.save(attache, session.getServletContext());
-			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
-			result = qnadao.addFile(boardFileDTO);
-		}
+//		for(MultipartFile attache: attaches) {
+//			if(attache.isEmpty()) {
+//				continue;
+//			}
+//			BoardFileDTO boardFileDTO = this.save(attache, session.getServletContext());
+//			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+//			result = qnadao.addFile(boardFileDTO);
+//		}
 		
 		
 		return result;
@@ -102,7 +102,7 @@ public class QNAService implements BoardService{
 		
 		File file = new File(path);
 		
-		if(file.exists()) {
+		if(!file.exists()) {
 			file.mkdirs();
 		}
 		//HDD¿˙¿Â

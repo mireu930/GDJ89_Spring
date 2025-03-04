@@ -59,7 +59,8 @@
   			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
   		</selectKey> -->
   		
-  		INSERT INTO QNA VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
+  		INSERT INTO QNA(BOARDNUM, BOARDTITLE, BOARDCONTENT, BOARDDATE, BOARDHIT, USER_NAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
+  		 VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
   	
   	<update id="updateStep" parameterType="QNADTO">
