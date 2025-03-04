@@ -67,9 +67,9 @@ public class QNAService implements BoardService{
 		return qnadao.delete(boardDTO);
 	}
 	
-	public int reply(QNADTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
+	public int reply(QNADTO boardDTO) throws Exception {
 		QNADTO parent = (QNADTO)qnadao.getDetail(boardDTO);
-		
+
 		boardDTO.setBoardRef(parent.getBoardRef());
 		
 		//ºÎ¸ðÀÇ step+1
@@ -81,15 +81,6 @@ public class QNAService implements BoardService{
 		int result = qnadao.updateStep(parent);
 		
 		result= qnadao.reply(boardDTO);
-		
-//		for(MultipartFile attache: attaches) {
-//			if(attache.isEmpty()) {
-//				continue;
-//			}
-//			BoardFileDTO boardFileDTO = this.save(attache, session.getServletContext());
-//			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
-//			result = qnadao.addFile(boardFileDTO);
-//		}
 		
 		
 		return result;

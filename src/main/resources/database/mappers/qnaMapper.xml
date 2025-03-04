@@ -55,10 +55,6 @@
   	</insert>
   
   	<insert id="reply" parameterType="QNADTO">
-  		<!-- <selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
-  			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
-  		</selectKey> -->
-  		
   		INSERT INTO QNA(BOARDNUM, BOARDTITLE, BOARDCONTENT, BOARDDATE, BOARDHIT, USER_NAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
   		 VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
   	</insert>

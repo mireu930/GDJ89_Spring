@@ -128,7 +128,7 @@ public class NoticeController {
 			modelAndView.setViewName("commons/result");
 		}else {
 		
-		modelAndView.addObject("board", noticeService.getDetail(boardDTO,false));
+		modelAndView.addObject("dto", noticeService.getDetail(boardDTO,false));
 		modelAndView.setViewName("board/boardform");
 		}
 		

@@ -57,6 +57,7 @@ public class QNADAO implements BoardDAO {
 	}
 	
 	public int reply(QNADTO qnadto) throws Exception {
+		System.out.println(qnadto.getBoardNum());
 		return sqlSession.insert(NAMESPACE+"reply", qnadto);
 	}
 	

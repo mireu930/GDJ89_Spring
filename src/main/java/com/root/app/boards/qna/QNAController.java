@@ -120,7 +120,7 @@ public class QNAController {
 			modelAndView.setViewName("commons/result");
 		} else {
 		
-		modelAndView.addObject("board", qnaService.getDetail(boardDTO, false));
+		modelAndView.addObject("dto", qnaService.getDetail(boardDTO, false));
 		modelAndView.setViewName("board/boardform");
 		}
 		return modelAndView;
@@ -189,13 +189,14 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "reply", method = RequestMethod.POST)
-	public String reply(QNADTO boardDTO, HttpSession session, MultipartFile[] attaches) throws Exception {
+	public String reply(QNADTO boardDTO, HttpSession session) throws Exception {
 		
 		 UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		 
 		 boardDTO.setUser_name(userDTO.getUser_name());
 		 
-		 int result = qnaService.reply(boardDTO, attaches, session);
+		 int result = qnaService.reply(boardDTO);
+		 System.out.println(result);
 		 
 		return "redirect:./list";
 		
