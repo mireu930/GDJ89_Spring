@@ -48,9 +48,9 @@ btn1.addEventListener("click", function(){
   
   files.append(div);
 })
-for(let i of del){
-  i.addEventListener("click", function(){
-    console.log("del");
 
-  })
-}
+let i = 0;
+del[i].addEventListener("click", function(){
+  console.log("del");
+  i++;
+})
