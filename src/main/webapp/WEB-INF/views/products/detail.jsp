@@ -31,7 +31,7 @@
 							<td>${dto.productDetail}</td>
 							<td>${dto.productRate}</td>
 							<td>${dto.productDate}</td>
-							
+							<td>${dto.productFileDTO.oldName}</td>
 						</tr>
 			    </c:if>
 			    <c:if test="${empty dto}">

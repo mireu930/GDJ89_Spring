@@ -4,21 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.root.app.products.ProductDAO">
-  	<select id="getList" parameterType="Pager" resultType = "ProductDTO">
+  	<select id="getList" parameterType="Pager" resultMap = "getDetailResult">
   		SELECT * FROM
-		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  products 
-			<include refid="search"></include>
+		(SELECT ROWNUM R,M.* FROM (SELECT * FROM  PRODUCTS LEFT OUTER JOIN PRODUCTIMAGE USING(PRODUCTNUM)
+			<include refid="search"></include> 
 			ORDER BY PRODUCTNUM DESC) M)
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
   	</select>
   	
-  	<select id="getDetail" resultType = "ProductDTO" parameterType="ProductDTO">
-  		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = #{productNum}
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="ProductDTO">
+  		SELECT * FROM PRODUCTS p
+  		LEFT OUTER JOIN PRODUCTIMAGE I
+  		USING (PRODUCTNUM)
+  		WHERE PRODUCTNUM = #{productNum}
   	</select>
   	
   	<insert id="add" parameterType="ProductDTO">
+  		<selectKey keyProperty="productNum" resultType="long" order="BEFORE">
+        	SELECT PRODUCTNUM_SEQ.NEXTVAL FROM DUAL
+    	</selectKey>
+  	
   		INSERT INTO PRODUCTS(PRODUCTNUM, PRODUCTNAME, PRODUCTDETAIL, PRODUCTRATE, PRODUCTDATE)
-		 VALUES (PRODUCTNUM_SEQ.NEXTVAL,#{productName},#{productDetail},#{productRate},#{productDate})
+		 VALUES (#{productNum},#{productName},#{productDetail},#{productRate},#{productDate})
   	</insert>
   	
   	<update id="update" parameterType="ProductDTO">
@@ -34,6 +41,29 @@
   		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
   		<include refid="search"></include>
 	</select>
+	
+	<insert id="upload" parameterType="ProductFileDTO">
+		INSERT INTO PRODUCTIMAGE(PRODUCTNUM, FILENAME, OLDNAME)
+		 VALUES (#{productNum},#{fileName},#{oldName})
+	</insert>
+	
+	<update id="updateUpload" parameterType="ProductFileDTO">
+		UPDATE PRODUCTIMAGE SET FILENAME=#{fileName},OLDNAME=#{oldName} WHERE PRODUCTNUM=#{productNum}
+	</update>
+	
+	<resultMap type="ProductDTO" id="getDetailResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<result column="PRODUCTDETAIL" property="productDetail"/>
+		<result column="PRODUCTRATE" property="productRate"/>
+		<result column="PRODUCTDATE" property="productDate"/>
+		
+		<association property="productFileDTO" javaType="ProductFileDTO">
+			<result column="FILENAME" property="fileName"/>
+			<result column="OLDNAME" property="oldName"/>
+		</association>
+	</resultMap>
+	
 		
 	<sql id="search">
 			WHERE PRODUCTNUM > 0 AND

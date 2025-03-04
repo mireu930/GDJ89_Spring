@@ -12,7 +12,7 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<div class = "row col-md-8 offset-md-2">
-			<form class="row g-3" action = "./update" method = "post">
+			<form class="row g-3" action = "./update" method = "post" enctype="multipart/form-data">
 			  <div class="col-md-4">
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
@@ -50,7 +50,15 @@
 			    <div id="validationServer04Feedback" class="invalid-feedback">
 			      Please select a date.
 			    </div>
+			  </div>
+			  <div class="col-md-3">
+			    <label for="productImage" class="form-label">상품이미지</label>
+			    <input type="file" name ="productImage" class="form-control is-invalid" id="productImages" required>
 			  </div> 
+			  <div>
+			  	${dto.productFileDTO.oldName}
+			  	<span class="btn text-danger">x</span>
+			  </div>
 			  <div class="col-12">
 			    <button class="btn btn-primary" type="submit">수정</button>
 			    <a href="./list" class ="btn btn-outline-danger">취소</a>	

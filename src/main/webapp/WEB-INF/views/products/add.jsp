@@ -12,7 +12,7 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<div class = "row col-md-8 offset-md-2">
-			<form class="row g-3" action = "./add" method = "post">
+			<form class="row g-3" action = "./add" method = "post" enctype="multipart/form-data">
 			  <div class="col-md-4">
 			    <label for="productName" class="form-label">상품이름</label>
 			    <div class="input-group has-validation">
@@ -45,6 +45,10 @@
 			    <div id="validationServer04Feedback" class="invalid-feedback">
 			      상품기간을 입력하세요.
 			    </div>
+			  </div>
+			  <div class="col-md-3">
+			    <label for="productImage" class="form-label">상품이미지</label>
+			    <input type="file" name ="productImage" class="form-control" id="validationServer04" aria-describedby="validationServer03Feedback">
 			  </div>
 			  <div class="col-12">
 			    <div class="form-check">

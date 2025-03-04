@@ -13,7 +13,10 @@
 		<typeAlias type="com.root.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.root.app.pages.Pager" alias="Pager"/>
 		<typeAlias type="com.root.app.boards.qna.QNADTO" alias="QNADTO"/>
+		
 		<typeAlias type="com.root.app.boards.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.root.app.users.UserFileDTO" alias="UserFileDTO"/>
+		<typeAlias type="com.root.app.products.ProductFileDTO" alias="ProductFileDTO"/>
+		<typeAlias type="com.root.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 	</typeAliases>
 </configuration>

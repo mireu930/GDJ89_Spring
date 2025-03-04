@@ -9,8 +9,15 @@ public class ProductDTO {
 	private String productDetail;
 	private Double productRate;
 	private Date productDate;
+	private ProductFileDTO productFileDTO;
 	
 	
+	public ProductFileDTO getProductFileDTO() {
+		return productFileDTO;
+	}
+	public void setProductFileDTO(ProductFileDTO productFileDTO) {
+		this.productFileDTO = productFileDTO;
+	}
 	public Long getProductNum() {
 		return productNum;
 	}

@@ -6,9 +6,9 @@ public class FileDTO {
 	private String oldName;
 	
 	public String getFileName() {
-		if(fileName ==null) {
-			this.fileName ="default.jpg";
-		}
+//		if(fileName ==null) {
+//			this.fileName ="default.jpg";
+//		}
 		return fileName;
 	}
 	public void setFileName(String fileName) {

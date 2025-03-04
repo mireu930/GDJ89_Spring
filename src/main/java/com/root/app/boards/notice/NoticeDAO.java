@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.root.app.boards.BoardDAO;
 import com.root.app.boards.BoardDTO;
+import com.root.app.boards.BoardFileDTO;
 import com.root.app.pages.Pager;
 
 @Repository
@@ -49,5 +50,9 @@ public class NoticeDAO implements BoardDAO {
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"gettotalcount", pager);
+	}
+	
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 	}
 }

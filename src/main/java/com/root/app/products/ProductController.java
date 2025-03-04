@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.pages.Pager;
@@ -44,7 +45,7 @@ public class ProductController {
 		
 		productDTO = productService.getDetail(productDTO);
 		
-		session.setAttribute("productDTO", productDTO);
+		session.setAttribute("dto", productDTO);
 
 		modelAndView.addObject("dto", productDTO);
 		modelAndView.setViewName("products/detail");
@@ -60,8 +61,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add(ProductDTO productDTO) throws Exception {
-		 int result = productService.add(productDTO);
+	public ModelAndView add(ProductDTO productDTO, MultipartFile productImage, HttpSession session) throws Exception {
+		 int result = productService.add(productDTO,productImage,session.getServletContext());
 		System.out.println(productDTO.getProductName());
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -84,9 +85,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update2(ProductDTO productDTO) throws Exception {
+	public ModelAndView update2(ProductDTO productDTO, MultipartFile productImage, HttpSession session) throws Exception {
 		
-		int result = productService.update(productDTO);
+		int result = productService.update(productDTO, productImage, session);
 		
 		ModelAndView modelAndView = new ModelAndView();
 				

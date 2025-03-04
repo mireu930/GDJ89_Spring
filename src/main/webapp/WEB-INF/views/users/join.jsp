@@ -25,7 +25,7 @@
 			  <div class="col-md-4">
 			    <label for="password" class="form-label">비밀번호</label>
 			    <div class="input-group has-validation">
-			      <input type="text" name="password" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <input type="password" name="password" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <div id="validationServerUsernameFeedback" class="invalid-feedback">
 			        비밀번호를 입력하세요.
 			      </div>
@@ -54,7 +54,7 @@
 			  </div>
 			  <div class="col-md-3">
 			    <label for="profile" class="form-label">프로필</label>
-			    <input type="file" name ="profile" class="form-control is-invalid" id="profile" aria-describedby="validationServer05Feedback" required>
+			    <input type="file" name ="profile" class="form-control" id="profile" aria-describedby="validationServer05Feedback">
 			  </div>
 			  <div class="col-12">
 			    <div class="form-check">

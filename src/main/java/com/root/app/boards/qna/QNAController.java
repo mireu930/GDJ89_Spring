@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
@@ -27,7 +28,7 @@ public class QNAController {
 	//모든메서드에 넣어라
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "QnA";
+		return "qna";
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -90,9 +91,9 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add(BoardDTO boardDTO) throws Exception {
+	public ModelAndView add(BoardDTO boardDTO, HttpSession session, MultipartFile [] attaches) throws Exception {
 
-		int result = qnaService.add(boardDTO);
+		int result = qnaService.add(boardDTO,session, attaches);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -188,13 +189,13 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "reply", method = RequestMethod.POST)
-	public String reply(QNADTO boardDTO, HttpSession session) throws Exception {
+	public String reply(QNADTO boardDTO, HttpSession session, MultipartFile[] attaches) throws Exception {
 		
 		 UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		 
 		 boardDTO.setUser_name(userDTO.getUser_name());
 		 
-		 int result = qnaService.reply(boardDTO);
+		 int result = qnaService.reply(boardDTO, attaches, session);
 		 
 		return "redirect:./list";
 		
