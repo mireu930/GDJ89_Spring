@@ -2,8 +2,11 @@ package com.root.app.boards.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.root.app.boards.BoardDTO;
 import com.root.app.boards.BoardService;
@@ -33,7 +36,7 @@ public class QNAService implements BoardService{
 	}
 
 	@Override
-	public int add(BoardDTO boardDTO) throws Exception {
+	public int add(BoardDTO boardDTO,HttpSession session, MultipartFile [] attaches) throws Exception {
 		return qnadao.add(boardDTO);
 	}
 

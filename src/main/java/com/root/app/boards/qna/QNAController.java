@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
@@ -90,9 +91,9 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add(BoardDTO boardDTO) throws Exception {
+	public ModelAndView add(BoardDTO boardDTO, HttpSession session, MultipartFile [] attaches) throws Exception {
 
-		int result = qnaService.add(boardDTO);
+		int result = qnaService.add(boardDTO,session, attaches);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		

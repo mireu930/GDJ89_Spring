@@ -17,5 +17,6 @@
 		<typeAlias type="com.root.app.boards.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.root.app.users.UserFileDTO" alias="UserFileDTO"/>
 		<typeAlias type="com.root.app.products.ProductFileDTO" alias="ProductFileDTO"/>
+		<typeAlias type="com.root.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 	</typeAliases>
 </configuration>
