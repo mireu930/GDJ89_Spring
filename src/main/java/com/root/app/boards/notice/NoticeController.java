@@ -34,6 +34,7 @@ public class NoticeController {
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
+		System.out.println("≥Î∆ºΩ∫");
 		List<BoardDTO> ar = noticeService.getList(pager);
 			
 		ModelAndView modelAndView = new ModelAndView();
