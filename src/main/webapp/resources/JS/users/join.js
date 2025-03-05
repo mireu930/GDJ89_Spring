@@ -2,35 +2,23 @@
  * 
  */
  document.addEventListener('DOMContentLoaded', function () {
-			
-			
 			var userNameInput = document.getElementById('validationServer02');
-			userNameInput.addEventListener('input', function () {
-				var feedback = document.getElementById('validationServerServer02Feedback');
-				if (userNameInput.value.trim() !== '') {
-					feedback.style.display = 'none';
-					userNameInput.classList.remove('is-invalid');
-				} else {
-					feedback.style.display = 'block';
-					userNameInput.classList.add('is-invalid');
-				}
-			});
 
 			userNameInput.addEventListener('change',function() {
 				var feedback = document.getElementById('validationServerServer02Feedback');
 				console.log(userNameInput.value);
 
-				fetch("./check?user_name="+userNameInput.value).then(result=>{
-					 result.text();
-				})
+				fetch("./check?user_name="+userNameInput.value)
+				.then(res=>res.text())
 				.then(res => {
 					console.log(res)
 					if(res.trim()=='0'){
-						userNameInput.classList.add('invalid-feedback');
 						feedback.innerHTML='중복된아이디입니다.'
+						
 					} else {
-						userNameInput.classList.add('valid-feedback');
 						feedback.innerHTML='사용가능한아이디입니다.'
+						
+						
 					}
 				})
 			})

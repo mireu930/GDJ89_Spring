@@ -43,18 +43,18 @@
 		<c:if test="${not empty user}">
 			<a href="/accounts/addProcess?prodcutNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
 		</c:if>
-		<c:if test="${user.user_name eq 'sss' }">
 			<div>
+				<c:if test="${user.user_name eq 'sss' }">
 				<form action="/test" id="frm">
 					<input type="hidden" name="productNum" value="${dto.productNum}">
 					<button type="button" id="btn1" class="btn btn-outline-success">수정</button>
 					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
 				</form>
+				</c:if>
+		<button type="button" id="addCart" data-product-num="${dto.productNum}">장바구니</button>
 			</div>		
-		</c:if>
-		<c:if test="${user.user_name ne 'sss' }">
-			<button type="button" id="addCart" data-product-num="${dto.productNum}">장바구니</button>
-		</c:if>
+
+
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>

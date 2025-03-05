@@ -151,14 +151,20 @@ public class UserController {
 	
 	@RequestMapping(value = "addCart", method = RequestMethod.GET)
 	public String cartAdd(Model model, CartDTO cartDTO, HttpSession session) throws Exception {
-		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		cartDTO.setUser_name(userDTO.getUser_name());
-		
-		int result2 = userService.cartAdd(cartDTO);
-		
-		String result = "";
-		model.addAttribute("result", result);
-		return "commons/ajax";
+		UserDTO userDTO = (UserDTO) session.getAttribute("user");
+
+	    if (userDTO == null) {
+	        model.addAttribute("result", "로그인이 필요합니다.");
+	        return "commons/ajax";
+	    }
+
+	    cartDTO.setUser_name(userDTO.getUser_name());
+	    int result2 = userService.cartAdd(cartDTO);
+
+	    String result = (result2 > 0) ? "장바구니 추가 성공" : "장바구니 추가 실패";
+	    model.addAttribute("result", result);
+	    
+	    return "commons/ajax";
 	}
 
 }

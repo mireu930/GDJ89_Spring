@@ -16,8 +16,8 @@
 			  <div class="col-md-4">
 			    <label for="user_name" class="form-label">아이디</label>
 			    <div class="input-group has-validation">
-			      <input type="text" name="user_name"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerServer02Feedback" required>
-			      <div id="validationServerServer02Feedback" class="invalid-feedback">
+			      <input type="text" name="user_name"  class="form-control" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerServer02Feedback" required>
+			      <div id="validationServerServer02Feedback">
 			        아이디를 입력하세요.
 			      </div>
 			    </div>
