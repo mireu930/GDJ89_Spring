@@ -11,11 +11,14 @@ addCart.addEventListener("click", ()=>{
     .then(res => res.text())
     .then(res => {
 		alert(res);
-		
-		const con = confirm("장바구니로 이동하시겠습니까?");
+		if(res.includes("로그인")) {
+			window.location.href ="../users/login"
+		}else {
+			const con = confirm("장바구니로 이동하시겠습니까?");
 		
 		if(con) {
 			window.location.href ="../users/cart";
+			}
 		}
     })
     .catch(error => console.error("에러발생",error));
