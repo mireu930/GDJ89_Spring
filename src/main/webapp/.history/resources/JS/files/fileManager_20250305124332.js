@@ -20,7 +20,7 @@ files.addEventListener("click", function(e) {
 // }
 
 btn1.addEventListener("click", function(){
-  if(count>4){
+  if(count>5){
     alert('최대5개만 가능');
     return;
   }

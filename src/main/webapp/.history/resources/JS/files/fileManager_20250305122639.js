@@ -1,7 +1,8 @@
 const files = document.getElementById("files");
 const btn1 = document.getElementById("btn1");
 const del = document.getElementsByClassName("del");
-let count = files.getAttribute("data-files-size");
+
+let count =0;
 
 files.addEventListener("click", function(e) {
   if(e.target.classList.contains('del')){

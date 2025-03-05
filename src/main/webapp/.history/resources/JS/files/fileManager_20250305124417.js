@@ -3,6 +3,10 @@ const btn1 = document.getElementById("btn1");
 const del = document.getElementsByClassName("del");
 let count = files.getAttribute("data-files-size");
 
+if(count<1){
+  count =1;
+}
+
 files.addEventListener("click", function(e) {
   if(e.target.classList.contains('del')){
     console.log("click");
@@ -20,7 +24,7 @@ files.addEventListener("click", function(e) {
 // }
 
 btn1.addEventListener("click", function(){
-  if(count>4){
+  if(count>5){
     alert('최대5개만 가능');
     return;
   }
