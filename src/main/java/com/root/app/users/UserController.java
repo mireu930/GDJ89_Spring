@@ -16,6 +16,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.carts.CartDTO;
+
 
 @Controller
 @RequestMapping(value = "/users/*")
@@ -147,8 +149,13 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String cartAdd(Model model) throws Exception {
+	@RequestMapping(value = "addCart", method = RequestMethod.GET)
+	public String cartAdd(Model model, CartDTO cartDTO, HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		cartDTO.setUser_name(userDTO.getUser_name());
+		
+		int result2 = userService.cartAdd(cartDTO);
+		
 		String result = "";
 		model.addAttribute("result", result);
 		return "commons/ajax";
