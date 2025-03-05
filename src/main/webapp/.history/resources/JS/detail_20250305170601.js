@@ -31,9 +31,6 @@ addCart.addEventListener("click", function() {
   fetch(`../users/addCart?productNum=${num}`)
   .then(result=> result.text)
   .then(res => {
-    const con = confirm("장바구니로가시겠습니까?");
-    if(con){
-      res;
-    }
+    confirm(res);
   })
 })

@@ -4,6 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.root.app.carts.CartDTO;
+
 @Repository
 public class UserDAO {
 	@Autowired
@@ -32,5 +34,9 @@ public class UserDAO {
 	
 	public int uploadUpdate(UserFileDTO userFileDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"uploadUpdate", userFileDTO);
+	}
+	
+	public int cartAdd(CartDTO cartDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"cartAdd", cartDTO);
 	}
 }

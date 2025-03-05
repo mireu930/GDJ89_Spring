@@ -17,7 +17,6 @@
 			});
 
 			userNameInput.addEventListener('change',function() {
-				var feedback = document.getElementById('validationServerServer02Feedback');
 				console.log(userNameInput.value);
 
 				fetch("./check?user_name="+userNameInput.value).then(result=>{
@@ -25,13 +24,6 @@
 				})
 				.then(res => {
 					console.log(res)
-					if(res.trim()=='0'){
-						userNameInput.classList.add('invalid-feedback');
-						feedback.innerHTML='중복된아이디입니다.'
-					} else {
-						userNameInput.classList.add('valid-feedback');
-						feedback.innerHTML='사용가능한아이디입니다.'
-					}
 				})
 			})
 		

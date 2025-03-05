@@ -24,7 +24,7 @@ btn2.addEventListener("click", function(){
 })
 
 addCart.addEventListener("click", function() {
-  let num = addCart.getAttribute("data-product-num");
+  let num = addCart.getAttribute('data-product-num');
   let s =`hello${num}`;
 
   console.log(num);

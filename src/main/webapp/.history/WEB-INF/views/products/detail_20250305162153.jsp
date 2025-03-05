@@ -53,7 +53,7 @@
 			</div>		
 		</c:if>
 		<c:if test="${user.user_name ne 'sss' }">
-			<button type="button" id="addCart" data-product-num="${dto.productNum}">장바구니</button>
+			<button type="button" id="addCart">장바구니</button>
 		</c:if>
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

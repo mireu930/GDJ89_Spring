@@ -24,16 +24,13 @@ btn2.addEventListener("click", function(){
 })
 
 addCart.addEventListener("click", function() {
-  let num = addCart.getAttribute("data-product-num");
+  let num =addCart.getAttribute("data-product-num");
   let s =`hello${num}`;
 
   console.log(num);
   fetch(`../users/addCart?productNum=${num}`)
   .then(result=> result.text)
   .then(res => {
-    const con = confirm("장바구니로가시겠습니까?");
-    if(con){
-      res;
-    }
+    
   })
 })

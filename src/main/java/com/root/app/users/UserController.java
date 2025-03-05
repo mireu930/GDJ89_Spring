@@ -24,6 +24,23 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping(value = "check", method = RequestMethod.GET)
+	public String check(UserDTO userDTO, Model model ) throws Exception {
+		System.out.println(userDTO.getUser_name());
+		System.out.println("아이디 중복체크");
+		userDTO = userService.check(userDTO);
+		//중복 0
+		int result =0;
+		
+		if(userDTO== null) {
+			result =1; //중복 x
+		}
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajax";
+	}
+	
 	@RequestMapping(value = "join", method = RequestMethod.GET)
 	public String join() throws Exception {
 		return "users/join";
@@ -128,6 +145,13 @@ public class UserController {
 		modelAndView.setViewName("commons/result");
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String cartAdd(Model model) throws Exception {
+		String result = "";
+		model.addAttribute("result", result);
+		return "commons/ajax";
 	}
 
 }

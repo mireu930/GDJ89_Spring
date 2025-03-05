@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.root.app.carts.CartDTO;
 import com.root.app.utils.FIle;
 
 @Service
@@ -43,6 +44,10 @@ public class UserService {
 			}
 		}
 		return null;
+	}
+	
+	public UserDTO check(UserDTO userDTO) throws Exception {
+		return userDAO.getDetail(userDTO);
 	}
 	
 	public int update(UserDTO userDTO, MultipartFile profile, HttpSession session) throws Exception {
@@ -87,5 +92,9 @@ public class UserService {
 		userFileDTO.setOldName(profile.getOriginalFilename());
 		
 		return userFileDTO;
+	}
+	
+	public int cartAdd(CartDTO cartDTO) throws Exception {
+		return userDAO.cartAdd(cartDTO);
 	}
 }

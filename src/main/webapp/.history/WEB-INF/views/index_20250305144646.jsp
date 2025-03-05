@@ -43,23 +43,12 @@
 		const btn = document.getElementById("btn");
 		btn.addEventListener("click",function() {
 			console.log("start");
-			let num =1;
+
 			fetch("./notice/list").then(result=>{
 				return result.text(); //응답 데이터가 text 형태일때 꺼내는 메서드
 				//result.json(); //응답 데이터가 json형태일때 
-			})
-			.then(result=>{
-				console.log(result);
-				num=num+1;
-
-			})
-			.catch((e)=>{
-				
-			})
-			.finally(()=>{
-				
 			});
-			console.log(num);
+
 		})
 	</script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

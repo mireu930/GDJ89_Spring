@@ -52,12 +52,6 @@
 				console.log(result);
 				num=num+1;
 
-			})
-			.catch((e)=>{
-				
-			})
-			.finally(()=>{
-				
 			});
 			console.log(num);
 		})
