@@ -158,13 +158,20 @@ public class UserController {
 	        return "commons/ajax";
 	    }
 
+	    
 	    cartDTO.setUser_name(userDTO.getUser_name());
 	    int result2 = userService.cartAdd(cartDTO);
 
 	    String result = (result2 > 0) ? "장바구니 추가 성공" : "장바구니 추가 실패";
+	    System.out.println(result);
 	    model.addAttribute("result", result);
 	    
 	    return "commons/ajax";
+	}
+	
+	@RequestMapping(value = "cart", method = RequestMethod.GET)
+	public String cartPage() {
+	    return "users/cart";
 	}
 
 }

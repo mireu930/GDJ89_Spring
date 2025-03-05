@@ -15,7 +15,7 @@ addCart.addEventListener("click", ()=>{
 		const con = confirm("장바구니로 이동하시겠습니까?");
 		
 		if(con) {
-			window.location.href ="users/addCart";
+			window.location.href ="../users/cart";
 		}
     })
     .catch(error => console.error("에러발생",error));
