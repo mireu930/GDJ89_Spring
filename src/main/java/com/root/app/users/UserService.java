@@ -2,6 +2,9 @@ package com.root.app.users;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -14,6 +17,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.root.app.carts.CartDTO;
+import com.root.app.pages.Pager;
+import com.root.app.products.ProductDTO;
 import com.root.app.utils.FIle;
 
 @Service
@@ -97,4 +102,18 @@ public class UserService {
 	public int cartAdd(CartDTO cartDTO) throws Exception {
 		return userDAO.cartAdd(cartDTO);
 	}
+	
+	public List<ProductDTO> getCartList(Pager pager, Object userDTO) throws Exception {
+		
+		pager.makeNum();
+		pager.make(userDAO.gettotalcount(userDTO));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		map.put("user", userDTO);
+		
+		return userDAO.getCartList(map);
+	}
+	
+	
 }

@@ -23,6 +23,7 @@
 			        <li class="nav-item">
 			          <a class="nav-link" href="/qna/list">QnA</a>
 			        </li>
+			        
 			        <li class="nav-item dropdown">
 			          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            상태
@@ -35,12 +36,13 @@
 			            <c:if test="${not empty user}">
 			            <li><a class="dropdown-item" href="/users/logout">로그아웃</a></li>
 			            <li><a class="dropdown-item" href="/users/mypage">마이페이지</a></li>
+			            <li><a class="dropdown-item" href="/users/cart"><i style="font-size: 1.5rem" class="bi bi-cart4"></i></a></li>
 			            </c:if>
 			          </ul>
 			        </li>
-			        <li class="nav-item">
+			        <!-- <li class="nav-item">
 			          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-			        </li>
+			        </li> -->
 			      </ul>
 			      <form class="d-flex" role="search">
 			        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

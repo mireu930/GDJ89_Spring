@@ -47,5 +47,30 @@
   	 <insert id="cartAdd" parameterType="CartDTO">
   	 	INSERT INTO CARTS VALUES(#{user_name}, #{productNum})
   	 </insert>
+  	 
+  	 <select id="getCartList" parameterType="Map" resultType="ProductDTO">
+  	 	SELECT * FROM
+  	 	(
+  	 	SELECT ROWNUM R, C.*
+  	 	FROM (
+  	 		SELECT PRODUCTNUM,PRODUCTNAME,PRODUCTRATE,PRODUCTDATE 
+  	 			FROM PRODUCTS 
+  	 			WHERE PRODUCTNUM IN (SELECT PRODUCTNUM FROM CARTS WHERE USER_NAME =#{user.user_name})
+  	 			ORDERT BY PRODUCTNUM DESC
+  	 		)C
+  	 	) 
+  	 	WHERE R BETWEEN #{pager.startNum} AND #{pager.lastNum}
+  	 	
+  	 	<!-- SELECT PRODUCTNUM,PRODUCTNAME,PRODUCTRATE,PRODUCTDATE 
+  	 	FROM PRODUCTS
+  	 	JOIN CARTS 
+  	 	USING (PRODUCTNUM)
+  	 	WHERE USER_NAME = #{user_name} -->
+  	 </select>
+  	 
+  	 <select id="gettotalcount" parameterType="UserDTO" resultType="Long">
+  	 	SELECT COUNT(PRODUCTNUM) FROM CARTS
+  	 	WHERE USER_NAME = #{user_name}
+  	 </select>
 
   </mapper>

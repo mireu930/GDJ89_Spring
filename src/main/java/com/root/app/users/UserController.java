@@ -1,6 +1,7 @@
 package com.root.app.users;
 
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -17,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.carts.CartDTO;
+import com.root.app.pages.Pager;
+import com.root.app.products.ProductDTO;
 
 
 @Controller
@@ -170,8 +173,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
-	public String cartPage() {
-	    return "users/cart";
+	public void cartPage(Pager pager, HttpSession session, Model model) throws Exception {
+		
+		UserDTO userDTO = (UserDTO) session.getAttribute("user");
+	    List<ProductDTO> ar = userService.getCartList(pager,userDTO);
+	    
+	    model.addAttribute("cart", ar);
+	    model.addAttribute("pager", pager);
 	}
 
 }
