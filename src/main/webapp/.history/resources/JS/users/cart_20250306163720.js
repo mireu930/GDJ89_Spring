@@ -33,16 +33,14 @@ cartDelete.addEventListener("click",()=>{
 })
 
 cartAdd.addEventListener("click", ()=> {
+  let url = new URL("cartAccountAdd", window.location);
   let params = new URLSearchParams();
   for(let c of check){
     if(c.checked){
       let num = c.getAttribute("data-product-num");
-      // console.log(num);
+      console.log(num);
       params.append("productNum",num);
     }
-
-    let url = "../accounts/add?"+params.toString();
-    console.log(url);
 
     fetch(url)
     .then(result=>result.text())

@@ -40,9 +40,8 @@ cartAdd.addEventListener("click", ()=> {
       // console.log(num);
       params.append("productNum",num);
     }
-
-    let url = "../accounts/add?"+params.toString();
-    console.log(url);
+    
+    let url = "../accounts/add"+params.toString();
 
     fetch(url)
     .then(result=>result.text())

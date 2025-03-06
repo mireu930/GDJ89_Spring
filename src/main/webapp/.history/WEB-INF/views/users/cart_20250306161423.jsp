@@ -57,7 +57,7 @@
 		</c:forEach>
 		<div>
 				<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
-				<button id="cart-add" class="btn btn-outline-success">상품가입</button>
+				<button class="btn btn-outline-success">상품가입</button>
 		</div>
 	</div>
 		<nav aria-label="Page navigation example" >

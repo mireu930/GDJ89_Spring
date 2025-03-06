@@ -36,11 +36,11 @@
 				</label>
 			</div>
 		<c:forEach items="${cart}" var ="ar">
-		<div class="card" style="width: 18rem;" id="n">
+		<div class="card" style="width: 18rem;">
 		
-			<a href="../products/detail?productNum=${ar.productNum}">
+		<a href="../products/detail?productNum=${ar.productNum}">
   			<img src="/resources/images/products/${not empty ar.productFileDTO?ar.productFileDTO.fileName:'noImage.jpg'} " class="card-img-top rounded" width="200px" height="200px" alt="">
-			</a>
+		</a>
 	  			<div class="card-body">
 	    		<p class="card-text">
 			<div class="form-check">
@@ -57,7 +57,7 @@
 		</c:forEach>
 		<div>
 				<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
-				<button id="cart-add" class="btn btn-outline-success">상품가입</button>
+				<button class="btn btn-outline-success">상품가입</button>
 		</div>
 	</div>
 		<nav aria-label="Page navigation example" >

@@ -1,7 +1,9 @@
 package com.root.app.users;
 
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -183,9 +185,22 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "cartDelete", method = RequestMethod.GET)
-	public String cartDelete(Model model,CartDTO cartDTO) throws Exception{
+	public String cartDelete(Long[] productNum,Model model,CartDTO cartDTO, HttpSession session) throws Exception{
+		UserDTO userDTO = (UserDTO) session.getAttribute("user");
+		cartDTO.setUser_name(userDTO.getUser_name());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("products", productNum);
+		map.put("user", userDTO);
+		int result2 = userService.cartDelete(map);
 		
-		String result = "productNum"+cartDTO.getProductNum();
+		model.addAttribute("result", result2);
+		return "commons/ajax";
+	}
+	
+	@RequestMapping(value = "cartAccountAdd", method = RequestMethod.GET)
+	public String cartAdd(Model model, CartDTO cartDTO) throws Exception {
+		
+		Long result = cartDTO.getProductNum();
 		model.addAttribute("result", result);
 		return "commons/ajax";
 	}

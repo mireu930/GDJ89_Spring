@@ -74,4 +74,11 @@
   	 	WHERE USER_NAME = #{user_name}
   	 </select>
 
+	<delete id="cartDelte" parameterType="Map">
+		DELETE CARTS WHERE USER_NAME =#{user.user_name}
+		<foreach item="item" collection="products" open="AND PRODUCTNUM IN (" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
   </mapper>

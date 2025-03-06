@@ -12,8 +12,11 @@
   		SELECT * FROM ACCOUNTS WHERE ACCOUNTNUM = #{accountNum}
   	</select>
   	
-  	<insert id="add" parameterType="AccountDTO">
-  		INSERT INTO ACCOUNTS VALUES (#{accountNum},#{productNum},#{user_name},0,SYSDATE)
+  	<insert id="add" parameterType="Map">
+  		INSERT INTO ACCOUNTS VALUES(#{accountNum},#{productNum},#{user_name},0,SYSDATE)
+  		<!-- <foreach item="item" collection="accounts" open="INSERT INTO ACCOUNTS VALUES(" separator="," close=")">
+  			#{
+  		</foreach> -->
   	</insert>
   	
   	<update id="update" parameterType="AccountDTO">
