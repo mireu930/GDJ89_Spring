@@ -54,10 +54,12 @@
 	    		</p>
 	  			</div>
 			</div>
+			<button id="cart-delete" class="btn btn-outline-danger" data-product-num="${ar.productNum}">선택삭제</button>
 		</c:forEach>
 		<div>
-				<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
+			<form action="./test">
 				<button class="btn btn-outline-success">상품가입</button>
+			</form>
 		</div>
 	</div>
 		<nav aria-label="Page navigation example" >

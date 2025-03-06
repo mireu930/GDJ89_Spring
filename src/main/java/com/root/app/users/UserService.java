@@ -103,15 +103,14 @@ public class UserService {
 		return userDAO.cartAdd(cartDTO);
 	}
 	
-	public List<ProductDTO> getCartList(Pager pager, Object userDTO) throws Exception {
+	public List<ProductDTO> getCartList(Pager pager, Object userDTO)throws Exception{
 		
-		pager.makeNum();
 		pager.make(userDAO.gettotalcount(userDTO));
+		pager.makeNum();
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map =new HashMap<String, Object>();
 		map.put("pager", pager);
 		map.put("user", userDTO);
-		
 		return userDAO.getCartList(map);
 	}
 	

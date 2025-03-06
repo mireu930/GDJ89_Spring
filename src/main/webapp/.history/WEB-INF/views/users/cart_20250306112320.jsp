@@ -12,29 +12,24 @@
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
 	<div class = "container-fluid my-5">
 		<form class="row row-cols-lg-auto g-3 align-items-center" action="./cart" method ="get">
-		  <!-- <div class="col-12">
+		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 		    <select class="form-select" name="kind" id="inlineFormSelectPref">
 		      <option value="k1">제목</option>
 		      <option value="k2">내용</option>
 		      <option value="k3">제목+내용</option>
 		    </select>
-		  </div> -->
-		  <!-- <div class="col-12">
+		  </div>
+		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
 		      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
-		  </div> -->
+		  </div>
 		
 		  <div class="col-12">
 		    <button type="submit" class="btn btn-primary">검색</button>
 		  </div>
 		</form>
 		<div style="display:flex; gap:10px; margin: 10px 0 10px 0">
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="checkAll">
-				<label class="form-check-label" for="flexCheckDefault">
-				</label>
-			</div>
 		<c:forEach items="${cart}" var ="ar">
 		<div class="card" style="width: 18rem;">
 		
@@ -43,22 +38,12 @@
 		</a>
 	  			<div class="card-body">
 	    		<p class="card-text">
-			<div class="form-check">
-					<input class="form-check-input check" type="checkbox" data-product-num="${ar.productNum}" >
-					<label class="form-check-label" for="flexCheckDefault">
-					</label>
-				</div>
-			</div>
 	    		#${ar.productNum} ${ar.productName}<br>
 	    		${ar.productRate} / ${ar.productDate}
 	    		</p>
 	  			</div>
 			</div>
 		</c:forEach>
-		<div>
-				<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
-				<button class="btn btn-outline-success">상품가입</button>
-		</div>
 	</div>
 		<nav aria-label="Page navigation example" >
 		  <ul class="pagination">
@@ -71,7 +56,7 @@
 		</nav> 
 </div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
-	<script src="/resources/JS/users/cart.js"></script>
+	
 <c:import url="../template/boot_js.jsp"></c:import>
 </body>
 </html>

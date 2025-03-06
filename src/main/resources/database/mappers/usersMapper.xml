@@ -49,17 +49,18 @@
   	 </insert>
   	 
   	 <select id="getCartList" parameterType="Map" resultType="ProductDTO">
-  	 	SELECT * FROM
-  	 	(
-  	 	SELECT ROWNUM R, C.*
-  	 	FROM (
-  	 		SELECT PRODUCTNUM,PRODUCTNAME,PRODUCTRATE,PRODUCTDATE 
-  	 			FROM PRODUCTS 
-  	 			WHERE PRODUCTNUM IN (SELECT PRODUCTNUM FROM CARTS WHERE USER_NAME =#{user.user_name})
-  	 			ORDERT BY PRODUCTNUM DESC
-  	 		)C
-  	 	) 
-  	 	WHERE R BETWEEN #{pager.startNum} AND #{pager.lastNum}
+  	 		SELECT * FROM
+  		(
+  			SELECT ROWNUM R,C.*
+	  		FROM (
+	  				SELECT PRODUCTNUM, PRODUCTNAME,PRODUCTRATE, PRODUCTDATE 
+	  				FROM PRODUCTS
+	  				WHERE PRODUCTNUM
+	  				  In (SELECT PRODUCTNUM FROM CARTS WHERE USER_NAME=#{user.user_name})
+	  				ORDER BY PRODUCTNUM DESC
+	  			 )C
+  		)
+  		WHERE R BETWEEN #{pager.startNum} AND #{pager.lastNum}
   	 	
   	 	<!-- SELECT PRODUCTNUM,PRODUCTNAME,PRODUCTRATE,PRODUCTDATE 
   	 	FROM PRODUCTS

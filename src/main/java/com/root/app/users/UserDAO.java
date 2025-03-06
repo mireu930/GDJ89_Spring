@@ -44,7 +44,7 @@ public class UserDAO {
 		return sqlSession.insert(NAMESPACE+"cartAdd", cartDTO);
 	}
 	
-	public List<ProductDTO> getCartList(Map<String, Object> map) throws Exception {
+	public List<ProductDTO> getCartList(Map<String, Object> map)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getCartList", map);
 	}
 	

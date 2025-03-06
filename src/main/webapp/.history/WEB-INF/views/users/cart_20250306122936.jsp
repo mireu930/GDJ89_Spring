@@ -44,7 +44,7 @@
 	  			<div class="card-body">
 	    		<p class="card-text">
 			<div class="form-check">
-					<input class="form-check-input check" type="checkbox" data-product-num="${ar.productNum}" >
+					<input class="form-check-input" type="checkbox" value="" class="check">
 					<label class="form-check-label" for="flexCheckDefault">
 					</label>
 				</div>
@@ -55,10 +55,6 @@
 	  			</div>
 			</div>
 		</c:forEach>
-		<div>
-				<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
-				<button class="btn btn-outline-success">상품가입</button>
-		</div>
 	</div>
 		<nav aria-label="Page navigation example" >
 		  <ul class="pagination">

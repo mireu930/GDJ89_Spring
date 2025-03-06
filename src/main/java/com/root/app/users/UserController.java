@@ -173,13 +173,21 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
-	public void cartPage(Pager pager, HttpSession session, Model model) throws Exception {
+	public void cartPage(Pager pager,HttpSession session, Model model) throws Exception {
 		
 		UserDTO userDTO = (UserDTO) session.getAttribute("user");
-	    List<ProductDTO> ar = userService.getCartList(pager,userDTO);
+	    List<ProductDTO> ar = userService.getCartList(pager, userDTO);
 	    
 	    model.addAttribute("cart", ar);
 	    model.addAttribute("pager", pager);
+	}
+	
+	@RequestMapping(value = "cartDelete", method = RequestMethod.GET)
+	public String cartDelete(Model model,CartDTO cartDTO) throws Exception{
+		
+		String result = "productNum"+cartDTO.getProductNum();
+		model.addAttribute("result", result);
+		return "commons/ajax";
 	}
 
 }

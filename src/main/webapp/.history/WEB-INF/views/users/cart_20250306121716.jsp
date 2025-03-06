@@ -20,21 +20,16 @@
 		      <option value="k3">제목+내용</option>
 		    </select>
 		  </div> -->
-		  <!-- <div class="col-12">
+		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
 		      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
-		  </div> -->
+		  </div>
 		
 		  <div class="col-12">
 		    <button type="submit" class="btn btn-primary">검색</button>
 		  </div>
 		</form>
 		<div style="display:flex; gap:10px; margin: 10px 0 10px 0">
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="checkAll">
-				<label class="form-check-label" for="flexCheckDefault">
-				</label>
-			</div>
 		<c:forEach items="${cart}" var ="ar">
 		<div class="card" style="width: 18rem;">
 		
@@ -44,10 +39,10 @@
 	  			<div class="card-body">
 	    		<p class="card-text">
 			<div class="form-check">
-					<input class="form-check-input check" type="checkbox" data-product-num="${ar.productNum}" >
-					<label class="form-check-label" for="flexCheckDefault">
-					</label>
-				</div>
+				<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+				<label class="form-check-label" for="flexCheckDefault" class="checks">
+					Default checkbox
+				</label>
 			</div>
 	    		#${ar.productNum} ${ar.productName}<br>
 	    		${ar.productRate} / ${ar.productDate}
@@ -55,10 +50,6 @@
 	  			</div>
 			</div>
 		</c:forEach>
-		<div>
-				<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
-				<button class="btn btn-outline-success">상품가입</button>
-		</div>
 	</div>
 		<nav aria-label="Page navigation example" >
 		  <ul class="pagination">
