@@ -1,6 +1,7 @@
 package com.root.app.accounts;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,9 @@ public class AccountDAO {
 	
 	public int delete(AccountDTO accountDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"delete", accountDTO);
+	}
+	
+	public int add2(List<AccountDTO> list) throws Exception {
+		return sqlSession.insert(NAMESPACE+"add2", list);
 	}
 }

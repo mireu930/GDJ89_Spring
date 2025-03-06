@@ -20,6 +20,7 @@ cartDelete.addEventListener("click",()=>{
       url.searchParams.append("productNum",num);
       // number.pop(num);
     }
+  }
     
     fetch(url)
     .then(result=>result.text())
@@ -29,7 +30,6 @@ cartDelete.addEventListener("click",()=>{
       window.location.reload();
       console.log(result);
     })
-  }
 })
 
 cartAdd.addEventListener("click", ()=> {
@@ -40,14 +40,20 @@ cartAdd.addEventListener("click", ()=> {
       // console.log(num);
       params.append("productNum",num);
     }
+  }
 
-    let url = "../accounts/add?"+params.toString();
+    let url = "../accounts/add2?"+params.toString();
     console.log(url);
 
     fetch(url)
     .then(result=>result.text())
     .then(result=>{
-      console.log(result);
+      alert('상품이 추가되었습니다')
+      
+      const con = confirm("계좌목록으로 이동하시겠습니까?");
+		
+		if(con) {
+			window.location.href ="../accounts/list";
+			}
     })
-  }
 })

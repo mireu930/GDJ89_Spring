@@ -74,10 +74,10 @@
   	 	WHERE USER_NAME = #{user_name}
   	 </select>
 
-	<delete id="cartDelte" parameterType="Map">
-		DELETE CARTS WHERE USER_NAME =#{user.user_name}
-		<foreach item="item" collection="products" open="AND PRODUCTNUM IN (" separator="," close=")">
-			#{item}
+	<delete id="cartDelte" parameterType="java.util.List">
+		DELETE CARTS WHERE USER_NAME =#{list[0].user_name}
+		<foreach item="item" collection="list" open="AND PRODUCTNUM IN (" separator="," close=")">
+			#{item.productNum}
 		</foreach>
 	</delete>
 	

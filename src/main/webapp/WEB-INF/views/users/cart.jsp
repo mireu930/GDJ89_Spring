@@ -10,8 +10,8 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
-	<div class = "container-fluid my-5">
-		<form class="row row-cols-lg-auto g-3 align-items-center" action="./cart" method ="get">
+	<!-- <div class = "container-fluid my-5"> -->
+		<!-- <form class="row row-cols-lg-auto g-3 align-items-center" action="./cart" method ="get"> -->
 		  <!-- <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 		    <select class="form-select" name="kind" id="inlineFormSelectPref">
@@ -28,13 +28,12 @@
 		  <!-- <div class="col-12">
 		    <button type="submit" class="btn btn-primary">검색</button>
 		  </div> -->
-		</form>
-		<div style="display:flex; gap:10px; margin: 10px 0 10px 0">
-			<div class="form-check">
+		<!-- </form> -->
+			<div class="form-check"  style="margin-top: 20px">
 				<input class="form-check-input" type="checkbox" value="" id="checkAll">
-				<label class="form-check-label" for="flexCheckDefault">
-				</label>
+				<label class="form-check-label" for="flexCheckDefault">전체선택</label>
 			</div>
+		<div style="display:flex; gap:10px; margin: 10px 0 10px 0">
 		<c:forEach items="${cart}" var ="ar">
 		<div class="card" style="width: 18rem;" id="n">
 		
@@ -42,24 +41,24 @@
   			<img src="/resources/images/products/${not empty ar.productFileDTO?ar.productFileDTO.fileName:'noImage.jpg'} " class="card-img-top rounded" width="200px" height="200px" alt="">
 			</a>
 	  			<div class="card-body">
-	    		<p class="card-text">
-			<div class="form-check">
+				<div class="form-check">
 					<input class="form-check-input check" type="checkbox" data-product-num="${ar.productNum}" >
 					<label class="form-check-label" for="flexCheckDefault">
 					</label>
 				</div>
-			</div>
-	    		#${ar.productNum} ${ar.productName}<br>
-	    		${ar.productRate} / ${ar.productDate}
-	    		</p>
+		    		<p class="card-text">
+		    		#${ar.productNum} ${ar.productName}<br>
+		    		${ar.productRate} / ${ar.productDate}
+		    		</p>
 	  			</div>
 			</div>
 		</c:forEach>
+		</div>
 		<div>
 				<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
 				<button id="cart-add" class="btn btn-outline-success">상품가입</button>
 		</div>
-	</div>
+	
 		<nav aria-label="Page navigation example" >
 		  <ul class="pagination">
 		    <li class="page-item"><a class="page-link" href="./list?page=${pager.start-1}&kind=${param.kind}&search=${param.search}">이전</a></li>
@@ -69,7 +68,6 @@
 		    <li class="page-item ${pager.endCheck?'disabled':''}"><a class="page-link" href="./list?page=${pager.end+1}&kind=${param.kind}&search=${param.search}">다음</a></li>
 		  </ul>
 		</nav> 
-</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<script src="/resources/JS/users/cart.js"></script>
 <c:import url="../template/boot_js.jsp"></c:import>

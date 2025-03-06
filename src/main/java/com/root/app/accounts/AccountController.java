@@ -1,6 +1,8 @@
 package com.root.app.accounts;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.carts.CartDTO;
 import com.root.app.products.ProductDTO;
 import com.root.app.users.UserDTO;
 
@@ -64,12 +67,40 @@ public class AccountController {
 		return "commons/add_result";
 	}
 	
+	@RequestMapping(value = "add2", method = RequestMethod.GET)
+	public String add2(HttpSession session,Long[] productNum, Model model) throws Exception{
+		
+		List<AccountDTO> list = new ArrayList<AccountDTO>();
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		
+		for(Long num: productNum) {
+			AccountDTO accountDTO = new AccountDTO();
+			
+			accountDTO.setAccountNum(accountNum().toString());
+			accountDTO.setProductNum(num);
+			accountDTO.setUser_name(userDTO.getUser_name());
+			
+			list.add(accountDTO);
+		}
+		
+		 for (AccountDTO accountDTO : list) {
+		        System.out.println("AccountNum: " + accountDTO.getAccountNum());
+		        System.out.println("ProductNum: " + accountDTO.getProductNum());
+		        System.out.println("UserName: " + accountDTO.getUser_name());
+		    }
+		
+		int result = accountService.add2(list);
+		
+		model.addAttribute("result", result);
+		return "commons/ajax";
+	}
+	
 	@RequestMapping(value = "addProcess", method = RequestMethod.GET)
 	public ModelAndView add(AccountDTO accountDTO, HttpSession session, Model model) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		ProductDTO productDTO = (ProductDTO)session.getAttribute("productDTO");
+		ProductDTO productDTO = (ProductDTO)session.getAttribute("dto");
 		
 		accountDTO.setUser_name(userDTO.getUser_name());
 		accountDTO.setAccountNum(accountNum().toString());

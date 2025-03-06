@@ -12,11 +12,16 @@
   		SELECT * FROM ACCOUNTS WHERE ACCOUNTNUM = #{accountNum}
   	</select>
   	
-  	<insert id="add" parameterType="Map">
+  	<insert id="add2" parameterType="java.util.List">
+    	INSERT INTO ACCOUNTS
+    	VALUES 
+    	<foreach item="item" collection="list" open="(" close=")" separator=",">
+        	#{item.accountNum}, #{item.productNum}, #{item.user_name}, 0, SYSDATE
+    	</foreach>
+	</insert>
+  	
+  	<insert id="add" parameterType="AccountDTO">
   		INSERT INTO ACCOUNTS VALUES(#{accountNum},#{productNum},#{user_name},0,SYSDATE)
-  		<!-- <foreach item="item" collection="accounts" open="INSERT INTO ACCOUNTS VALUES(" separator="," close=")">
-  			#{
-  		</foreach> -->
   	</insert>
   	
   	<update id="update" parameterType="AccountDTO">
