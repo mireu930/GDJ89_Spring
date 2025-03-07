@@ -49,9 +49,8 @@ cartAdd.addEventListener("click", ()=> {
     fetch("../accounts/add2",{
       method:"POST",
       headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      body: params
+        'Content-type': 'application/x-www-form-urlencoded'
+      }
     }) //promise 응답받는 객체
     .then(result=>result.text())
     .then(result=>{

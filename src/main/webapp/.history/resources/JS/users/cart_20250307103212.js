@@ -42,26 +42,15 @@ cartAdd.addEventListener("click", ()=> {
     }
   }
 
-    //let url = "../accounts/add2?"+params.toString();
-    //console.log(url);
+    let url = "../accounts/add2?"+params.toString();
+    console.log(url);
 
-    //enctype 아무런설정없으면 multipart/form-data
-    fetch("../accounts/add2",{
-      method:"POST",
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      body: params
-    }) //promise 응답받는 객체
+    fetch(url) //promise 응답받는 객체
     .then(result=>result.text())
     .then(result=>{
-      if(result.trim() > '0'){
-        alert('상품이 추가되었습니다')
-        
-        window.location.reload();
-        const con = confirm("계좌목록으로 이동하시겠습니까?");
-      }
-
+      alert('상품이 추가되었습니다')
+      window.location.reload();
+      const con = confirm("계좌목록으로 이동하시겠습니까?");
 		
 		if(con) {
 			window.location.href ="../accounts/list";

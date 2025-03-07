@@ -45,13 +45,8 @@ cartAdd.addEventListener("click", ()=> {
     //let url = "../accounts/add2?"+params.toString();
     //console.log(url);
 
-    //enctype 아무런설정없으면 multipart/form-data
     fetch("../accounts/add2",{
-      method:"POST",
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      body: params
+      method:"POST"
     }) //promise 응답받는 객체
     .then(result=>result.text())
     .then(result=>{

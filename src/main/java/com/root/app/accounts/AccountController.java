@@ -67,29 +67,10 @@ public class AccountController {
 		return "commons/add_result";
 	}
 	
-	@RequestMapping(value = "add2", method = RequestMethod.GET)
+	@RequestMapping(value = "add2", method = RequestMethod.POST)
 	public String add2(HttpSession session,Long[] productNum, Model model) throws Exception{
 		
-		List<AccountDTO> list = new ArrayList<AccountDTO>();
-		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		
-		for(Long num: productNum) {
-			AccountDTO accountDTO = new AccountDTO();
-			
-			accountDTO.setAccountNum(accountNum().toString());
-			accountDTO.setProductNum(num);
-			accountDTO.setUser_name(userDTO.getUser_name());
-			
-			list.add(accountDTO);
-		}
-		
-		 for (AccountDTO accountDTO : list) {
-		        System.out.println("AccountNum: " + accountDTO.getAccountNum());
-		        System.out.println("ProductNum: " + accountDTO.getProductNum());
-		        System.out.println("UserName: " + accountDTO.getUser_name());
-		    }
-		
-		int result = accountService.add2(list);
+		int result = accountService.add2(productNum, (UserDTO)session.getAttribute("user"));
 		
 		model.addAttribute("result", result);
 		return "commons/ajax";

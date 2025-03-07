@@ -13,11 +13,13 @@
   	</select>
   	
   	<insert id="add2" parameterType="java.util.List">
-    	INSERT INTO ACCOUNTS
-    	VALUES 
-    	<foreach item="item" collection="list" open="(" close=")" separator=",">
-        	#{item.accountNum}, #{item.productNum}, #{item.user_name}, 0, SYSDATE
+    	INSERT ALL 
+    	<foreach item="item" collection="list" open="" close="" separator=" ">
+    	INTO ACCOUNTS
+    		VALUES 
+        	(#{item.accountNum}, #{item.productNum}, #{item.user_name}, 0, SYSDATE)
     	</foreach>
+    	SELECT * FROM DUAL
 	</insert>
   	
   	<insert id="add" parameterType="AccountDTO">

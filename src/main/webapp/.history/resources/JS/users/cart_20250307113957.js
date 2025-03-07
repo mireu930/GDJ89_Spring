@@ -50,8 +50,7 @@ cartAdd.addEventListener("click", ()=> {
       method:"POST",
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      body: params
+      }
     }) //promise 응답받는 객체
     .then(result=>result.text())
     .then(result=>{
