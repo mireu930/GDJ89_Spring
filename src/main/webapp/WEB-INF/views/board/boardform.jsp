@@ -21,7 +21,7 @@
 			    
 			    <div class="input-group has-validation">
 			      <label for="boardTitle" class="form-label">제목</label>
-			      <input type="text" name="boardTitle" value="${dto.boardTitle}"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+			      <input type="text" name="boardTitle" value="${dto2.boardTitle}"  class="form-control is-invalid" id="validationServer02" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
 			      <div id="validationServerServer02Feedback" class="invalid-feedback">
 			        Please choose a detail.
 			      </div>
@@ -31,13 +31,13 @@
 			    <label for="boardContent" class="form-label">내용</label>
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <input type="text" name="boardContent" value="${dto.boardContent}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+			      <input type="text" name="boardContent" value="${dto2.boardContent}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
 			      <div id="validationServerUsernameFeedback" class="invalid-feedback">
 			        Please choose a detail.
 			      </div>
 			    </div>
 			  </div>
-				<div id ="files" data-files-size="${dto.boardFileDTOs.size()}">					
+				<div id ="files" data-files-size="${dto2.boardFileDTOs.size()}">					
 					<button type="button" id="btn1">파일추가</button>	
 				</div>
 			  

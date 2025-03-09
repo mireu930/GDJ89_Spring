@@ -23,29 +23,29 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <c:if test="${not empty dto}">
+			  <c:if test="${not empty dto2}">
 			    <tr>
-			      <th scope="row">${dto.boardTitle}</th>
-			      <td>${dto.boardContent}</td>
-			      <td>${dto.user_name}</td>
-			      <td>${dto.boardHit}</td>
+			      <th scope="row">${dto2.boardTitle}</th>
+			      <td>${dto2.boardContent}</td>
+			      <td>${dto2.user_name}</td>
+			      <td>${dto2.boardHit}</td>
 			    </tr>
 			    </c:if>
-			    <c:if test="${empty dto}">
+			    <c:if test="${empty dto2}">
 			     <h3>정보가 없습니다.</h3>
 			    </c:if>
 			     </tbody>
 			</table>
 			<div>
-				<c:forEach items="${dto.boardFileDTOs}" var="f">
+				<c:forEach items="${dto2.boardFileDTOs}" var="f">
 					<a href="/resources/images/${kind}/${f.fileName}">${f.oldName}</a>
 				</c:forEach>
 			</div>
 		</div>
-			<a href="./update?boardNum=${dto.boardNum}" class ="btn btn-outline-success">수정</a>	
-			<a href="./delete?boardNum=${dto.boardNum}" class ="btn btn-outline-danger">삭제</a>
+			<a href="./update?boardNum=${dto2.boardNum}" class ="btn btn-outline-success">수정</a>	
+			<a href="./delete?boardNum=${dto2.boardNum}" class ="btn btn-outline-danger">삭제</a>
 			<c:if test="${kind eq 'qna'}">
-			<a href="./reply?boardNum=${dto.boardNum}" class ="btn btn-outline-primary">댓글쓰기</a>
+			<a href="./reply?boardNum=${dto2.boardNum}" class ="btn btn-outline-primary">댓글쓰기</a>
 			</c:if>
 	
 	</div>

@@ -42,6 +42,7 @@
 		</div>
 		<c:if test="${not empty user}">
 			<a href="/accounts/addProcess?prodcutNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
+			<button type="button" id="addCart" data-product-num="${dto.productNum}" class ="btn btn-outline-secondary">장바구니</button>
 		</c:if>
 			<div>
 				<c:if test="${user.user_name eq 'sss' }">
@@ -51,7 +52,6 @@
 					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
 				</form>
 				</c:if>
-		<button type="button" id="addCart" data-product-num="${dto.productNum}">장바구니</button>
 			</div>		
 
 

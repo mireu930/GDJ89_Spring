@@ -9,7 +9,19 @@ checkAll.addEventListener("click",()=>{
   }
 })
 
-let number = [];
+for(let c of check) {
+	c.addEventListener("click", ()=> {
+		let a = true;
+		for(let c2 of check) {
+			if(!c2.checked){
+				a=false;
+			}
+		}
+		checkAll.checked = a;
+	})
+}
+
+//let number = [];
 
 cartDelete.addEventListener("click",()=>{
   let url = new URL("cartDelete",window.location);

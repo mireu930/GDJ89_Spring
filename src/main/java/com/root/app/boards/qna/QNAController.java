@@ -66,7 +66,7 @@ public class QNAController {
 		boardDTO = qnaService.getDetail(boardDTO, check);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("dto",boardDTO);
+		modelAndView.addObject("dto2",boardDTO);
 		modelAndView.setViewName("board/detail");
 		
 		return modelAndView;
@@ -120,7 +120,7 @@ public class QNAController {
 			modelAndView.setViewName("commons/result");
 		} else {
 		
-		modelAndView.addObject("dto", qnaService.getDetail(boardDTO, false));
+		modelAndView.addObject("dto2", qnaService.getDetail(boardDTO, false));
 		modelAndView.setViewName("board/boardform");
 		}
 		return modelAndView;

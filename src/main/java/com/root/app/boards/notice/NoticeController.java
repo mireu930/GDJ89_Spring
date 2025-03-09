@@ -70,7 +70,7 @@ public class NoticeController {
 		boardDTO = noticeService.getDetail(boardDTO, check);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("dto", boardDTO);
+		modelAndView.addObject("dto2", boardDTO);
 		modelAndView.setViewName("board/detail");
 		
 		System.out.println(modelAndView.getViewName());
@@ -129,7 +129,7 @@ public class NoticeController {
 			modelAndView.setViewName("commons/result");
 		}else {
 		
-		modelAndView.addObject("dto", noticeService.getDetail(boardDTO,false));
+		modelAndView.addObject("dto2", noticeService.getDetail(boardDTO,false));
 		modelAndView.setViewName("board/boardform");
 		}
 		
