@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
+import com.root.app.boards.BoardFileDTO;
 import com.root.app.boards.notice.NoticeDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
@@ -155,7 +156,7 @@ public class QNAController {
 			modelAndView.addObject("path", "./detail?boardNum="+boardDTO.getBoardNum());
 			modelAndView.setViewName("commons/result");
 		} else {
-			int result = qnaService.delete(boardDTO);
+			int result = qnaService.delete(boardDTO, session);
 			
 			if(result > 0) {
 				modelAndView.addObject("result","삭제성공");
@@ -200,5 +201,12 @@ public class QNAController {
 		 
 		return "redirect:./list";
 		
+	}
+	
+	@RequestMapping(value = "fileDelete", method = RequestMethod.POST)
+	public String fileDelete(BoardFileDTO boardFileDTO, HttpSession session, Model model) throws Exception {
+		int result = qnaService.fileDelete(boardFileDTO, session);
+		model.addAttribute("result", result);
+		return "commons/ajax";
 	}
 }

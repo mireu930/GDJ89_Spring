@@ -83,8 +83,23 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int delete(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.delete(boardDTO);
+	public int delete(BoardDTO boardDTO, HttpSession session) throws Exception {
+		
+		boardDTO = noticeDAO.getDetail(boardDTO);
+		
+		int result = noticeDAO.fileDeleteAll(boardDTO);
+		result = noticeDAO.delete(boardDTO);
+		
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			System.out.println(path);
+			for(BoardFileDTO boardFileDTO:((NoticeDTO)boardDTO).getBoardFileDTOs()) {
+				System.out.println(path);
+				fIle.delete(path, boardFileDTO.getFileName());				
+			}
+		}
+		
+		return result;
 	}
 	
 	private BoardFileDTO save(MultipartFile attach, ServletContext context) throws Exception {
@@ -121,6 +136,10 @@ public class NoticeService implements BoardService {
 		}
 		
 		return result;
+	}
+	
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		return noticeDAO.getFileDetail(boardFileDTO);
 	}
 }
 

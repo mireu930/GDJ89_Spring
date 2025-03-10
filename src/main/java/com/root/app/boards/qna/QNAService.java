@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.root.app.boards.BoardDTO;
 import com.root.app.boards.BoardFileDTO;
 import com.root.app.boards.BoardService;
+import com.root.app.boards.notice.NoticeDTO;
 import com.root.app.pages.Pager;
 import com.root.app.utils.FIle;
 
@@ -63,8 +64,22 @@ public class QNAService implements BoardService{
 	}
 
 	@Override
-	public int delete(BoardDTO boardDTO) throws Exception {
-		return qnadao.delete(boardDTO);
+	public int delete(BoardDTO boardDTO, HttpSession session) throws Exception {
+		
+		boardDTO = qnadao.getDetail(boardDTO);
+		
+		int result = qnadao.deleteFileAll(boardDTO);
+		result = qnadao.delete(boardDTO);
+		
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			System.out.println(path);
+			for(BoardFileDTO boardFileDTO:((QNADTO)boardDTO).getBoardFileDTOs()) {
+				fIle.delete(path, boardFileDTO.getFileName());
+			}
+		}
+		
+		return result;
 	}
 	
 	public int reply(QNADTO boardDTO) throws Exception {
@@ -106,5 +121,19 @@ public class QNAService implements BoardService{
 		boardFileDTO.setOldName(attach.getOriginalFilename());
 		
 		return boardFileDTO;
+	}
+	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
+		boardFileDTO = qnadao.getFileDetail(boardFileDTO);
+		
+		int result = qnadao.deleteFile(boardFileDTO);
+		
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			System.out.println(path);
+			fIle.delete(path, boardFileDTO.getFileName());
+		}
+		
+		return result;
 	}
 }

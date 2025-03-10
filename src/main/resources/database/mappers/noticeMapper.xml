@@ -90,5 +90,9 @@
   	<delete id="fileDelete" parameterType="BoardFileDTO">
   		DELETE NOTICEFILES WHERE FILENUM = #{fileNum}
   	</delete>
+  	
+  	<delete id="fileDeleteAll" parameterType="BoardFileDTO">
+  		DELETE NOTICEFILES WHERE BOARDNUM =#{boardNum}
+  	</delete>
 
   </mapper>

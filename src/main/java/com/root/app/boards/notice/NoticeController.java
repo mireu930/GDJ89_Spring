@@ -162,7 +162,7 @@ public class NoticeController {
 			modelAndView.addObject("result", "관리자만 삭제가능합니다.");
 			modelAndView.addObject("path", "./detail?boardNum="+boardDTO.getBoardNum());
 		}else {
-			int result = noticeService.delete(boardDTO);
+			int result = noticeService.delete(boardDTO, session);
 			
 			if(result > 0) {
 				modelAndView.addObject("result","삭제성공");
@@ -184,5 +184,12 @@ public class NoticeController {
 		int result = noticeService.fileDelete(boardFileDTO, session);
 		model.addAttribute("result", result);
 		return "commons/ajax";
+	}
+	
+	@RequestMapping(value = "fileDown", method = RequestMethod.GET)
+	public String fileDown(BoardFileDTO boardFileDTO, Model model) throws Exception {
+		boardFileDTO = noticeService.getFileDetail(boardFileDTO);
+		model.addAttribute("file", boardFileDTO);
+		return "fileDownView";
 	}
 }
