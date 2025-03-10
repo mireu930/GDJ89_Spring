@@ -60,7 +60,19 @@ public class QNAService implements BoardService{
 
 	@Override
 	public int update(BoardDTO boardDTO, MultipartFile[] attaches, HttpSession session) throws Exception {
-		return qnadao.update(boardDTO);
+		int result = qnadao.update(boardDTO);
+		
+		for(MultipartFile attache: attaches) {
+			if(attache.isEmpty()) {
+				continue;
+			}
+				BoardFileDTO boardFileDTO = this.save(attache, session.getServletContext());
+				//DB¿˙¿Â
+				boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+				result = qnadao.addFile(boardFileDTO);
+				
+			}
+		return result;
 	}
 
 	@Override

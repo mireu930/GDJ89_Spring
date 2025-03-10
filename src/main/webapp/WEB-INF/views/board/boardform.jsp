@@ -16,7 +16,17 @@
 			  <div class="col-md-4">
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <input type="hidden" name=boardNum value="${not empty dto.boardNum? dto.boardNum:0}"  class="form-control is-invalid" id="validationServer01" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+			      <c:if test="${not empty dto.boardNum}">
+			      <input type="hidden" name=boardNum value="${dto.boardNum}"  class="form-control is-invalid" id="validationServer01" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+			      </c:if>
+			      <c:if test="${empty dto.boardNum}">
+			      
+			      </c:if>
+			      <c:if test="${not empty dto2.boardNum}">
+			      <input type="hidden" name=boardNum value="${dto2.boardNum}"  class="form-control is-invalid" id="validationServer01" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+			   	 </c:if>
+			   	 <c:if test="${empty dto2.boardNum}">
+			   	 </c:if>
 			    </div>
 			    
 			    <div class="input-group has-validation">
