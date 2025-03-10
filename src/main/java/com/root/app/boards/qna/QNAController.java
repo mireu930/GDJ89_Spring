@@ -209,4 +209,11 @@ public class QNAController {
 		model.addAttribute("result", result);
 		return "commons/ajax";
 	}
+	
+	@RequestMapping(value = "fileDown", method = RequestMethod.GET)
+	public String fileDown(BoardFileDTO boardFileDTO, Model model) throws Exception {
+		boardFileDTO = qnaService.getFileDetail(boardFileDTO);
+		model.addAttribute("file", boardFileDTO);
+		return "fileDownView";
+	}
 }

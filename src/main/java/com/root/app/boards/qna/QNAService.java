@@ -136,4 +136,8 @@ public class QNAService implements BoardService{
 		
 		return result;
 	}
+	
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		return qnadao.getFileDetail(boardFileDTO);
+	}
 }
