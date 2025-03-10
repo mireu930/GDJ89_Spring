@@ -44,4 +44,12 @@ public class FIle {
 	public void setA(String a) {
 		this.a = a;
 	}
+	
+	public void delete(String path, String fileName) throws Exception {
+		File file = new File(path, fileName);
+		
+		boolean check = file.delete();
+		
+		
+	}
 }

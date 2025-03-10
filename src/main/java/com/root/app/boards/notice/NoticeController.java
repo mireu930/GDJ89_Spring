@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
+import com.root.app.boards.BoardFileDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 import com.root.app.users.UserService;
@@ -137,8 +138,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update2(BoardDTO boardDTO) throws Exception {
-		int result = noticeService.update(boardDTO);
+	public ModelAndView update2(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
+		int result = noticeService.update(boardDTO, attaches, session);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -175,5 +176,13 @@ public class NoticeController {
 		
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "fileDelete", method = RequestMethod.POST)
+	public String fileDelete(BoardFileDTO boardFileDTO, HttpSession session, Model model) throws Exception {
+		System.out.println(boardFileDTO.getFileNum());
+		int result = noticeService.fileDelete(boardFileDTO, session);
+		model.addAttribute("result", result);
+		return "commons/ajax";
 	}
 }

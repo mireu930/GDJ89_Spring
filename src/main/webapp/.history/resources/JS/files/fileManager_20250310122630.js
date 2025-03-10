@@ -3,54 +3,9 @@ const btn1 = document.getElementById("btn1");
 const del = document.getElementsByClassName("del");
 let count = files.getAttribute("data-files-size");
 
-// import fileDelete from "/resources/JS/files/fileDelete.js";
+import fileDelete from "/resources/js/files/fileDelete.js";
 
-// fileDelete(count);
-const fileDelete = document.getElementsByClassName("files-delete");
-  
-  for( let c of fileDelete) {
-    c.addEventListener("click", () => {
-      console.log("delete");
-  
-      let confirm1 = confirm("정말 삭제하시겠습니까?");
-  
-      if(confirm1){
-        let num = c.getAttribute("data-file-num")
-        let kind = c.getAttribute("data-kind")
-  
-        console.log(num);
-        console.log(kind);
-  
-        let url = `/${kind}/fileDelete`;
-  
-  
-        fetch(url,{
-          method: 'POST',
-          headers: {
-            "Content-type":"application/x-www-form-urlencoded"
-          },
-          body: 'fileNum='+num
-        })
-        .then(r=>r.text())
-        .then(r => {
-          console.log(r.trim());
-          if(r.trim()*1>0){
-            c.parentElement.remove();
-            count--;
- 
-          }else {
-            alert('파일삭제실패')
-          }
-        })
-        .catch(e => {
-          alert(e)
-        })
-        .finally();
-      }
-    })
-  
-  }
-
+fileDelete();
 
 files.addEventListener("click", function(e) {
   if(e.target.classList.contains('del')){

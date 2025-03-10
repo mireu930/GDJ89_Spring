@@ -33,17 +33,17 @@ const fileDelete = document.getElementsByClassName("files-delete");
         })
         .then(r=>r.text())
         .then(r => {
-          console.log(r.trim());
           if(r.trim()*1>0){
-            c.parentElement.remove();
+            f.parentElement.remove();
             count--;
+            location.reload();
  
           }else {
             alert('파일삭제실패')
           }
         })
         .catch(e => {
-          alert(e)
+          alert('파일삭제오류')
         })
         .finally();
       }

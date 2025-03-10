@@ -65,8 +65,21 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.update(boardDTO);
+	public int update(BoardDTO boardDTO, MultipartFile[] attaches, HttpSession session) throws Exception {
+		int result = noticeDAO.update(boardDTO);
+		
+		for(MultipartFile attache: attaches) {
+			if(attache.isEmpty()) {
+				continue;
+			}
+				BoardFileDTO boardFileDTO = this.save(attache, session.getServletContext());
+				//DBÀúÀå
+				boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+				result = noticeDAO.addFile(boardFileDTO);
+				
+			}
+		
+		return result;
 	}
 
 	@Override
@@ -94,6 +107,20 @@ public class NoticeService implements BoardService {
 		boardFileDTO.setOldName(attach.getOriginalFilename());
 		
 		return boardFileDTO;
+	}
+	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		
+		int result = noticeDAO.fileDelete(boardFileDTO);
+		
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			System.out.println(path);
+			fIle.delete(path, boardFileDTO.getFileName());
+		}
+		
+		return result;
 	}
 }
 

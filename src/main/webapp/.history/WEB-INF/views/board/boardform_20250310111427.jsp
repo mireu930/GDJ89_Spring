@@ -41,7 +41,7 @@
 			  <div class="mb-3">
 			  	<c:forEach items="${dto2.boardFileDTOs}" var="f">
 			  		<div class="alert alert-secondary" role="alert">
-			  		${f.oldName} <span data-file-num="${f.fileNum}" data-kind="${kind}" class="badge text-bg-secondary files-delete">x</span>
+			  		${f.oldName} <span data-file-num="#{f.fileNum}" class="badge text-bg-secondary files-delete">x</span>
 					</div>
 			  	</c:forEach>
 			  </div>
@@ -57,9 +57,9 @@
 			</form>
 		</div>
 	</div>
-	<!-- <script src="/resources/JS/files/fileDelete.js"></script> -->
+	<script src="/resources/JS/files/fileDelete.js"></script>
 	<script src="/resources/JS/notice/update.js"></script>
-	<script type="module" src="/resources/JS/files/fileManager.js"></script>
+	<script src="/resources/JS/files/fileManager.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
 </body>

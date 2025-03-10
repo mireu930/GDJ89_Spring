@@ -127,8 +127,8 @@ public class QNAController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update2(BoardDTO boardDTO) throws Exception {
-		int result = qnaService.update(boardDTO);
+	public ModelAndView update2(BoardDTO boardDTO, MultipartFile[] attaches, HttpSession session) throws Exception {
+		int result = qnaService.update(boardDTO, attaches, session);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		

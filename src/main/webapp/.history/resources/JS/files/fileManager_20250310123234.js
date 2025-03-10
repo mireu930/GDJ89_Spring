@@ -29,21 +29,21 @@ const fileDelete = document.getElementsByClassName("files-delete");
           headers: {
             "Content-type":"application/x-www-form-urlencoded"
           },
-          body: 'fileNum='+num
+          body: 'fileNum'+num
         })
         .then(r=>r.text())
         .then(r => {
-          console.log(r.trim());
-          if(r.trim()*1>0){
-            c.parentElement.remove();
+          if(r.trim()*1>'0'){
+            f.parentElement.remove();
             count--;
+            location.reload();
  
           }else {
             alert('파일삭제실패')
           }
         })
         .catch(e => {
-          alert(e)
+          alert('파일삭제오류')
         })
         .finally();
       }

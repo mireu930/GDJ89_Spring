@@ -35,7 +35,7 @@ const fileDelete = document.getElementsByClassName("files-delete");
         .then(r => {
           console.log(r.trim());
           if(r.trim()*1>0){
-            c.parentElement.remove();
+            f.parentElement.remove();
             count--;
  
           }else {
