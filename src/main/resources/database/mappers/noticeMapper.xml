@@ -33,7 +33,7 @@
   		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
   			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-  		INSERT INTO NOTICE VALUES(#{boardNum},#{boardTitle},#{boardContent},#{user_name},SYSDATE,0)
+  		INSERT INTO NOTICE VALUES(#{boardNum},#{boardTitle},#{boardContents},#{user_name},SYSDATE,0)
   	</insert>
   	
   	<insert id="addFile" parameterType="BoardFileDTO">
@@ -41,7 +41,7 @@
   	</insert>
   	
   	<update id="update"  parameterType="NoticeDTO">
-  		UPDATE NOTICE SET BOARDTITLE = #{boardTitle}, BOARDCONTENT =#{boardContent} WHERE BOARDNUM =#{boardNum}
+  		UPDATE NOTICE SET BOARDTITLE = #{boardTitle}, BOARDCONTENTS =#{boardContents} WHERE BOARDNUM =#{boardNum}
   	</update>
   	
   	<delete id="delete"  parameterType="NoticeDTO">
@@ -71,7 +71,7 @@
   	  	<resultMap type="NoticeDTO" id="getDetailResult">
   		<id column="BOARDNUM" property="boardNum"/>
   		<result column="BOARDTITLE" property="boardTitle"/>
-  		<result column="BOARDCONTENT" property="boardContent"/>
+  		<result column="BOARDCONTENTS" property="boardContents"/>
   		<result column="USER_NAME" property="user_name"/>
   		<result column="BOARDDATE" property="boardDate"/>
   		<result column="BOARDHIT" property="boardHit"/>

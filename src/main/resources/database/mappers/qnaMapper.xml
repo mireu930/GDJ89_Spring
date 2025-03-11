@@ -51,12 +51,12 @@
   			SELECT BOARDNUM_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
   		
-  		INSERT INTO QNA VALUES(#{boardNum},#{boardTitle},#{boardContent}, SYSDATE, 0, #{user_name},BOARDNUM_SEQ.CURRVAL,0,0)
+  		INSERT INTO QNA VALUES(#{boardNum},#{boardTitle},#{boardContents}, SYSDATE, 0, #{user_name},BOARDNUM_SEQ.CURRVAL,0,0)
   	</insert>
   
   	<insert id="reply" parameterType="QNADTO">
-  		INSERT INTO QNA(BOARDNUM, BOARDTITLE, BOARDCONTENT, BOARDDATE, BOARDHIT, USER_NAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
-  		 VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContent}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
+  		INSERT INTO QNA(BOARDNUM, BOARDTITLE, BOARDCONTENTS, BOARDDATE, BOARDHIT, USER_NAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
+  		 VALUES(BOARDNUM_SEQ.NEXTVAL,#{boardTitle},#{boardContents}, SYSDATE, 0,#{user_name},#{boardRef},#{boardStep},#{boardDepth})
   	</insert>
   	
   	<update id="updateStep" parameterType="QNADTO">
@@ -64,7 +64,7 @@
   	</update>
   
   	<update id="update" parameterType="QNADTO">
-  		UPDATE QNA SET BOARDTITLE =#{boardTitle},BOARDCONTENT =#{boardContent} WHERE BOARDNUM =#{boardNum}
+  		UPDATE QNA SET BOARDTITLE =#{boardTitle},BOARDCONTENTS =#{boardContents} WHERE BOARDNUM =#{boardNum}
   	</update>
   	
   	<update id="updatehit" parameterType="QNADTO">
@@ -82,7 +82,7 @@
   	<resultMap type="QNADTO" id="getDetailResult">
   		<id column="BOARDNUM" property="boardNum"/>
 	  		<result column="BOARDTITLE" property="boardTitle"/>
-	  		<result column="BOARDCONTENT" property="boardContent"/>
+	  		<result column="BOARDCONTENTS" property="boardContents"/>
 	  		<result column="BOARDDATE" property="boardDate"/>
 	  		<result column="BOARDHIT" property="boardHit"/>
 	  		<result column="USER_NAME" property="user_name"/>

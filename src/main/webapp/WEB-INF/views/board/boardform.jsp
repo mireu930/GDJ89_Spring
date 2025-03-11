@@ -41,7 +41,7 @@
 			    <label for="boardContent" class="form-label">내용</label>
 			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <input type="text" name="boardContent" value="${dto2.boardContent}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+			      <input type="text" name="boardContents" value="${dto2.boardContents}" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
 			      <div id="validationServerUsernameFeedback" class="invalid-feedback">
 			        Please choose a detail.
 			      </div>

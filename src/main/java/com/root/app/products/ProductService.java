@@ -120,5 +120,8 @@ public class ProductService {
 		return productDAO.getCommentList(map);
 	}
 	
-	
+	public int getCommentDelete(CommentsDTO commentsDTO) throws Exception {
+		System.out.println("service"+commentsDTO.getBoardNum());
+		return productDAO.getCommentDelete(commentsDTO);
+	}
 }

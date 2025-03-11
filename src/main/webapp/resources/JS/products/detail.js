@@ -126,3 +126,36 @@ commentsListResult.addEventListener('click', (e)=>{
       getList(p)
   }
 })
+
+commentsListResult.addEventListener("click", (e)=> {
+  if (e.target.classList.contains('deleteComments')) {
+    if(!confirm("정말삭제하시겠습니까?")){
+      return;
+    }
+
+    let num = e.target.getAttribute("data-board-num");
+    
+    if(!num){
+      alert('댓글번호가 없습니다.')
+    }
+    
+    let params = new URLSearchParams();
+    params.append("boardNum",num)
+    fetch("./deleteComments", {
+      method: 'POST',
+      headers : {'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+      body:params.toString()
+    })
+    .then(result=>result.text())
+    .then(result=>{
+      console.log("서버응답"+result);
+      if(result.trim()>'0'){
+
+        alert('삭제되었습니다.')
+        location.reload();
+      }
+  })
+  }
+})
+
+

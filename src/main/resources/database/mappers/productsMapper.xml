@@ -106,6 +106,10 @@
 		SELECT COUNT(BOARDNUM) FROM COMMNETS WHERE PRODUCTNUM=#{productNum}
 	</select>
 	
+	<delete id="getCommentDelete" parameterType="CommentsDTO">
+		DELETE COMMNETS WHERE BOARDNUM=#{boardNum}
+	</delete>
+	
   </mapper>
   
   

@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.boards.BoardDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 
@@ -77,12 +79,23 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView update(ProductDTO productDTO) throws Exception {
+	public ModelAndView update(ProductDTO productDTO, HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
+		
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+		} else if(!userDTO.getUser_name().equals("sss")){
+			modelAndView.addObject("result", "관리자만 수정가능합니다.");
+			modelAndView.addObject("path", "./detail?productNum="+productDTO.getProductNum());
+			modelAndView.setViewName("commons/result");
+		} else {
 		
 		modelAndView.addObject("dto", productService.getDetail(productDTO));
 		modelAndView.setViewName("products/update");
-		
+		}
 		return modelAndView;
 	}
 	
@@ -100,14 +113,27 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public ModelAndView delete(ProductDTO productDTO) throws Exception {
-		int result = productService.delete(productDTO);
+	public ModelAndView delete(ProductDTO productDTO, HttpSession session) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		if(result>0) {
-			modelAndView.setViewName("redirect:./list");
+		if(userDTO == null) {
+			modelAndView.addObject("result", "로그인이 필요합니다.");
+			modelAndView.addObject("path", "/users/login");
+			modelAndView.setViewName("commons/result");
+		} else if(!userDTO.getUser_name().equals("sss")){
+			modelAndView.addObject("result", "관리자만 삭제가능합니다.");
+			modelAndView.addObject("path", "./detail?productNum="+productDTO.getProductNum());
+			modelAndView.setViewName("commons/result");
+		} else {
+			int result = productService.delete(productDTO);
+			
+			if(result>0) {
+				modelAndView.setViewName("redirect:./list");
+			}
 		}
+		
 		return modelAndView;
 	}
 	
@@ -149,5 +175,17 @@ public class ProductController {
 		model.addAttribute("list", ar);
 		
 		return "commons/commentsList";
+	}
+	
+	@RequestMapping(value = "deleteComments", method = RequestMethod.POST)
+	public String getCommentDelete(CommentsDTO commentsDTO, Model model) throws Exception {
+		System.out.println("deleteComment");
+		System.out.println(commentsDTO.getBoardNum());
+		
+		int result = productService.getCommentDelete(commentsDTO);
+		System.out.println(result);
+		
+		model.addAttribute("result", result);
+		return "commons/ajax";
 	}
 }

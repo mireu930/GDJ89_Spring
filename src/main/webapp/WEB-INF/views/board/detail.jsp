@@ -26,7 +26,7 @@
 			  <c:if test="${not empty dto2}">
 			    <tr>
 			      <th scope="row">${dto2.boardTitle}</th>
-			      <td>${dto2.boardContent}</td>
+			      <td>${dto2.boardContents}</td>
 			      <td>${dto2.user_name}</td>
 			      <td>${dto2.boardHit}</td>
 			    </tr>

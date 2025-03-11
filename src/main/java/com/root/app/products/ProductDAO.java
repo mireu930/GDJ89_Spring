@@ -77,4 +77,9 @@ public class ProductDAO {
 	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getCommentCount", commentsDTO);
 	}
+	
+	public int getCommentDelete(CommentsDTO commentsDTO) throws Exception {
+		System.out.println("dao"+commentsDTO.getBoardNum());
+		return sqlSession.delete(NAMESPACE+"getCommentDelete", NAMESPACE);
+	}
 }
