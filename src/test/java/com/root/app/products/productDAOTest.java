@@ -108,7 +108,11 @@ public class productDAOTest extends SampleTest {
 		public void getCommentList() throws Exception {
 //			CommentsDTO commnetsDTO = new CommentsDTO();
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put(null, map);
+			Pager pager = new Pager();
+			CommentsDTO commentsDTO = new CommentsDTO();
+			commentsDTO.setProductNum(1L);
+			map.put("comments", commentsDTO);
+			map.put("pager", pager);
 			
 			List<CommentsDTO> ar = productDAO.getCommentList(map);
 			assertNotEquals(0, ar.size());

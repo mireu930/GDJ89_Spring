@@ -75,6 +75,6 @@ public class ProductDAO {
 	}
 	
 	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE, commentsDTO);
+		return sqlSession.selectOne(NAMESPACE+"getCommentCount", commentsDTO);
 	}
 }

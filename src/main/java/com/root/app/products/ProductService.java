@@ -114,7 +114,7 @@ public class ProductService {
 		pager.make(totalCount);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("commnets", commentsDTO);
+		map.put("comments", commentsDTO);
 		map.put("pager", pager);
 		
 		return productDAO.getCommentList(map);

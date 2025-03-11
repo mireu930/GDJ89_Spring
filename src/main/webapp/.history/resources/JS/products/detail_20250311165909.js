@@ -29,7 +29,6 @@ addCart.addEventListener("click", ()=>{
   .catch(error => console.error("에러발생",error));
 });
 
-
 btn1.addEventListener("click", function(){
   console.log(frm.method);
   console.log(frm.getAttribute("method"));
@@ -48,17 +47,18 @@ btn2.addEventListener("click", function(){
   	frm.method="POST";
     frm.submit();
   }
-});
+})
 
-addComments.addEventListener("click", async () => {
-  console.log('click');
+addComments.addEventListener("click", async ()=>{
   console.log(commentsContents.value);
   console.log(addCart.getAttribute("data-product-num"));
   
-  await add();
-  await getList(1);
+  await add()
+  await getList(1)
 
-});
+ 
+
+})
 
 function makeForm(pn, contents){
   let f = new FormData();
@@ -77,8 +77,7 @@ function makeParam(pn, contents){
   return p;
 }
 
-getList(1);
-
+getList(1)
 
 async function getList(page){
   let pn = addCart.getAttribute("data-product-num");
@@ -101,6 +100,10 @@ async function add(){
 
   fetch('./addComments', {
       method:'POST',
+      // headers: {
+      //     "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+      // },
+      //body: `productNum=${pn}&boardContents=${commentsContents.value}`
       body:p
   })
   .then(r=>r.text())

@@ -15,7 +15,7 @@
                 <td>${c.user_name}</td>
                 <td>${c.boardContents}</td>
                 <td>${c.boardDate}</td>
-                <td><button class="btn btn-outline-danger deleteComments">삭제</button></td>
+                
             </tr>
         </c:forEach>
     </tbody>

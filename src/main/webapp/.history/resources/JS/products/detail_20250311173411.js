@@ -50,7 +50,7 @@ btn2.addEventListener("click", function(){
   }
 });
 
-addComments.addEventListener("click", async () => {
+addComments.addEventListener("click", async ()=>{
   console.log('click');
   console.log(commentsContents.value);
   console.log(addCart.getAttribute("data-product-num"));
@@ -77,8 +77,7 @@ function makeParam(pn, contents){
   return p;
 }
 
-getList(1);
-
+getList(1)
 
 async function getList(page){
   let pn = addCart.getAttribute("data-product-num");
@@ -101,6 +100,10 @@ async function add(){
 
   fetch('./addComments', {
       method:'POST',
+      // headers: {
+      //     "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+      // },
+      //body: `productNum=${pn}&boardContents=${commentsContents.value}`
       body:p
   })
   .then(r=>r.text())

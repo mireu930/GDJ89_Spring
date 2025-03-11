@@ -34,22 +34,28 @@
 							<td>${dto.productFileDTO.oldName}</td>
 						</tr>
 			    </c:if>
+			    <c:if test="${empty dto}">
+						<h3>정보가 없습니다.</h3>
+			    </c:if>
 				</tbody>
 			</table>
+			
+					<div>
+				</div>
 		</div>
-		  <%-- <c:if test="${not empty user}"> --%>
-			<a href="/accounts/addProcess?productNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
-		<%-- </c:if> --%>
+		<c:if test="${not empty user}">
+			<a href="/accounts/addProcess?prodcutNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
+			<button type="button" id="addCart" data-product-num="${dto.productNum}" class ="btn btn-outline-secondary">장바구니</button>
+		</c:if>
 		<div>
-			<%-- <c:if test="${user.user_name eq 'sss' }"> --%>
+			<c:if test="${user.user_name eq 'sss' }">
 				<form action="/test" id="frm">
 					<input type="hidden" name="productNum" value="${dto.productNum}">
 					<button type="button" id="btn1" class="btn btn-outline-success">수정</button>
 					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
 				</form>
-			<%-- </c:if> --%>
-		</div>	 
-		<button type="button" id="addCart" data-product-num="${dto.productNum}" class ="btn btn-outline-secondary">장바구니</button>
+			</c:if>
+		</div>		
 		<div class="mb-3">
 			<div class="mb-3">
 				<label for="commentsContents" class="form-label">댓글</label>
@@ -62,9 +68,8 @@
 
 		</div>
 	</div>
-	<script src="/resources/JS/products/detail.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>
-	
+	<script src="../resources/JS/products/detail.js"></script>
 </body>
 </html>

@@ -37,19 +37,19 @@
 				</tbody>
 			</table>
 		</div>
-		  <%-- <c:if test="${not empty user}"> --%>
+		<!-- <c:if test="${not empty user}">
 			<a href="/accounts/addProcess?productNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
-		<%-- </c:if> --%>
+			<button type="button" id="addCart" data-product-num="${dto.productNum}" class ="btn btn-outline-secondary">장바구니</button>
+		</c:if>
 		<div>
-			<%-- <c:if test="${user.user_name eq 'sss' }"> --%>
+			<c:if test="${user.user_name eq 'sss' }">
 				<form action="/test" id="frm">
 					<input type="hidden" name="productNum" value="${dto.productNum}">
 					<button type="button" id="btn1" class="btn btn-outline-success">수정</button>
 					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
 				</form>
-			<%-- </c:if> --%>
-		</div>	 
-		<button type="button" id="addCart" data-product-num="${dto.productNum}" class ="btn btn-outline-secondary">장바구니</button>
+			</c:if>
+		</div>		 -->
 		<div class="mb-3">
 			<div class="mb-3">
 				<label for="commentsContents" class="form-label">댓글</label>
