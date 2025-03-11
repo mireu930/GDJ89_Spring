@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,13 @@ public class ProductDAO {
 	
 	public int getCommentsadd(CommentsDTO commnetsDTO)throws Exception {
 		return sqlSession.insert(NAMESPACE+"getCommentsadd", commnetsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentList(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
+	}
+	
+	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE, commentsDTO);
 	}
 }

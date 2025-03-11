@@ -96,6 +96,17 @@
 		VALUES (COMMNETS_SEQ.NEXTVAL,#{boardContents},SYSDATE,#{user_name},#{productNum})
 	</insert>
 	
+	<select id="getCommentList" resultType="CommentsDTO" parameterType="Map">
+		SELECT * FROM 
+		(SELECT ROWNUM R,M.* FROM(SELECT * FROM COMMNETS WHERE PRODUCTNUM=#{commnets.productNum} ORDER BY BOARDNUM DESC) M)
+		WHERE R BETWEEN {pager.startNum} AND {pager.lastNum}
+		
+	</select>
+	
+	<select id="getCommentCount" parameterType="CommentsDTO" resultType="java.lang.Long">
+		SELECT COUNT(BOARDNUM) FROM COMMNETS WHERE PRODUCTNUM=#{productNum}
+	</select>
+	
   </mapper>
   
   

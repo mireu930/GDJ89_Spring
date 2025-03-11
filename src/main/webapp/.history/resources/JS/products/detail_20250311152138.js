@@ -115,7 +115,4 @@ function getList() {
   .then(res => {
     commentsListResult.innerHTML=res;
   })
-  .catch(e=>{
-    alert("에러");
-  })
 }

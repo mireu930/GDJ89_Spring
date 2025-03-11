@@ -2,7 +2,6 @@ const frm = document.getElementById("frm");
 const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const addCart = document.getElementById("addCart");
-const commentsListResult = document.getElementById("commentsListResult");
 
 
 addCart.addEventListener("click", ()=>{
@@ -111,11 +110,9 @@ function getList() {
   let num = commentId.getAttribute("data-comment-boardNum");
 
   fetch("listComments?productNum="+num)
-  .then(res => res.text())
+  .then(res => res.text)
   .then(res => {
-    commentsListResult.innerHTML=res;
-  })
-  .catch(e=>{
-    alert("에러");
+    res.boardContents
+    res.boardDate
   })
 }

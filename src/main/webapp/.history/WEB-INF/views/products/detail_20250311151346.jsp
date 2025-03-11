@@ -41,6 +41,15 @@
 			</table>
 			
 					<div>
+							<nav aria-label="Page navigation example" >
+								<ul class="pagination">
+									<li class="page-item"><a class="page-link" href="./list?page=${pager.start-1}&kind=${param.kind}&search=${param.search}">이전</a></li>
+									<c:forEach begin = "${pager.start}" end="${pager.end}" var ="i">
+									<li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${param.kind}&search=${param.search}">${i}</a></li>
+									</c:forEach>  
+									<li class="page-item ${pager.endCheck?'disabled':''}"><a class="page-link" href="./list?page=${pager.end+1}&kind=${param.kind}&search=${param.search}">다음</a></li>
+								</ul>
+							</nav>
 				</div>
 		</div>
 		<c:if test="${not empty user}">
@@ -59,9 +68,6 @@
 		<div class="col-12">
 			<input type="text" name="boardContents" class="form-control is-invalid" id="productComment">
 				<button class="btn btn-primary" type="button" id="commentId" data-comment-boardNum="${dto.productNum}">등록</button>
-		</div>
-		<div class="mb-3" id="commentsListResult">
-
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

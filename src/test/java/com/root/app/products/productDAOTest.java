@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +15,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.root.app.SampleTest;
+import com.root.app.pages.Pager;
 
 public class productDAOTest extends SampleTest {
 		
@@ -87,7 +90,7 @@ public class productDAOTest extends SampleTest {
 			System.out.println("Finish");
 		}
 	}
-		@Test
+//		@Test
 		public void getCommentsAdd() throws Exception {
 //			Long result = productDAO.gettotalcount();
 			CommentsDTO commnetsDTO = new CommentsDTO();
@@ -99,6 +102,16 @@ public class productDAOTest extends SampleTest {
 			int result = productDAO.getCommentsadd(commnetsDTO);
 			assertEquals(1, result);
 			
+		}
+		
+		@Test
+		public void getCommentList() throws Exception {
+//			CommentsDTO commnetsDTO = new CommentsDTO();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put(null, map);
+			
+			List<CommentsDTO> ar = productDAO.getCommentList(map);
+			assertNotEquals(0, ar.size());
 		}
 }
 

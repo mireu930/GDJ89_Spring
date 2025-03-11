@@ -1,6 +1,7 @@
 package com.root.app.products;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -133,13 +134,20 @@ public class ProductController {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		commentsDTO.setUser_name(userDTO.getUser_name());
 		
-//		int result = productService.getCommentsadd(commentsDTO);
-//		
-		String result = "";
-		System.out.println();
+		int result = productService.getCommentsadd(commentsDTO);
 		
 		model.addAttribute("result", result);
 		
 		return "commons/ajax";
+	}
+	
+	@RequestMapping(value = "listComments", method = RequestMethod.GET)
+	public String getCommentList(CommentsDTO commentsDTO, Pager pager, Model model) throws Exception {
+		System.out.println("comments List");
+		List<CommentsDTO> ar = productService.getCommentList(commentsDTO, pager);
+		
+		model.addAttribute("list", ar);
+		
+		return "commons/commentsList";
 	}
 }

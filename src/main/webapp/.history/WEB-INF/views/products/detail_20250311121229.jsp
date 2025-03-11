@@ -39,9 +39,6 @@
 			    </c:if>
 				</tbody>
 			</table>
-			
-					<div>
-				</div>
 		</div>
 		<c:if test="${not empty user}">
 			<a href="/accounts/addProcess?prodcutNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
@@ -59,9 +56,6 @@
 		<div class="col-12">
 			<input type="text" name="boardContents" class="form-control is-invalid" id="productComment">
 				<button class="btn btn-primary" type="button" id="commentId" data-comment-boardNum="${dto.productNum}">등록</button>
-		</div>
-		<div class="mb-3" id="commentsListResult">
-
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

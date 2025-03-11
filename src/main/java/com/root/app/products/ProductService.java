@@ -1,7 +1,9 @@
 package com.root.app.products;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -103,4 +105,20 @@ public class ProductService {
 	public int getCommentsadd(CommentsDTO commentsDTO) throws Exception {
 		return productDAO.getCommentsadd(commentsDTO);
 	}
+	
+	public List<CommentsDTO> getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception {
+		
+		Long totalCount = productDAO.getCommentCount(commentsDTO);
+		
+		pager.makeNum();
+		pager.make(totalCount);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("commnets", commentsDTO);
+		map.put("pager", pager);
+		
+		return productDAO.getCommentList(map);
+	}
+	
+	
 }

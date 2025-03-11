@@ -113,9 +113,7 @@ function getList() {
   fetch("listComments?productNum="+num)
   .then(res => res.text())
   .then(res => {
-    commentsListResult.innerHTML=res;
-  })
-  .catch(e=>{
-    alert("에러");
+    res.boardContents
+    res.boardDate
   })
 }

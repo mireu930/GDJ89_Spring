@@ -39,8 +39,10 @@
 			    </c:if>
 				</tbody>
 			</table>
-			
-					<div>
+				<div>
+					<c:forEach items="${commentsList}" var="ar">
+								<td>${ar.boardContent} ${ar.boardDate}</td>
+							</c:forEach>
 				</div>
 		</div>
 		<c:if test="${not empty user}">
@@ -59,9 +61,6 @@
 		<div class="col-12">
 			<input type="text" name="boardContents" class="form-control is-invalid" id="productComment">
 				<button class="btn btn-primary" type="button" id="commentId" data-comment-boardNum="${dto.productNum}">등록</button>
-		</div>
-		<div class="mb-3" id="commentsListResult">
-
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
