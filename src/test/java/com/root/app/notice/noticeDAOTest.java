@@ -36,7 +36,7 @@ public class noticeDAOTest extends SampleTest{
 	public void add() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setBoardTitle("머고");
-		noticeDTO.setBoardContent("아무노래나일단틀어");
+//		noticeDTO.setBoardContent("아무노래나일단틀어");
 		noticeDTO.setUser_name("sss");
 		
 		int result = noticeDAO.add(noticeDTO);
@@ -47,7 +47,7 @@ public class noticeDAOTest extends SampleTest{
 	public void update() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setBoardTitle("머고");
-		noticeDTO.setBoardContent("아무노래나일단틀어");
+//		noticeDTO.setBoardContent("아무노래나일단틀어");
 		noticeDTO.setBoardNum(3L);
 		
 		int result = noticeDAO.update(noticeDTO);

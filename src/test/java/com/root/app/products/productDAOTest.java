@@ -88,10 +88,17 @@ public class productDAOTest extends SampleTest {
 		}
 	}
 		@Test
-		public void count() throws Exception {
+		public void getCommentsAdd() throws Exception {
 //			Long result = productDAO.gettotalcount();
+			CommentsDTO commnetsDTO = new CommentsDTO();
 			
-			assertEquals(0, 0);
+			commnetsDTO.setBoardContents("aaaa");
+			commnetsDTO.setUser_name("sss");
+			commnetsDTO.setProductNum(1L);
+			
+			int result = productDAO.getCommentsadd(commnetsDTO);
+			assertEquals(1, result);
+			
 		}
 }
 

@@ -88,6 +88,14 @@
 				PRODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%' ORDER BY PRODUCTNUM DESC) M)
 			</if> -->
 	</sql>
+	
+	<!-- comment -->
+	
+	<insert id="getCommentsadd" parameterType="CommentsDTO">
+		INSERT INTO COMMNETS 
+		VALUES (COMMNETS_SEQ.NEXTVAL,#{boardContents},SYSDATE,#{user_name},#{productNum})
+	</insert>
+	
   </mapper>
   
   

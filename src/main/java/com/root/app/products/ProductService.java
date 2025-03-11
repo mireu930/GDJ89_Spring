@@ -99,4 +99,8 @@ public class ProductService {
 		
 		return productFileDTO;
 	}
+	
+	public int getCommentsadd(CommentsDTO commentsDTO) throws Exception {
+		return productDAO.getCommentsadd(commentsDTO);
+	}
 }

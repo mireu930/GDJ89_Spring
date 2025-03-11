@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.root.app.boards.CommentDTO;
 import com.root.app.pages.Pager;
 import com.root.app.utils.DBConnection;
 
@@ -62,5 +63,9 @@ public class ProductDAO {
 	
 	public int updateUpload(ProductFileDTO productFileDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"updateUpload", productFileDTO);
+	}
+	
+	public int getCommentsadd(CommentsDTO commnetsDTO)throws Exception {
+		return sqlSession.insert(NAMESPACE+"getCommentsadd", commnetsDTO);
 	}
 }

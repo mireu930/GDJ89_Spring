@@ -53,10 +53,10 @@
 				</form>
 			</c:if>
 		</div>		
-		<div class="col-12">
-			<input type="text" name="boardContents" class="form-control is-invalid" id="productComment">
-				<button class="btn btn-primary" type="button" id="commentId" data-comment-boardNum="${dto.productNum}">등록</button>
-		</div>
+	</div>
+	<div class="col-12">
+		<input type="text" name="boardContents" class="form-control is-invalid" id="productComment">
+			<button class="btn btn-primary" type="button" id="commentId">등록</button>
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/template/boot_js.jsp"></c:import>

@@ -14,6 +14,7 @@
 		<typeAlias type="com.root.app.pages.Pager" alias="Pager"/>
 		<typeAlias type="com.root.app.boards.qna.QNADTO" alias="QNADTO"/>
 		<typeAlias type="com.root.app.carts.CartDTO" alias="CartDTO"/>
+		<typeAlias type="com.root.app.products.CommentsDTO" alias="CommentsDTO"/>
 		
 		<typeAlias type="com.root.app.boards.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.root.app.users.UserFileDTO" alias="UserFileDTO"/>

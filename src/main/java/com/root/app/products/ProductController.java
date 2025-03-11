@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.pages.Pager;
+import com.root.app.users.UserDTO;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -107,5 +108,38 @@ public class ProductController {
 			modelAndView.setViewName("redirect:./list");
 		}
 		return modelAndView;
+	}
+	
+	//--------------------------------------------------------------------------------------------------------------------
+	
+//	@RequestMapping(value = "addComments", method = RequestMethod.GET)
+//	public void getCommentsadd(HttpSession session) throws Exception {
+//		
+//		ModelAndView modelAndView = new ModelAndView();
+//		
+//		if(userDTO == null) {
+//			modelAndView.addObject("result", "로그인이 필요합니다.");
+//			modelAndView.addObject("path", "/users/login");
+//			modelAndView.setViewName("commons/result");
+//
+//		} else {
+//			modelAndView.setViewName("board/boardform");
+//		}
+//		
+//	}
+	
+	@RequestMapping(value = "addComments", method = RequestMethod.POST)
+	public String getCommentsadd(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUser_name(userDTO.getUser_name());
+		
+//		int result = productService.getCommentsadd(commentsDTO);
+//		
+		String result = "";
+		System.out.println();
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajax";
 	}
 }

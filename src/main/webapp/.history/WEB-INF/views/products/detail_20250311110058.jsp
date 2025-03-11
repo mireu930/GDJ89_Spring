@@ -54,8 +54,8 @@
 			</c:if>
 		</div>		
 		<div class="col-12">
-			<input type="text" name="boardContents" class="form-control is-invalid" id="productComment">
-				<button class="btn btn-primary" type="button" id="commentId" data-comment-boardNum="${dto.productNum}">등록</button>
+			<input type="text" name="boardContents" class="form-control is-invalid" id="productComment" aria-describedby="inputGroupPrepend3" required>
+				<button class="btn btn-primary" type="submit" id="commentId">등록</button>
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
