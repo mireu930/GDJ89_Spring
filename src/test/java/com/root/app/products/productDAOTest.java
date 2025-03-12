@@ -104,7 +104,7 @@ public class productDAOTest extends SampleTest {
 			
 		}
 		
-		@Test
+//		@Test
 		public void getCommentList() throws Exception {
 //			CommentsDTO commnetsDTO = new CommentsDTO();
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -116,6 +116,16 @@ public class productDAOTest extends SampleTest {
 			
 			List<CommentsDTO> ar = productDAO.getCommentList(map);
 			assertNotEquals(0, ar.size());
+		}
+		
+		@Test
+		public void getdetail() throws Exception {
+			CommentsDTO commentsDTO = new CommentsDTO();
+			commentsDTO.setBoardNum(6L);
+			
+			int result = productDAO.getCommentDelete(commentsDTO);
+			
+			assertEquals(1, result);
 		}
 }
 

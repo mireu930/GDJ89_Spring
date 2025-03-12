@@ -184,11 +184,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "deleteComments", method = RequestMethod.POST)
 	public String getCommentDelete(CommentsDTO commentsDTO, Model model) throws Exception {
-		System.out.println("deleteComment");
-		System.out.println(commentsDTO.getBoardNum());
-		
 		int result = productService.getCommentDelete(commentsDTO);
-		System.out.println(result);
 		
 		model.addAttribute("result", result);
 		return "commons/ajax";

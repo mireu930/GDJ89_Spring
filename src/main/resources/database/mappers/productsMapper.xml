@@ -107,7 +107,7 @@
 	</select>
 	
 	<delete id="getCommentDelete" parameterType="CommentsDTO">
-		DELETE COMMNETS WHERE BOARDNUM=#{boardNum}
+		DELETE COMMNETS WHERE BOARDNUM = #{boardNum}
 	</delete>
 	
 	<update id="getCommentUpdate" parameterType="CommentsDTO">

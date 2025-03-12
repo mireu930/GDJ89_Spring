@@ -80,7 +80,7 @@ public class ProductDAO {
 	
 	public int getCommentDelete(CommentsDTO commentsDTO) throws Exception {
 		System.out.println("dao"+commentsDTO.getBoardNum());
-		return sqlSession.delete(NAMESPACE+"getCommentDelete", NAMESPACE);
+		return sqlSession.delete(NAMESPACE+"getCommentDelete", commentsDTO);
 	}
 	
 	public int getCommentUpdate(CommentsDTO commentsDTO) throws Exception {
