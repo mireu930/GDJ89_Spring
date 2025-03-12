@@ -142,12 +142,13 @@ commentsListResult.addEventListener("click", async(e)=> {
       alert('댓글번호가 없습니다.')
     }
     
-    let f1 = new FormData();
+    const f1 = new FormData();
     f1.append("boardNum",num)
-
+    
     await fetch("./deleteComments", {
       method: 'POST',
-      body:f1
+      headers : {'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+      body:params.toString()
     })
     .then(result=>result.text())
     .then(result=>{

@@ -25,13 +25,13 @@
 			  </div>
 			  <div class="col-md-4">
 			    <label for="productDetail" class="form-label">상품상세설명</label>
-			    <!-- <div class="input-group has-validation"> -->
+			    <div class="input-group has-validation">
 			      <!-- <span class="input-group-text" id="inputGroupPrepend3">@</span> -->
-			      <textarea type="text" name="productDetail" class="form-control is-invalid" id="detail" aria-describedby="inputGroupPrepend3"></textarea>
+			      <input type="text" name="productDetail" class="form-control is-invalid" id="detail" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 			      <!-- <div id="validationServerUsernameFeedback" class="invalid-feedback">
 			        상품상세설명을 입력하세요.
 			      </div> -->
-			    <!-- </div> -->
+			    </div>
 			  </div>
 			  <div class="col-md-6">
 			    <label for="productRate" class="form-label">이자율</label>

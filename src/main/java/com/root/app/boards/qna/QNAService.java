@@ -124,12 +124,12 @@ public class QNAService implements BoardService{
 			file.mkdirs();
 		}
 		//HDD저장
-		fIle.file(path, attach);
+		String f = fIle.file(path, attach);
 		
 		//파일정보를 DTO에 담아서 리턴
 		BoardFileDTO boardFileDTO = new BoardFileDTO();
 		
-		boardFileDTO.setFileName(fIle.getA());
+		boardFileDTO.setFileName(f);
 		boardFileDTO.setOldName(attach.getOriginalFilename());
 		
 		return boardFileDTO;

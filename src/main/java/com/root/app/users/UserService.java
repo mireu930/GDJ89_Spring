@@ -88,12 +88,12 @@ public class UserService {
 		String path = context.getRealPath("/resources/images/profiles/");
 		System.out.println(path);
 
-		fIle.file(path, profile);
+		String f = fIle.file(path, profile);
 
 		
 		UserFileDTO userFileDTO = new UserFileDTO();
 		userFileDTO.setUser_name(userDTO.getUser_name());
-		userFileDTO.setFileName(fIle.getA());
+		userFileDTO.setFileName(f);
 		userFileDTO.setOldName(profile.getOriginalFilename());
 		
 		return userFileDTO;

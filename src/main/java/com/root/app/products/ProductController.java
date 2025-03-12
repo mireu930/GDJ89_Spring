@@ -29,8 +29,6 @@ import com.root.app.utils.FIle;
 public class ProductController {
 	@Autowired
 	private ProductService productService;
-	@Autowired
-	private FIle fIle;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
@@ -206,23 +204,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "detailFiles", method = RequestMethod.POST)
-	public String detailFile(MultipartFile uploadFile, HttpSession session, Model model) throws Exception {
-		System.out.println("detailFile");
-		System.out.println(uploadFile.getOriginalFilename());
+	public String detailFiles (MultipartFile uploadFile,HttpSession session, Model model)throws Exception{
+		String fileName = productService.detailFiles(session, uploadFile);
 		
-		String path = session.getServletContext().getRealPath("/resources/images/products/");
-		System.out.println(path);
+		fileName = "/resources/images/products/"+fileName;
 		
-		File file = new File(path);
-		
-		fIle.file(path, uploadFile);
-		
-		String a =fIle.getA();
-		System.out.println(a);
-		
-		String file2 = "/resources/images/products/"+a;
-		
-		model.addAttribute("result", file2);
+		model.addAttribute("result", fileName);
 		
 		return "commons/ajax";
 	}

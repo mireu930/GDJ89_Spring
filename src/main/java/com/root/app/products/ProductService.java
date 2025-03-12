@@ -89,14 +89,14 @@ public class ProductService {
 		String path= context.getRealPath("/resources/images/products/");
 		System.out.println(path);
 		
-		fIle.file(path, productFileImage);
+		String f = fIle.file(path, productFileImage);
 		
 		System.out.println(productDTO.getProductNum());
 
 		
 		ProductFileDTO productFileDTO = new ProductFileDTO();
 		productFileDTO.setProductNum(productDTO.getProductNum());
-		productFileDTO.setFileName(fIle.getA());
+		productFileDTO.setFileName(f);
 		productFileDTO.setOldName(productFileImage.getOriginalFilename());
 		
 		return productFileDTO;
@@ -129,4 +129,12 @@ public class ProductService {
 		return productDAO.getCommentUpdate(commentsDTO);
 	}
 	
+	public String detailFiles(HttpSession session, MultipartFile files)throws Exception{
+		String path = session.getServletContext().getRealPath("/resources/images/products/");
+		System.out.println(path);
+		String fileName = fIle.file(path, files);
+		System.out.println(fileName);
+		return fileName;
+		
+	}
 }

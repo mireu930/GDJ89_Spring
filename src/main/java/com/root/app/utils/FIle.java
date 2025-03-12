@@ -10,39 +10,37 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FIle {
-	private String a;
 	
-	
-	public void file(String path, MultipartFile profile) throws Exception {
-		File file = new File(path);
+	public String file(String path, MultipartFile profile) throws Exception {
+			File file = new File(path);
+		
 		if(!file.exists()) {
 			file.mkdirs();
 		}
-		//2.어떤파일을 어떤이름으로 저장?
 		
+		//2. 어떤파일을 어떤이름으로 저장??
+		//   1)시간
 //		Calendar ca = Calendar.getInstance();
-//		 long mil = ca.getTimeInMillis();
-//		a =profile.getOriginalFilename();
-//		a=a.substring(a.lastIndexOf("."));
-//		a=mil+a;
+//		long mil = ca.getTimeInMillis();//1234567
+//		String f = profile.getOriginalFilename();
+//		f = f.substring(f.lastIndexOf("."));
+//		f = mil+f;
 		
-		//2)이름을 만드는 객체
-		a = UUID.randomUUID().toString();
-		a = a +"_"+profile.getOriginalFilename();
+		//	2) 객체 사용
+		String f = UUID.randomUUID().toString();
+		f = f+"_"+profile.getOriginalFilename();
 		
-		//3.HDD저장
-			//1 transferTo
-		file = new File(file,a);
+		
+		
+		//3. HDD에 저장
+		//1) MultipartFile class의 transferTo 메서드
+		file = new File(file, f);
 //		profile.transferTo(file);
-		FileCopyUtils.copy(profile.getBytes(), file);
-	}
-	
-	public String getA() {	
-		return a;
-	}
-	
-	public void setA(String a) {
-		this.a = a;
+		
+		//2) FileCopyUtils
+		FileCopyUtils.copy(profile.getBytes(), file);		
+		
+		return f;
 	}
 	
 	public void delete(String path, String fileName) throws Exception {
