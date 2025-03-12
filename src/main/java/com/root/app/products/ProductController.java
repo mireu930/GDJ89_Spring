@@ -1,8 +1,10 @@
 package com.root.app.products;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.log.UserDataHelper.Mode;
@@ -17,14 +19,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
+import com.root.app.boards.BoardFileDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
+import com.root.app.utils.FIle;
 
 @Controller
 @RequestMapping(value = "/products/*")
 public class ProductController {
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private FIle fIle;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
@@ -196,6 +202,28 @@ public class ProductController {
 		
 		int result = productService.getCommentUpdate(commentsDTO);
 		model.addAttribute("result", result);
+		return "commons/ajax";
+	}
+	
+	@RequestMapping(value = "detailFiles", method = RequestMethod.POST)
+	public String detailFile(MultipartFile uploadFile, HttpSession session, Model model) throws Exception {
+		System.out.println("detailFile");
+		System.out.println(uploadFile.getOriginalFilename());
+		
+		String path = session.getServletContext().getRealPath("/resources/images/products/");
+		System.out.println(path);
+		
+		File file = new File(path);
+		
+		fIle.file(path, uploadFile);
+		
+		String a =fIle.getA();
+		System.out.println(a);
+		
+		String file2 = "/resources/images/products/"+a;
+		
+		model.addAttribute("result", file2);
+		
 		return "commons/ajax";
 	}
 }

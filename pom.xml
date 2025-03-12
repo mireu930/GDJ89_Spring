@@ -14,6 +14,17 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-messaging</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+	
 	<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11 -->
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>

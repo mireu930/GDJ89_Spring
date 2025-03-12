@@ -16,7 +16,17 @@
 				}
 			});
 			// 상품상세설명 입력 필드에 대한 이벤트 리스너
-			
+			var productDetailInput = document.getElementById('validationServerUsername');
+			productDetailInput.addEventListener('input', function () {
+				var feedback = document.getElementById('validationServerUsernameFeedback');
+				if (productDetailInput.value.trim() !== '') {
+					feedback.style.display = 'none';
+					productDetailInput.classList.remove('is-invalid');
+				} else {
+					feedback.style.display = 'block';
+					productDetailInput.classList.add('is-invalid');
+				}
+			});
 			
 			// 이자율 입력 필드에 대한 이벤트 리스너
 			var interestRateInput = document.getElementById('validationServer03');

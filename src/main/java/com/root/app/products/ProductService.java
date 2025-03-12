@@ -128,4 +128,5 @@ public class ProductService {
 	public int getCommentUpdate(CommentsDTO commentsDTO) throws Exception {
 		return productDAO.getCommentUpdate(commentsDTO);
 	}
+	
 }
