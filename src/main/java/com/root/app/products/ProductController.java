@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.log.UserDataHelper.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -185,6 +186,15 @@ public class ProductController {
 		int result = productService.getCommentDelete(commentsDTO);
 		System.out.println(result);
 		
+		model.addAttribute("result", result);
+		return "commons/ajax";
+	}
+	
+	@RequestMapping(value = "updateComments", method = RequestMethod.POST)
+	public String getCommentUpdate(CommentsDTO commentsDTO, Model model) throws Exception {
+		System.out.println("updateComment");
+		
+		int result = productService.getCommentUpdate(commentsDTO);
 		model.addAttribute("result", result);
 		return "commons/ajax";
 	}

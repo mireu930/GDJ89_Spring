@@ -6,7 +6,6 @@ const addComments = document.getElementById("addComments");
 const commentsContents = document.getElementById("commentsContents");
 const commentsListResult = document.getElementById("commentsListResult");
 const pages = document.getElementsByClassName("pages");
-const modal_change = document.getElementById("modal-change");
 
 
 addCart.addEventListener("click", ()=>{
@@ -128,8 +127,6 @@ commentsListResult.addEventListener('click', (e)=>{
   }
 })
 
-
-
 commentsListResult.addEventListener("click", async(e)=> {
   if (e.target.classList.contains('deleteComments')) {
     if(!confirm("정말삭제하시겠습니까?")){
@@ -155,64 +152,10 @@ commentsListResult.addEventListener("click", async(e)=> {
       if(result.trim()>'0'){
 
         alert('삭제되었습니다.')
-      } else {
-        alert('삭제실패')
+        getList(1);
       }
-    })
-    .catch(e=>{
-      console.log(e)
-    })
-    getList(1);
+  })
   }
 })
 
 
-commentsListResult.addEventListener('click', (e)=>{
-  if (e.target.classList.contains('updateComments')) {
-    let ud = e.target;
-    let ud_s = ud.parentElement.previousElementSibling.previousElementSibling;
-
-    let c = ud_s.innerHTML;
-    // ud_s.innerHTML = `<textarea>${c}</textarea>`;
-
-    // prompt("수정할 내용 입력")
-    document.getElementById("message-text").value=c;
-    c=ud.getAttribute("data-update-num");
-    document.getElementById("message-text").setAttribute("data-board-num",c)
-  }
-})
-
-modal_change.addEventListener("click", ()=> {
-   m = document.getElementById("message-text")
-  let num = document.getElementById;
-
-  // if(num){
-
-  // }
-  const f1 = new FormData();
-  f1.append("boardContents",m.value);
-  f1.append("boardNum",m.getAttribute("data-board-num"));
-
-   fetch("./updateComments",{
-    method:'POST',
-    body:f1
-   })
-   .then(result => result.text())
-   .then(result => {
-      if(result.trim()>'0'){
-        alert("수정되었습니다.")
-      }
-
-      
-
-      location.reload();
-   })
-   .catch(e=>{
-    alert("서버오류")
-   })
-   .finally(()=>{
-    m.value="";
-    m.setAttribute("data-board-num","")
-   }
-   )
-})

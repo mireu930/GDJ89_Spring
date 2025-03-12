@@ -61,27 +61,6 @@
 		<div class="mb-3" id="commentsListResult">
 
 		</div>
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<div class="mb-3">
-							<label for="message-text" class="col-form-label"></label>
-							<textarea data-board-num="" class="form-control" id="message-text"></textarea>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" id="modal-change" data-bs-dismiss="modal">수정</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
 	</div>
 	<script src="/resources/JS/products/detail.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

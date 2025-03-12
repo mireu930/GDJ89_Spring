@@ -82,4 +82,8 @@ public class ProductDAO {
 		System.out.println("dao"+commentsDTO.getBoardNum());
 		return sqlSession.delete(NAMESPACE+"getCommentDelete", NAMESPACE);
 	}
+	
+	public int getCommentUpdate(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"getCommentUpdate", commentsDTO);
+	}
 }

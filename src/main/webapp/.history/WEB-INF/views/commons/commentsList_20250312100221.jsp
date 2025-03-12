@@ -16,7 +16,7 @@
                 <td>${c.boardContents}</td>
                 <td>${c.boardDate}</td>
                 <td>
-                    <button class="btn btn-outline-primary updateComments" data-update-num="${c.boardNum}" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
+                    <button class="btn btn-outline-primary updateComments" data-board-num="${c.boardNum}" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
                     <button class="btn btn-outline-danger deleteComments" data-board-num="${c.boardNum}">삭제</button>
                 </td>
             </tr>

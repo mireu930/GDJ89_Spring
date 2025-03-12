@@ -183,15 +183,15 @@ commentsListResult.addEventListener('click', (e)=>{
 })
 
 modal_change.addEventListener("click", ()=> {
-   m = document.getElementById("message-text")
+  let m = document.getElementById("message-text").value
   let num = document.getElementById;
 
   // if(num){
 
   // }
   const f1 = new FormData();
-  f1.append("boardContents",m.value);
-  f1.append("boardNum",m.getAttribute("data-board-num"));
+  f1.append("boardContents",m);
+  f1.append("boardNum",num);
 
    fetch("./updateComments",{
     method:'POST',
@@ -202,17 +202,8 @@ modal_change.addEventListener("click", ()=> {
       if(result.trim()>'0'){
         alert("수정되었습니다.")
       }
-
-      
-
-      location.reload();
    })
    .catch(e=>{
     alert("서버오류")
    })
-   .finally(()=>{
-    m.value="";
-    m.setAttribute("data-board-num","")
-   }
-   )
 })

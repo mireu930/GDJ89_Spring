@@ -210,9 +210,4 @@ modal_change.addEventListener("click", ()=> {
    .catch(e=>{
     alert("서버오류")
    })
-   .finally(()=>{
-    m.value="";
-    m.setAttribute("data-board-num","")
-   }
-   )
 })

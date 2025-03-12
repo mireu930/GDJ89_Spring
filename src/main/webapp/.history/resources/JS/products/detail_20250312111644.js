@@ -203,16 +203,9 @@ modal_change.addEventListener("click", ()=> {
         alert("수정되었습니다.")
       }
 
-      
-
       location.reload();
    })
    .catch(e=>{
     alert("서버오류")
    })
-   .finally(()=>{
-    m.value="";
-    m.setAttribute("data-board-num","")
-   }
-   )
 })

@@ -110,6 +110,10 @@
 		DELETE COMMNETS WHERE BOARDNUM=#{boardNum}
 	</delete>
 	
+	<update id="getCommentUpdate" parameterType="CommentsDTO">
+		UPDATE COMMNETS SET BOARDCONTENTS = #{boardContents} WHERE BOARDNUM=#{boardNum}
+	</update>
+	
   </mapper>
   
   

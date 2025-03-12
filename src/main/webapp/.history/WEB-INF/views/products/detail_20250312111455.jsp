@@ -70,13 +70,13 @@
 					</div>
 					<div class="modal-body">
 						<div class="mb-3">
-							<label for="message-text" class="col-form-label"></label>
-							<textarea data-board-num="" class="form-control" id="message-text"></textarea>
+							<label data-board-num="" for="message-text" class="col-form-label"></label>
+							<textarea class="form-control" id="message-text"></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" id="modal-change" data-bs-dismiss="modal">수정</button>
+						<button type="button" class="btn btn-primary" id="modal-change">수정</button>
 					</div>
 				</div>
 			</div>

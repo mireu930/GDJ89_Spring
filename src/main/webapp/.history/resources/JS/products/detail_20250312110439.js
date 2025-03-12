@@ -177,21 +177,20 @@ commentsListResult.addEventListener('click', (e)=>{
 
     // prompt("수정할 내용 입력")
     document.getElementById("message-text").value=c;
-    c=ud.getAttribute("data-update-num");
-    document.getElementById("message-text").setAttribute("data-board-num",c)
+    
   }
 })
 
 modal_change.addEventListener("click", ()=> {
-   m = document.getElementById("message-text")
-  let num = document.getElementById;
+  let m = document.getElementById("message-text").value
+  let num = commentsListResult.classList.contains("data-board-num");
 
   // if(num){
 
   // }
   const f1 = new FormData();
-  f1.append("boardContents",m.value);
-  f1.append("boardNum",m.getAttribute("data-board-num"));
+  f1.append("boardContents",m);
+  f1.append("boardNum",num);
 
    fetch("./updateComments",{
     method:'POST',
@@ -202,17 +201,8 @@ modal_change.addEventListener("click", ()=> {
       if(result.trim()>'0'){
         alert("수정되었습니다.")
       }
-
-      
-
-      location.reload();
    })
    .catch(e=>{
     alert("서버오류")
    })
-   .finally(()=>{
-    m.value="";
-    m.setAttribute("data-board-num","")
-   }
-   )
 })

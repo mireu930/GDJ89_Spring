@@ -124,4 +124,8 @@ public class ProductService {
 		System.out.println("service"+commentsDTO.getBoardNum());
 		return productDAO.getCommentDelete(commentsDTO);
 	}
+	
+	public int getCommentUpdate(CommentsDTO commentsDTO) throws Exception {
+		return productDAO.getCommentUpdate(commentsDTO);
+	}
 }

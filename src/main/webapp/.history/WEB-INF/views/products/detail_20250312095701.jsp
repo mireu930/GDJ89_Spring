@@ -39,17 +39,17 @@
 		</div>
 		 <c:if test="${not empty user}">
 			<a href="/accounts/addProcess?productNum=${dto.productNum}" class ="btn btn-outline-success">내계좌추가</a>
+			<button type="button" id="addCart" data-product-num="${dto.productNum}" class ="btn btn-outline-secondary">장바구니</button>
 		</c:if>
-		<button type="button" id="addCart" data-product-num="${dto.productNum}" class ="btn btn-outline-secondary">장바구니</button>
 		<div>
-			
+			<c:if test="${user.user_name eq 'sss' }">
 				<form action="/test" id="frm">
 					<input type="hidden" name="productNum" value="${dto.productNum}">
 					<button type="button" id="btn1" class="btn btn-outline-success">수정</button>
 					<button type="button" id="btn2" class="btn btn-outline-danger">삭제</button>
 				</form>
-			
-		</div>		 
+			</c:if>
+		</div>		
 		<div class="mb-3">
 			<div class="mb-3">
 				<label for="commentsContents" class="form-label">댓글</label>
@@ -61,27 +61,6 @@
 		<div class="mb-3" id="commentsListResult">
 
 		</div>
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<div class="mb-3">
-							<label for="message-text" class="col-form-label"></label>
-							<textarea data-board-num="" class="form-control" id="message-text"></textarea>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" id="modal-change" data-bs-dismiss="modal">수정</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
 	</div>
 	<script src="/resources/JS/products/detail.js"></script>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
