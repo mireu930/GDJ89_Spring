@@ -18,7 +18,7 @@ $('#detail').summernote({
           })
 
       },
-      onMediaDelete:(files)=>{
+      onMediaDelete:async(files)=>{
         console.log(files[0].src)
         console.log($(files[0]).attr("src"))
 
@@ -31,11 +31,11 @@ $('#detail').summernote({
         let f = new FormData();
         f.append("fileName", ar)
 
-        let result = fetch("./detailFilesDelete", {
+        let result = await fetch("./detailFilesDelete", {
             method:'POST',
             body:f
         });
-        console.log(result.text());
+        console.log(result);
       }
   }
 })

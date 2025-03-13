@@ -21,21 +21,6 @@ $('#detail').summernote({
       onMediaDelete:(files)=>{
         console.log(files[0].src)
         console.log($(files[0]).attr("src"))
-
-        let fileName = files[0].src;
-        let ar = fileName.split("/")
-        console.log(ar[ar.length-1])
-        ar = fileName.substring(fileName.lastIndexOf("/")+1)
-        console.log(ar)
-
-        let f = new FormData();
-        f.append("fileName", ar)
-
-        let result = fetch("./detailFilesDelete", {
-            method:'POST',
-            body:f
-        });
-        console.log(result.text());
       }
   }
 })

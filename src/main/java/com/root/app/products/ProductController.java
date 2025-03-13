@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
 import com.root.app.boards.BoardFileDTO;
+import com.root.app.files.FileDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 import com.root.app.utils.FIle;
@@ -207,6 +208,14 @@ public class ProductController {
 		
 		model.addAttribute("result", fileName);
 		
+		return "commons/ajax";
+	}
+	
+	@RequestMapping(value = "detailFilesDelete", method = RequestMethod.POST)
+	public String detailFilesDelete(HttpSession session, FileDTO fileDTO, Model model) throws Exception {
+		System.out.println("detailFilesDelete");
+		productService.deleteFile(fileDTO, session);
+		model.addAttribute("result", 1);
 		return "commons/ajax";
 	}
 }

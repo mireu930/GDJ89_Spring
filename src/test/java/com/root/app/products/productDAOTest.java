@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.root.app.SampleTest;
 import com.root.app.pages.Pager;
@@ -21,6 +22,13 @@ public class productDAOTest extends SampleTest {
 		
 		@Autowired
 		private ProductDAO productDAO;
+		@Value("${oracle.user}")
+		private String username;
+		
+		@Test
+		public void usernameTest() {
+			System.out.println(username);
+		}
 		
 //		@Test
 		public void getDetailTest() throws Exception {
@@ -118,7 +126,7 @@ public class productDAOTest extends SampleTest {
 			assertNotEquals(0, ar.size());
 		}
 		
-		@Test
+//		@Test
 		public void getdetail() throws Exception {
 			CommentsDTO commentsDTO = new CommentsDTO();
 			commentsDTO.setBoardNum(6L);

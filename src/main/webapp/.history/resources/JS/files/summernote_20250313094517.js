@@ -27,15 +27,13 @@ $('#detail').summernote({
         console.log(ar[ar.length-1])
         ar = fileName.substring(fileName.lastIndexOf("/")+1)
         console.log(ar)
-
         let f = new FormData();
-        f.append("fileName", ar)
+        f.append("deleteFile", ar)
 
-        let result = fetch("./detailFilesDelete", {
+        fetch("./detailFilesDelete", {
             method:'POST',
             body:f
-        });
-        console.log(result.text());
+        })
       }
   }
 })

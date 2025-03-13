@@ -31,11 +31,10 @@ $('#detail').summernote({
         let f = new FormData();
         f.append("fileName", ar)
 
-        let result = fetch("./detailFilesDelete", {
+        fetch("./detailFilesDelete", {
             method:'POST',
             body:f
-        });
-        console.log(result.text());
+        })
       }
   }
 })

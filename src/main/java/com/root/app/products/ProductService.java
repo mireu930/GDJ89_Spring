@@ -10,10 +10,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.root.app.files.FileDTO;
 import com.root.app.pages.Pager;
 import com.root.app.utils.FIle;
 
@@ -23,6 +25,8 @@ public class ProductService {
 	private ProductDAO productDAO;
 	@Autowired
 	private FIle fIle;
+	@Value("${product.file.path}")
+	private String path;
 	
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 //		Pager pager = new Pager();
@@ -136,5 +140,10 @@ public class ProductService {
 		System.out.println(fileName);
 		return fileName;
 		
+	}
+	
+	public void deleteFile(FileDTO fileDTO, HttpSession session) throws Exception {
+		String path = session.getServletContext().getRealPath("/resources/images/products/");
+		fIle.delete(path, fileDTO.getFileName());
 	}
 }
