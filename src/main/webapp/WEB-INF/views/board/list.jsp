@@ -73,8 +73,10 @@
   			</c:forEach>
 		   <li class="page-item ${pager.endCheck?'disabled':''}"><button class="page-link pages" data-page-num="${pager.end+1}">Next</button></li>
 	  	</ul>
-	</nav>																			
-		<a href ="./add" class ="btn btn-outline-primary">추가</a>	
+	</nav>
+	<c:if test="${not empty user}">
+		<a href ="./add" class ="btn btn-outline-primary">추가</a>		
+	</c:if>									
 
 </div>
 	<c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
