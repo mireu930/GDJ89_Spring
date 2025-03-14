@@ -13,6 +13,33 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	
+	<interceptors>
+	
+		<interceptor>
+			<mapping path="/users/*"/>
+			<mapping path="/qna/*"/>
+			<exclude-mapping path="/qna/list"/>
+			<exclude-mapping path="/users/login"/>
+			<exclude-mapping path="/users/join"/>
+			<beans:ref bean="loginCheckInterceptor"/>
+				
+		</interceptor>	
+		<interceptor>
+			<mapping path="/product/*"/>
+			<exclude-mapping path="/products/list"/>
+			<exclude-mapping path="/products/detail"/>
+			
+			<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+		
+		<!-- <interceptor>
+			<mapping path="/qna/update"/>
+			<mapping path="/notice/update"/>
+			
+			<beans:bean class="com.root.app.interceptors.UserNameCheckInterceptor"></beans:bean>
+		</interceptor> -->
+	</interceptors>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
