@@ -9,7 +9,12 @@
 <c:import url="../template/boot_css.jsp"></c:import>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
+	<c:if test="${kind eq 'qna'}">
+		 <c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
+	</c:if> 
+	<c:if test="${kind eq 'notice'}"> 
+		<c:import url="/WEB-INF/views/template/layout_header2.jsp"></c:import>
+	</c:if>
 	<div class = "container-fluid my-5">
 		<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method ="get" id="list_form">
 		<input type="hidden" name="page" id="pageNum">

@@ -65,6 +65,6 @@
 	</websocket:handlers>
     
 	<beans:bean id="echoHandler" class="com.root.app.websocket.EchoHandler"></beans:bean>
-	
+	<beans:bean id="kakaoLoginBO" class="com.root.app.users.KakaoLoginBO"></beans:bean>
 	
 </beans:beans>

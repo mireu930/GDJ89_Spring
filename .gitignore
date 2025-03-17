@@ -4,6 +4,7 @@
 ### My Custom ###
 DBConnection.java
 database.properties
+KakaoLoginBO.java
 
 ### Eclipse ###
 .metadata

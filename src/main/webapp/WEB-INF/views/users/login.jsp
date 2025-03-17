@@ -35,6 +35,12 @@
 			  <div class="col-12">
 			    <button class="btn btn-primary" type="submit">로그인</button>
 			  </div>
+			  <div>
+				<a id="kakao-login-btn" href="${urlKakao}"> <img
+					src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
+					width="150px" alt="카카오 로그인 버튼" />
+				</a>
+			</div>
 			</form>
 		</div>
 	</div>

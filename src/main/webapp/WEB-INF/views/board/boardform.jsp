@@ -9,7 +9,13 @@
 	<c:import url="/WEB-INF/views/template/boot_css.jsp"></c:import>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
+	<c:if test="${kind eq 'qna'}">
+		 <c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
+	</c:if> 
+	<c:if test="${kind eq 'notice'}"> 
+		<c:import url="/WEB-INF/views/template/layout_header2.jsp"></c:import>
+	</c:if>
+	<%-- <c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import> --%>
 	<div class = "container-fluid my-5">
 		<div class = "row col-md-8 offset-md-2">
 			<form class="row g-3" action = "" method = "post" enctype="multipart/form-data">

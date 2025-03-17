@@ -31,6 +31,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private KakaoLoginBO kakaoLoginBO;
 	
 	@RequestMapping(value = "check", method = RequestMethod.GET)
 	public String check(UserDTO userDTO, Model model ) throws Exception {
@@ -89,7 +91,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "login", method =RequestMethod.GET)
-	public String login() throws Exception {
+	public String login(HttpSession session, Model model) throws Exception {
+		
+		String kakaoAuthUrl = kakaoLoginBO.getAuthorizationUrl(session);
+		model.addAttribute("urlKakao", kakaoAuthUrl);
 		return "users/login";
 	}
 	
