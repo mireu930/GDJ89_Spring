@@ -44,4 +44,19 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!-- 클라이언트 에러처리 -->
+	<error-page>
+		<error-code>
+			404
+		</error-code>
+		<location>/WEB-INF/views/Errors/error_400.jsp</location>
+		<error-code>
+			400
+		</error-code>
+		<location>/WEB-INF/views/Errors/error_400.jsp</location>
+		<!-- <error-code>
+			500
+		</error-code>
+		<location>/WEB-INF/views/Errors/error_500.jsp</location> -->
+	</error-page>
 </web-app>
